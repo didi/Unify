@@ -1,0 +1,11 @@
+const String keywordPublic = 'public';
+const String keywordPrivate = 'private';
+const String keywordStatic = 'static';
+const String keywordClass = 'class';
+const String keywordInterface = 'interface';
+const String keywordExtends = 'extends';
+const String keywordParenthesesLeft = '(';
+const String keywordParenthesesRight = ')';
+const String keywordBraceLeft = '{';
+const String keywordBraceRight = '}';
+const String keywordSpace = ' ';
