@@ -43,7 +43,7 @@ Unify 基于 Apache-2.0 协议进行分发和使用，更多信息参见 [协议
 [bql88601485](https://github.com/bql88601485),
 [newbiechen](https://github.com/newbiechen),
 [xizhilang66](https://github.com/xizhilang66),
-[ucphszf](https://github.com/ucphszf),
+[UCPHszf](https://github.com/UCPHszf),
 [QianfeiSir](https://github.com/QianfeiSir),
 [jiawei1203](https://github.com/jiawei1203),
 [Whanter](https://github.com/Whanter)
