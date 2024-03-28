@@ -41,7 +41,7 @@ Unify 基于 Apache-2.0 协议进行分发和使用，更多信息参见 [协议
 [ChengCheng-Hello](https://github.com/ChengCheng-Hello),
 [windChaser618](https://github.com/windChaser618),
 [bql88601485](https://github.com/bql88601485),
-[newbiechen](https://github.com/newbiechen),
+[newbiechen1024](https://github.com/newbiechen1024),
 [xizhilang66](https://github.com/xizhilang66),
 [UCPHszf](https://github.com/UCPHszf),
 [QianfeiSir](https://github.com/QianfeiSir),
