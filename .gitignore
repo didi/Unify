@@ -1,2 +1,8 @@
 .DS_Store
-.dart_tool
+.packages
+.idea
+.vscode
+.dart_tool/
+
+# Conventional directory for build outputs
+build/
