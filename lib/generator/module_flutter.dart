@@ -74,7 +74,7 @@ abstract class FlutterModuleGenerator {
                               body: 'this.messenger = messenger;'),
                           OneLine(
                               depth: depth + 1,
-                              body: 'UniAPI.registerModule(this);')
+                              body: '${options.javaUniAPIPrefix}$kUniAPI.registerModule(this);')
                         ]),
                 EmptyLine(),
                 JavaClass(
