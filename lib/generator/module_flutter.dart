@@ -45,7 +45,7 @@ abstract class FlutterModuleGenerator {
       JavaImport(fullClassName: 'io.flutter.plugin.common.BasicMessageChannel'),
       JavaImport(
           fullClassName: 'io.flutter.plugin.common.StandardMessageCodec'),
-      JavaImport(fullClassName: '${options.javaPackageName}.$kUniAPI'),
+      JavaImport(fullClassName: '${options.javaPackageName}.${options.javaUniAPIPrefix}$kUniAPI'),
       JavaCustomNestedImports(module.inputFile, options,
           methods: module.methods),
       EmptyLine(),

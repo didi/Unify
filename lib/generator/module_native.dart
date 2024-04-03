@@ -131,7 +131,7 @@ abstract class ModuleGenerator {
       JavaImport(fullClassName: 'io.flutter.plugin.common.BinaryMessenger'),
       JavaImport(
           fullClassName: 'io.flutter.plugin.common.StandardMessageCodec'),
-      JavaImport(fullClassName: '${options.javaPackageName}.$kUniAPI'),
+      JavaImport(fullClassName: '${options.javaPackageName}.${options.javaUniAPIPrefix}$kUniAPI'),
       JavaImport(
           fullClassName:
               'static ${options.javaPackageName}.$projectName.UniModel.map'),
@@ -174,7 +174,7 @@ abstract class ModuleGenerator {
                                     final ret = <CodeUnit>[];
                                     ret.add(OneLine(
                                         depth: depth,
-                                        body: 'UniAPI.registerModule(impl);'));
+                                        body: '${options.javaUniAPIPrefix}$kUniAPI.registerModule(impl);'));
                                     ret.add(OneLine(
                                         depth: depth,
                                         body:
