@@ -13,10 +13,6 @@ buildscript {
 
 allprojects {
     repositories {
-        maven {
-            allowInsecureProtocol=true
-            url 'http://artifactory.intra.xiaojukeji.com/artifactory/public'
-        }
         google()
         mavenCentral()
     }
