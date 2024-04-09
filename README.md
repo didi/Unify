@@ -49,11 +49,3 @@ Unify 基于 Apache-2.0 协议进行分发和使用，更多信息参见 [协议
 [Whanter](https://github.com/Whanter)
 
 
-## 友情链接
-- [DoKit](https://github.com/didi/DoraemonKit) DoraemonKit /'dɔ:ra:'emɔn/，简称 DoKit，中文名 哆啦A梦，意味着能够像哆啦A梦一样提供给他的主人各种各样的工具。Just Do Kit
-- [OrangeLab](https://github.com/OrangeLab) 我们团队的官方 GitHub 组织，我们团队所有对外开源的其他项目都可以在这里找到。
-<div style="height: 200px">
- <img alt="OrangeLab" src="https://pt-starimg.didistatic.com/static/starimg/img/D0o2VUdbBk1619669626314.png" height = "200" />
-</div>
-
-
