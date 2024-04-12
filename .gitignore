@@ -6,3 +6,5 @@
 
 # Conventional directory for build outputs
 build/
+*.bkp
+*.dtmp
