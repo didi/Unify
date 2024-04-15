@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-04-11T12:23:35.126Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.0.2 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="l2z0cXHXM8B8Nd0tje0t" version="23.0.2" type="device">
+<mxfile host="Electron" modified="2024-04-15T03:12:44.854Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.0.2 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="WBgq5rY4_6Qwn851wg6u" version="23.0.2" type="device">
   <diagram name="Page-1" id="3NL6jyNCKuKWrbX2lxhz">
-    <mxGraphModel dx="1839" dy="578" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1546" dy="489" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -35,35 +35,35 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="cx1BYwl4nnM576tCdIoU-1" value="Unify&lt;br&gt;Module A Interface&lt;br&gt;(Native Module)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+        <mxCell id="cx1BYwl4nnM576tCdIoU-1" value="Module A Interface&lt;br&gt;declared by developer&lt;br&gt;(Native Module)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="-20" y="250" width="270" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="cx1BYwl4nnM576tCdIoU-3" value="Module B Interface&lt;br&gt;(Flutter Module)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+        <mxCell id="cx1BYwl4nnM576tCdIoU-3" value="Module B Interface&lt;br&gt;declared by developer&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;(Flutter Module)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="280" y="250" width="270" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="cx1BYwl4nnM576tCdIoU-4" value="Module A&lt;br&gt;Implementation&lt;br&gt;Android&lt;br&gt;SDK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+        <mxCell id="cx1BYwl4nnM576tCdIoU-4" value="Module A&lt;br&gt;Android Impl" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="-20" y="370" width="130" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="cx1BYwl4nnM576tCdIoU-5" value="Module A&lt;br&gt;Implementation&lt;br&gt;iOS&lt;br&gt;SDK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+        <mxCell id="cx1BYwl4nnM576tCdIoU-5" value="Module A&lt;br&gt;iOS Impl" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
           <mxGeometry x="120" y="370" width="130" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="cx1BYwl4nnM576tCdIoU-6" value="Impl inject interface&lt;br style=&quot;font-size: 10px;&quot;&gt;Android&lt;br&gt;&lt;font color=&quot;#ff9933&quot;&gt;(Code Generated)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#d5e8d4;strokeColor=#82b366;dashed=1;" parent="1" vertex="1">
+        <mxCell id="cx1BYwl4nnM576tCdIoU-6" value="Android Impl injector&lt;br&gt;&lt;font color=&quot;#ff9933&quot;&gt;&lt;b&gt;(Code Generated)&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#d5e8d4;strokeColor=#82b366;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="-20" y="320" width="130" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="cx1BYwl4nnM576tCdIoU-7" value="Impl inject interface&lt;br style=&quot;font-size: 10px;&quot;&gt;iOS&lt;br&gt;&lt;font color=&quot;#ff9933&quot;&gt;(Code Generated)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=1;" parent="1" vertex="1">
+        <mxCell id="cx1BYwl4nnM576tCdIoU-7" value="iOS Impl injector&lt;br&gt;&lt;font color=&quot;#ff9933&quot;&gt;&lt;b&gt;(Code Generated)&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="120" y="320" width="130" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="cx1BYwl4nnM576tCdIoU-8" value="Unified&lt;br&gt;Module A&lt;br&gt;SDK&lt;br&gt;Flutter" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;" parent="1" vertex="1">
+        <mxCell id="cx1BYwl4nnM576tCdIoU-8" value="Module A&lt;br&gt;&amp;nbsp;Client SDK&lt;br&gt;Flutter" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="-20" y="110" width="90" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="cx1BYwl4nnM576tCdIoU-9" value="Unified&lt;br&gt;Module A&lt;br&gt;SDK&lt;br&gt;Android" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#d5e8d4;strokeColor=#82b366;dashed=1;" parent="1" vertex="1">
+        <mxCell id="cx1BYwl4nnM576tCdIoU-9" value="Module A&lt;br&gt;Client SDK&lt;br&gt;Android" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#d5e8d4;strokeColor=#82b366;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="70" y="110" width="90" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="cx1BYwl4nnM576tCdIoU-10" value="Unified&lt;br&gt;Module A&lt;br&gt;SDK&lt;br&gt;iOS" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=1;" parent="1" vertex="1">
+        <mxCell id="cx1BYwl4nnM576tCdIoU-10" value="Module A&lt;br&gt;Client SDK&lt;br&gt;iOS" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="160" y="110" width="90" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="cx1BYwl4nnM576tCdIoU-18" value="UniNativeModule" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="-30" y="230" width="100" height="20" as="geometry" />
+        <mxCell id="cx1BYwl4nnM576tCdIoU-18" value="UniNativeModule" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="-30" y="230" width="110" height="20" as="geometry" />
         </mxCell>
         <mxCell id="cx1BYwl4nnM576tCdIoU-20" value="Client SDKs generated by Unify" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FF9933;fontSize=10;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="-30" y="90" width="160" height="20" as="geometry" />
@@ -71,25 +71,25 @@
         <mxCell id="cx1BYwl4nnM576tCdIoU-24" value="Code Gen" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FF9933;fontSize=10;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="120" y="210" width="50" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="cx1BYwl4nnM576tCdIoU-28" value="UniFlutterModule" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="270" y="230" width="100" height="20" as="geometry" />
+        <mxCell id="cx1BYwl4nnM576tCdIoU-28" value="UniFlutterModule" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="270" y="230" width="110" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="cx1BYwl4nnM576tCdIoU-29" value="Impl inject interface&lt;br style=&quot;font-size: 10px;&quot;&gt;Flutter&lt;br&gt;&lt;font color=&quot;#ff9933&quot;&gt;(Code Generated)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;" parent="1" vertex="1">
+        <mxCell id="cx1BYwl4nnM576tCdIoU-29" value="Flutter Impl injector&lt;br&gt;&lt;font color=&quot;#ff9933&quot;&gt;&lt;b&gt;(Code Generated)&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="280" y="320" width="270" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="cx1BYwl4nnM576tCdIoU-30" value="Module B&lt;br&gt;Implementation&lt;br&gt;Dart&lt;br&gt;SDK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="cx1BYwl4nnM576tCdIoU-30" value="Module B&lt;br&gt;Dart Impl" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="280" y="370" width="270" height="80" as="geometry" />
         </mxCell>
         <mxCell id="cx1BYwl4nnM576tCdIoU-31" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="270" y="90" width="290" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="cx1BYwl4nnM576tCdIoU-32" value="Unified&lt;br&gt;Module A&lt;br&gt;SDK&lt;br&gt;Flutter" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;" parent="1" vertex="1">
+        <mxCell id="cx1BYwl4nnM576tCdIoU-32" value="Module B&lt;br&gt;Client SDK&lt;br&gt;Flutter" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="280" y="110" width="90" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="cx1BYwl4nnM576tCdIoU-33" value="Unified&lt;br&gt;Module A&lt;br&gt;SDK&lt;br&gt;Android" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#d5e8d4;strokeColor=#82b366;dashed=1;" parent="1" vertex="1">
+        <mxCell id="cx1BYwl4nnM576tCdIoU-33" value="Module B&lt;br&gt;Client SDK&lt;br&gt;Android" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#d5e8d4;strokeColor=#82b366;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="370" y="110" width="90" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="cx1BYwl4nnM576tCdIoU-34" value="Unified&lt;br&gt;Module A&lt;br&gt;SDK&lt;br&gt;iOS" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=1;" parent="1" vertex="1">
+        <mxCell id="cx1BYwl4nnM576tCdIoU-34" value="Module B&lt;br&gt;Client SDK&lt;br&gt;iOS" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="460" y="110" width="90" height="80" as="geometry" />
         </mxCell>
         <mxCell id="cx1BYwl4nnM576tCdIoU-35" value="Client SDKs generated by Unify" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FF9933;fontSize=10;fontStyle=1" parent="1" vertex="1">
@@ -117,44 +117,81 @@
         <mxCell id="cx1BYwl4nnM576tCdIoU-40" value="Code Gen" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FF9933;fontSize=10;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="360" y="210" width="50" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="59yGOXbO8l3Bfwi4bfid-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="59yGOXbO8l3Bfwi4bfid-1" target="59yGOXbO8l3Bfwi4bfid-3">
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="59yGOXbO8l3Bfwi4bfid-1" target="59yGOXbO8l3Bfwi4bfid-3" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="59yGOXbO8l3Bfwi4bfid-1" value="Develop" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
-          <mxGeometry x="120" y="570" width="30" height="60" as="geometry" />
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-1" value="Develop" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="230" y="570" width="30" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="59yGOXbO8l3Bfwi4bfid-2" value="I want to create a&amp;nbsp;&lt;br&gt;cross-platform module!" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;" vertex="1" parent="1">
-          <mxGeometry x="85" y="490" width="120" height="80" as="geometry" />
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-2" value="I want to create a&amp;nbsp;&lt;br&gt;cross-platform module!" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="190" y="490" width="120" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="59yGOXbO8l3Bfwi4bfid-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="59yGOXbO8l3Bfwi4bfid-3" target="59yGOXbO8l3Bfwi4bfid-5">
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="59yGOXbO8l3Bfwi4bfid-3" target="59yGOXbO8l3Bfwi4bfid-5" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="590" />
+              <mxPoint x="380" y="520" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="59yGOXbO8l3Bfwi4bfid-3" target="59yGOXbO8l3Bfwi4bfid-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="590" />
+              <mxPoint x="380" y="660" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="59yGOXbO8l3Bfwi4bfid-3" target="59yGOXbO8l3Bfwi4bfid-11" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="59yGOXbO8l3Bfwi4bfid-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="59yGOXbO8l3Bfwi4bfid-3" target="59yGOXbO8l3Bfwi4bfid-6">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-3" value="Declare my&lt;br&gt;module interface" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="290" y="560" width="80" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="59yGOXbO8l3Bfwi4bfid-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="59yGOXbO8l3Bfwi4bfid-3" target="59yGOXbO8l3Bfwi4bfid-11">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="59yGOXbO8l3Bfwi4bfid-3" value="Declare my&lt;br&gt;module interface" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="220" y="560" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="59yGOXbO8l3Bfwi4bfid-5" value="@UniNativeModule" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-5" value="@UniNativeModule" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="440" y="490" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="59yGOXbO8l3Bfwi4bfid-6" value="@UniFlutterModule" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-6" value="@UniFlutterModule" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="440" y="630" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="59yGOXbO8l3Bfwi4bfid-9" value="Impl in&lt;br&gt;Android/iOS?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="370" y="490" width="60" height="30" as="geometry" />
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-9" value="Impl in&lt;br&gt;Android/iOS?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="370" y="488" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="59yGOXbO8l3Bfwi4bfid-10" value="Impl in&lt;br&gt;Flutter?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-10" value="Impl in&lt;br&gt;Flutter?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="370" y="660" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="59yGOXbO8l3Bfwi4bfid-11" value="@UniModel" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="59yGOXbO8l3Bfwi4bfid-11" target="59yGOXbO8l3Bfwi4bfid-15" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-11" value="@UniModel" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="440" y="560" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="59yGOXbO8l3Bfwi4bfid-13" value="Has&lt;br&gt;Model?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-13" value="Has&lt;br&gt;Model?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="385" y="550" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=52.5;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="59yGOXbO8l3Bfwi4bfid-15" target="59yGOXbO8l3Bfwi4bfid-22" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-15" value="Code&lt;br&gt;Gen" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="610" y="550" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="59yGOXbO8l3Bfwi4bfid-5" target="59yGOXbO8l3Bfwi4bfid-15" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="59yGOXbO8l3Bfwi4bfid-6" target="59yGOXbO8l3Bfwi4bfid-15" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-19" value="Run Unify!" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="610" y="515" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-20" value="My Implementations" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="720" y="515" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=27.5;entryPerimeter=0;" parent="1" source="59yGOXbO8l3Bfwi4bfid-20" target="59yGOXbO8l3Bfwi4bfid-15" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="59yGOXbO8l3Bfwi4bfid-22" value="Use my module&lt;br&gt;at And/iOS/Flutter&lt;br&gt;&lt;b&gt;In the same way!&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="720" y="620" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
