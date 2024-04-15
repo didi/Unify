@@ -2,26 +2,47 @@
 
 # Unify：Flutter-原生混合通信
 
-## 介绍
+Unify 是一个高效、灵活、易用的 Flutter 混合开发框架，旨在解决 Flutter 与原生模块之间的通信问题。它支持平台无关的模块抽象、灵活的实现注入、自动代码生成等特性，显著提升了混合开发的效率，降低了维护成本。
 
-Unify 是一个 Flutter 代码生成器，解决 Flutter 混合开发场景下，原生模块与 Flutter 模块间的大规模通信问题。
+Unify 由滴滴出行国际化外卖团队自研，目前已经广泛应用于滴滴国际化外卖及国际化出行业务，有力支撑了业务的 Flutter 化进程。 
 
-Unify 允许开发者声明平台无关的模块抽象，灵活注入实现，并生成 Flutter、Android、iOS 多平台下统一调用 SDK。
+Unify 的亮点特性包括:
 
-基于 Unify 的代码生成技术，允许开发者使用 Dart 语言声明模块接口与实体。对于实现注入方式，开发者可选择注入原生实现（Android、iOS）或 Flutter 实现。
+- **平台无关的模块抽象**: 允许开发者使用 Dart 语言声明与平台无关的模块接口与实体。  
+- **灵活的实现注入**: 开发者可以灵活地选择注入原生实现（Android/iOS）或 Flutter 实现。
+- **自动代码生成**: 借助强大的代码生成引擎,Unify 可以自动生成 Flutter、Android、iOS 多平台下统一调用的 SDK。
 
-整体原理如下：
+下面是一个使用 Unify 声明原生模块的示例:
+
+```dart
+@UniNativeModule()
+abstract class DeviceInfoService {
+  Future<DeviceInfoModel> getDeviceInfo();
+}
+```
+
+通过 Unify，上面的 Dart 接口可以自动映射到 Android 和 iOS 平台，开发者只需专注于各平台下的具体实现即可。在 Flutter 中使用时，调用方式就像普通的 Flutter 模块一样简单、直观:
+
+```dart
+DeviceInfoService.getDeviceInfo().then((deviceInfoModel) {
+  print("${deviceInfoModel.encode()}");
+});
+```
+
+Unify 的整体原理如下：
 
 ![](docs/public/unify-arch.png)
 
-Unify 擅长解决：
+Unify 能够很好地解决 Flutter 混合开发下的一些常见问题，例如:
 
 - 大量原生模块高效导入 Flutter
-- 大量 Flutter 模块高效导入原生
+- 大量 Flutter 模块高效导入原生  
 - 解决大量 Channel 难以维护的问题
-- 原生与 Flutter 并存下的**混合架构分层**
+- 原生与 Flutter 并存下的混合架构分层
 
-Unify 由滴滴出行国际化外卖团队自研，广泛应用于滴滴国际化外卖及国际化出行业务。有效支撑业务 Flutter 大规模落地。
+**立即开始使用 Unify,让混合开发更高效!**
+
+
 
 ## Installation
 
