@@ -76,24 +76,38 @@ flutter pub run unify api
 
 ## Getting Started
 
-以最基础的使用场景为例：有一个原生 SDK，同时包含 Android、iOS 版本，开发者需要对其进行统一封装，并导入到 Flutter 中。
+跟随以下步骤,快速开始使用 Unify 将一个原生 SDK(包含 Android、iOS 版本)统一封装并导入 Flutter 中。 
 
-> 本例实例代码位于 `examples/01_uninativemodule_demo` 下。
+> 可参考实例代码: `examples/01_uninativemodule_demo`
 
-运行 Demo：
+### 前置条件
 
-首先 clone 工程，并进入 `01_uninativemodule_demo` 目录：
+开始之前，请确保开发环境满足以下条件:
+
+- 已安装 Flutter3 以上版本
+- 对于 Android 开发，已配置 Android 开发环境
+- 对于 iOS 开发，已配置 iOS 开发环境
+
+### 步骤 1: Clone 示例项目
+
+首先 clone Unify 项目，并进入示例目录:
 
 ```sh
 git clone git@github.com:didi/Unify.git
 cd ./Unify/01_uninativemodule_demo
 ```
 
-`01_uninativemodule_demo` 是一个普通的 Flutter App，其功能是：原生侧（Android/iOS）各实现一个系统信息模块，统一导入 Flutter，在 Flutter 中统一调用。
+`01_uninativemodule_demo` 是一个标准的 Flutter App 项目。其功能为:
 
-不同之处在于，**项目下有一个 interface 目录，这是我们声明 Unify 模块的地方**。其中包含两个类：
+- 原生侧（Android/iOS）分别实现一个系统信息模块
+- 使用 Unify 将原生模块统一封装并导入 Flutter 
+- 在 Flutter 侧进行统一调用
 
-首先是一个模块声明，`@UniNativeModule` 表示该模块的实现由 Native 原生提供（NativeModule）：
+### 步骤 2: 声明 Unify 模块
+
+注意到项目根目录下有一个 `interface` 目录，这是声明 Unify 模块的地方。它包含两个文件:
+
+1. `device_info_service.dart` - 声明原生模块:
 
 ```dart
 // device_info_service.dart
@@ -104,7 +118,9 @@ abstract class DeviceInfoService {
 }
 ```
 
-同时可以看到，`getDeviceInfo` 返回一个 `DeviceInfoModel`，声明如下：
+`@UniNativeModule` 注解表示该模块的实现由原生侧提供。
+
+2. `device_info_model.dart` - 声明返回值 Model:
 
 ```dart
 // device_info_model.dart
@@ -121,9 +137,11 @@ class DeviceInfoModel {
 }
 ```
 
-这是什么意思呢？**使用 Unify 之后，开发者只需关注跨端统一模块的声明**，如果由原生侧提供实现使用 `@UniNativeModule` 注解，如果由 Flutter 侧提供实现使用 `@UniFlutterModule` 注解，如果使用复杂实体使用 `@UniModel` 注解。
+`@UniModel` 注解表示这是一个跨平台的数据模型。
 
-接口声明好后，执行项目目录下的 `gen_uni_code.sh` 脚本：
+### 步骤 3: 生成跨平台代码
+
+接口声明完成后，执行如下命令生成跨平台代码:
 
 ```sh
 flutter pub run unify api\
@@ -136,40 +154,35 @@ flutter pub run unify api\
   --uniapi_prefix=UD
 ```
 
-这会调用 Unify 生成器。其中：
+命令选项说明:
 
-- `input`：指定接口输入目录
-- `dart_out`：指定 Dart 部分输出目录
-- `java_out`：指定 Java 部分输出目录
-- `java_package`：指定对应的 Java 报名
-- `oc_out`：iOS 的 Objective-C 输出目录
-- `dart_null_safety`：是否启用空安全
-- `uniapi_prefix`：（可选），生成器会生成一个 Unify 类，这里提供一个前缀，避免多个使用 Unify 的库间相互冲突。
+|参数|说明|是否必选|
+|---|---|---|
+|`input`|指定 Unify 接口声明目录|Y|
+|`dart_out`|指定 Dart 代码输出目录|Y|
+|`java_out`|指定 Java 代码输出目录|Android 必选|
+|`java_package`|指定生成的 Java 代码的包名|Android 必选|
+|`oc_out`|指定 Objective-C 代码输出目录|iOS 必选|
+|`dart_null_safety`|是否生成空安全的 Dart 代码|Y|
+|`uniapi_prefix`|生成代码前缀，避免库间冲突|N|
 
-执行后，在工程内会生成以下文件：
+执行后,Unify 会在对应目录下生成各平台代码。
 
-由于实现由原生侧注入，所以我们使用 `@UniNativeModule`，在原生侧生成供注入的接口：
+### 步骤 4: 实现原生模块
 
-- Android：[DeviceInfoService.java](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/android/src/main/java/com/example/uninativemodule_demo/DeviceInfoService.java)
-- iOS：[DeviceInfoService.h](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/ios/Classes/DeviceInfoService.h)、[DeviceInfoService.m](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/ios/Classes/DeviceInfoService.m)
+生成的原生模块接口,需要我们补充具体实现:
 
-有了这些接口，由开发者继承补充模块的原生代码实现：
+- Android 平台实现类：[DeviceInfoServiceImpl.java](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/android/app/src/main/java/com/example/uninativemodule_demo_example/DeviceInfoServiceImpl.java)
+- Android 平台注册实现：[MainActivity.java](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/android/app/src/main/java/com/example/uninativemodule_demo_example/MainActivity.java)
 
-- Android 实现类：[DeviceInfoServiceImpl.java](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/android/app/src/main/java/com/example/uninativemodule_demo_example/DeviceInfoServiceImpl.java)
-- Android 注册实现：[MainActivity.java](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/android/app/src/main/java/com/example/uninativemodule_demo_example/MainActivity.java)
+- iOS 平台实现类：[DeviceInfoServiceVendor.h](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/ios/Runner/DeviceInfoServiceVendor.h)、[DeviceInfoServiceVendor.m](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/ios/Runner/DeviceInfoServiceVendor.m)
+- iOS 平台注册实现：[AppDelegate.m](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/ios/Runner/AppDelegate.m)
 
-- iOS 实现类：[DeviceInfoServiceVendor.h](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/ios/Runner/DeviceInfoServiceVendor.h)、[DeviceInfoServiceVendor.m](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/ios/Runner/DeviceInfoServiceVendor.m)
-- iOS 注册实现：[AppDelegate.m](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/ios/Runner/AppDelegate.m)
+可参考示例代码进行实现。
 
-我们可以看到，同时生成了跨端 `UniModel` 实体，**在各平台下都能直接使用 Model 类，由 Unify 抹平底层序列化传递**：
+### 步骤 5: 在 Flutter 中调用
 
-- Android：[DeviceInfoModel.java](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/android/src/main/java/com/example/uninativemodule_demo/DeviceInfoModel.java)
-- iOS：[DeviceInfoModel.h](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/ios/Classes/DeviceInfoModel.h)、[DeviceInfoModel.m](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/ios/Classes/DeviceInfoModel.m)
-- Flutter：[device_info_model.dart](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/lib/device_info_model.dart)
-
-至此，便完成了**将一个原生模块统一导入 Flutter**！
-
-在 Flutter 中，可以以统一方式调用：
+一切就绪! 在 Flutter 代码中，现在可以直接调用 Unify 封装的原生模块了:
 
 ```dart
 OutlinedButton(
@@ -186,17 +199,19 @@ OutlinedButton(
 
 ![](./docs/public/unify-demo.png)
 
-Bingo！是不是像调用一个 Flutter 模块一样清晰、简单！
+至此,你已经成功通过 Unify 将一个原生模块导入并在 Flutter 中使用。就像调用 Flutter 模块一样简单、直观！
 
-乘热划一下重点，Unify 带来了哪些好处？
+### 小结
 
-1. `统一模块声明`：在任何平台下，统一的模块，统一的接口，完全对齐，避免实现不一致
-2. `UniModel`：模块支持声明实体，跨平台生成实体类，无感透明跨端传输
-3. 相较于 Flutter Channel，避免了：
-    1. 手动解析参数易出错
-    2. Android、iOS 双端难以对齐
-    3. 大量 Channel 下不易维护
-    4. 复杂实体序列化管理成本高
+通过这个示例,我们体验了 Unify 带来的价值:
+
+1. `统一模块声明`: 在任何平台下，统一的模块接口声明，避免实现不一致
+2. `UniModel`: 支持跨平台透明传输的数据模型
+3. 相比 Flutter 原生 Channel 方式:
+    1. 避免手动解析参数易出错
+    2. Android、iOS 双端自动对齐
+    3. 大量 Channel 自动生成，易于维护 
+    4. 复杂实体无缝序列化，降低管理成本
 
 ## Decision Tree
 
