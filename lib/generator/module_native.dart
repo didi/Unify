@@ -219,20 +219,12 @@ abstract class ModuleGenerator {
                                         .map((e) => e.name)
                                         .toList()
                                         .join(', ');
-                                    if (method.isAsync) {
-                                      final retValue = method.returnType
-                                          .realType()
-                                          .convertJavaObj2Json('ret');
-                                      paramsList +=
-                                          '${paramsList.isNotEmpty ? ', ' : ''}(ret) -> { wrapped.put("result", $retValue); reply.reply(wrapped);}';
-                                    }
-
-                                    final call = OneLine(
-                                        depth: depth + 2,
-                                        body:
-                                            'impl.${method.name}($paramsList);');
-
                                     if (!method.isAsync) {
+                                      final call = OneLine(
+                                          depth: depth + 2,
+                                          body:
+                                              'impl.${method.name}($paramsList);');
+
                                       if (method.returnType is AstVoid) {
                                         ret.add(call);
                                       } else {
@@ -257,51 +249,37 @@ abstract class ModuleGenerator {
                                           body:
                                               'wrapped.put("${Keys.result}", $neqNullExp${method.returnType.realType().convertJavaObj2Json('output')}$nullExp);'));
                                     } else {
-                                      ret.add(call);
-                                    }
+                                      final retValue = method.returnType
+                                          .realType()
+                                          .convertJavaObj2Json('ret');
+                                      paramsList +=
+                                          '${paramsList.isNotEmpty ? ', ' : ''}(ret) -> {';
 
-                                    ret.add(OneLine(
-                                        depth: depth + 1,
-                                        body:
-                                            '} catch (Error | RuntimeException exception) {'));
-                                    if (!method.ignoreError) {
                                       ret.add(OneLine(
                                           depth: depth + 2,
                                           body:
-                                              'wrapped.put("${Keys.error}", wrapError(exception));'));
-                                      if (method.isAsync) {
-                                        ret.add(OneLine(
-                                            depth: depth + 2,
-                                            body: 'reply.reply(wrapped);'));
-                                      }
-                                    } else {
-                                      ret.add(OneLine(
-                                          depth: depth + 2,
-                                          body: '//ignore errors'));
-                                    }
+                                              'impl.${method.name}($paramsList'));
 
-                                    ret.add(OneLine(
-                                        depth: depth + 2,
-                                        body:
-                                            'Log.d("flutter", "error: " + exception);'));
-
-                                    if (method.isAsync) {
-                                      ret.add(
-                                          OneLine(depth: depth + 1, body: '}'));
-                                    } else {
+                                      //构造 try{} catch{}
                                       ret.add(OneLine(
-                                          depth: depth + 1,
-                                          body: '} finally {'));
-
+                                          depth: depth + 3, body: 'try {'));
                                       ret.add(OneLine(
-                                          depth: depth + 2,
+                                          depth: depth + 4,
+                                          body:
+                                              'wrapped.put("result", $retValue);'));
+                                      ret.add(OneLine(
+                                          depth: depth + 4,
                                           body: 'reply.reply(wrapped);'));
-
-                                      ret.add(
-                                          OneLine(depth: depth + 1, body: '}'));
+                                      ret.addAll(_buildJavaCatchErrorTemplate(
+                                          isAsync: method.isAsync,
+                                          ignoreError: method.ignoreError,
+                                          baseDepth: depth + 2));
                                     }
 
-                                    ret.add(OneLine(depth: depth, body: '});'));
+                                    ret.addAll(_buildJavaCatchErrorTemplate(
+                                        isAsync: method.isAsync,
+                                        ignoreError: method.ignoreError,
+                                        baseDepth: depth));
 
                                     return ret;
                                   },
@@ -342,6 +320,42 @@ abstract class ModuleGenerator {
                         ])
               ])
     ]).build();
+  }
+
+  // 生成 Java 语言 catch 部分的 body 代码模板
+  static List<OneLine> _buildJavaCatchErrorTemplate(
+      {bool isAsync = false, bool ignoreError = false, int baseDepth = 0}) {
+    var ret = <OneLine>[];
+    ret.add(OneLine(
+        depth: baseDepth + 1,
+        body: '} catch (Error | RuntimeException exception) {'));
+    if (!ignoreError) {
+      ret.add(OneLine(
+          depth: baseDepth + 2,
+          body: 'wrapped.put("${Keys.error}", wrapError(exception));'));
+      if (isAsync) {
+        ret.add(OneLine(depth: baseDepth + 2, body: 'reply.reply(wrapped);'));
+      }
+    } else {
+      ret.add(OneLine(depth: baseDepth + 2, body: '//ignore errors'));
+    }
+
+    ret.add(OneLine(
+        depth: baseDepth + 2,
+        body: 'Log.d("flutter", "error: " + exception);'));
+
+    if (isAsync) {
+      ret.add(OneLine(depth: baseDepth + 1, body: '}'));
+    } else {
+      ret.add(OneLine(depth: baseDepth + 1, body: '} finally {'));
+
+      ret.add(OneLine(depth: baseDepth + 2, body: 'reply.reply(wrapped);'));
+
+      ret.add(OneLine(depth: baseDepth + 1, body: '}'));
+    }
+    ret.add(OneLine(depth: baseDepth, body: '});'));
+
+    return ret;
   }
 
   static String _getModuleRegisterChannelName(Module module, Method method) =>
