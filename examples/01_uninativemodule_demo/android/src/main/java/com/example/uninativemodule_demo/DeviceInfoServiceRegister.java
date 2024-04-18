@@ -82,7 +82,16 @@ public class DeviceInfoServiceRegister {
                     Map<String, Object> wrapped = new HashMap<>();
                     try {
                         Map<String, Object> params = (Map<String, Object>) message;
-                        impl.getDeviceInfo((ret) -> { wrapped.put("result", ret.toMap()); reply.reply(wrapped);});
+                        impl.getDeviceInfo((ret) -> {
+                            try {
+                                wrapped.put("result", ret.toMap());
+                                reply.reply(wrapped);
+                            } catch (Error | RuntimeException exception) {
+                                wrapped.put("error", wrapError(exception));
+                                reply.reply(wrapped);
+                                Log.d("flutter", "error: " + exception);
+                            }
+                        });
                     } catch (Error | RuntimeException exception) {
                         wrapped.put("error", wrapError(exception));
                         reply.reply(wrapped);
