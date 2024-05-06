@@ -1,18 +1,18 @@
-[English Version](): is working in progress...
+# Unify: Flutter-Native Hybrid Communication Framework
 
-# Unify：Flutter-原生混合通信
+[中文说明](./README.zh-CN.md)
 
-Unify 是一个高效、灵活、易用的 Flutter 混合开发框架，旨在解决 Flutter 与原生模块之间的通信问题。它支持平台无关的模块抽象、灵活的实现注入、自动代码生成等特性，显著提升了混合开发的效率，降低了维护成本。
+Unify is an efficient, flexible, and easy-to-use Flutter hybrid development framework designed to solve communication issues between Flutter and native modules. It supports platform-independent module abstraction, flexible implementation injection, automatic code generation, and other features, significantly improving the efficiency of hybrid development and reducing maintenance costs.
 
-Unify 由滴滴出行国际化外卖团队自研，目前已经广泛应用于滴滴国际化外卖及国际化出行业务，有力支撑了业务的 Flutter 化进程。 
+Unify is developed by Didi's international food delivery team and has been widely used in Didi's international food delivery and international travel business, effectively supporting the Flutter-based development process.
 
-Unify 的亮点特性包括:
+Key features:
 
-- **平台无关的模块抽象**: 允许开发者使用 Dart 语言声明与平台无关的模块接口与实体。  
-- **灵活的实现注入**: 开发者可以灵活地选择注入原生实现（Android/iOS）或 Flutter 实现。
-- **自动代码生成**: 借助强大的代码生成引擎,Unify 可以自动生成 Flutter、Android、iOS 多平台下统一调用的 SDK。
+- **Platform-independent module abstraction**: Allows developers to declare platform-independent module interfaces and entities using the Dart language.
+- **Flexible implementation injection**: Developers can flexibly choose to inject native implementations (Android/iOS) or Flutter implementations.
+- **Automatic code generation**: With a powerful code generation engine, Unify can automatically generate SDKs for unified calls across Flutter, Android, and iOS platforms.
 
-下面是一个使用 Unify 声明原生模块的示例:
+Here's an example of declaring a native module using Unify:
 
 ```dart
 @UniNativeModule()
@@ -21,7 +21,7 @@ abstract class DeviceInfoService {
 }
 ```
 
-通过 Unify，上面的 Dart 接口可以自动映射到 Android 和 iOS 平台，开发者只需专注于各平台下的具体实现即可。在 Flutter 中使用时，调用方式就像普通的 Flutter 模块一样简单、直观:
+Through Unify, the above Dart interface can be automatically mapped to Android and iOS platforms, and developers only need to focus on the specific implementation on each platform. When used in Flutter, the calling method is as simple and intuitive as a regular Flutter module:
 
 ```dart
 DeviceInfoService.getDeviceInfo().then((deviceInfoModel) {
@@ -29,35 +29,33 @@ DeviceInfoService.getDeviceInfo().then((deviceInfoModel) {
 });
 ```
 
-Unify 的整体原理如下：
+The overall principle of Unify is as follows:
 
 ![](docs/public/unify-arch.png)
 
-Unify 能够很好地解决 Flutter 混合开发下的一些常见问题，例如:
+Unify can effectively solve some common problems in Flutter hybrid development, such as:
 
-- 大量原生模块高效导入 Flutter
-- 大量 Flutter 模块高效导入原生  
-- 解决大量 Channel 难以维护的问题
-- 原生与 Flutter 并存下的混合架构分层
+- Efficiently importing a large number of native modules into Flutter
+- Efficiently importing a large number of Flutter modules into native code
+- Solving the maintenance issue of a large number of channels
+- Hybrid architecture layering with coexistence of native and Flutter
 
-**立即开始使用 Unify,让混合开发更高效!**
-
-
+**Start using Unify now to make hybrid development more efficient!**
 
 ## Installation
 
-Unify 是一个使用 Dart 开发的命令。
+Unify is a command developed using Dart.
 
-在 Flutter 工程的 `pubspec.yaml` 中添加 `dev_dependencies`：
+Add `dev_dependencies` in the `pubspec.yaml` of your Flutter project:
 
 ```yaml
 dev_dependencies:
   unify: latest_version
 ```
 
-> 注：目前 Unify 尚未发布 pub.dev，可先通过 git 依赖方式体验。后续会正式发布 pub.dev，敬请期待。
+> Note: Currently, Unify has not been released on pub.dev. You can experience it through git dependency for now. It will be officially released on pub.dev in the future, so stay tuned.
 
-git 依赖：
+Git dependency:
 
 ```yaml
 dev_dependencies:
@@ -65,83 +63,82 @@ dev_dependencies:
     git: git@github.com:maxiee/Unify.git
 ```
 
-执行 `flutter pub get` 拉取依赖。之后即可运行 Unify：
+Run `flutter pub get` to pull the dependencies. Then you can run Unify:
 
 ```sh
 flutter pub run unify api
 ```
 
-> 注：执行 Unify 命令通常需伴随一系列参数，具体可使用方式可参见 Getting Started。
-
+> Note: Running the Unify command usually requires a series of parameters. For specific usage, please refer to Getting Started.
 
 ## Getting Started
 
-跟随以下步骤,快速开始使用 Unify 将一个原生 SDK(包含 Android、iOS 版本)统一封装并导入 Flutter 中。 
+Follow these steps to quickly start using Unify to uniformly encapsulate a native SDK (including Android and iOS versions) and import it into Flutter.
 
-> 可参考实例代码: `examples/01_uninativemodule_demo`
+> Reference example code: `examples/01_uninativemodule_demo`
 
-### 前置条件
+### Prerequisites
 
-开始之前，请确保开发环境满足以下条件:
+Before getting started, make sure your development environment meets the following conditions:
 
-- 已安装 Flutter3 以上版本
-- 对于 Android 开发，已配置 Android 开发环境
-- 对于 iOS 开发，已配置 iOS 开发环境
+- Flutter 3 or above is installed
+- For Android development, the Android development environment is configured
+- For iOS development, the iOS development environment is configured
 
-### 步骤 1: Clone 示例项目
+### Step 1: Clone the Example Project
 
-首先 clone Unify 项目，并进入示例目录:
+First, clone the Unify project and enter the example directory:
 
 ```sh
 git clone git@github.com:didi/Unify.git
 cd ./Unify/01_uninativemodule_demo
 ```
 
-`01_uninativemodule_demo` 是一个标准的 Flutter App 项目。其功能为:
+`01_uninativemodule_demo` is a standard Flutter app project. Its features include:
 
-- 原生侧（Android/iOS）分别实现一个系统信息模块
-- 使用 Unify 将原生模块统一封装并导入 Flutter 
-- 在 Flutter 侧进行统一调用
+- The native side (Android/iOS) implements a system information module respectively
+- Use Unify to uniformly encapsulate native modules and import them into Flutter
+- Perform unified calls on the Flutter side
 
-### 步骤 2: 声明 Unify 模块
+### Step 2: Declare Unify Module
 
-注意到项目根目录下有一个 `interface` 目录，这是声明 Unify 模块的地方。它包含两个文件:
+Notice that there is an `interface` directory in the project root, which is where Unify modules are declared. It contains two files:
 
-1. `device_info_service.dart` - 声明原生模块:
+1. `device_info_service.dart` - Declares the native module:
 
 ```dart
 // device_info_service.dart
 @UniNativeModule()
 abstract class DeviceInfoService {
-  /// 获取设备信息
+  /// Get device information
   Future<DeviceInfoModel> getDeviceInfo();
 }
 ```
 
-`@UniNativeModule` 注解表示该模块的实现由原生侧提供。
+The `@UniNativeModule` annotation indicates that the implementation of this module is provided by the native side.
 
-2. `device_info_model.dart` - 声明返回值 Model:
+2. `device_info_model.dart` - Declares the return value model:
 
 ```dart
 // device_info_model.dart
 @UniModel()
 class DeviceInfoModel {
-  /// 系统版本
+  /// Operating system version
   String? osVersion;
 
-  /// 内存信息
+  /// Memory information
   String? memory;
 
-  /// 手机型号
-  String? plaform;
+  /// Device model
+  String? platform;
 }
 ```
 
-`@UniModel` 注解表示这是一个跨平台的数据模型。
+The `@UniModel` annotation indicates that this is a cross-platform data model.
 
-### 步骤 3: 生成跨平台代码
+### Step 3: Generate Cross-Platform Code
 
-接口声明完成后，执行如下命令生成跨平台代码:
+After completing the interface declaration, execute the following command to generate cross-platform code:
 
 ```sh
 flutter pub run unify api\
@@ -154,39 +151,39 @@ flutter pub run unify api\
   --uniapi_prefix=UD
 ```
 
-命令选项说明:
+Command option description:
 
-|参数|说明|是否必选|
-|---|---|---|
-|`input`|指定 Unify 接口声明目录|Y|
-|`dart_out`|指定 Dart 代码输出目录|Y|
-|`java_out`|指定 Java 代码输出目录|Android 必选|
-|`java_package`|指定生成的 Java 代码的包名|Android 必选|
-|`oc_out`|指定 Objective-C 代码输出目录|iOS 必选|
-|`dart_null_safety`|是否生成空安全的 Dart 代码|Y|
-|`uniapi_prefix`|生成代码前缀，避免库间冲突|N|
+| Parameter          | Description                                                | Required |
+|--------------------|-----------------------------------------------------------|----------|
+| `input`            | Specifies the Unify interface declaration directory          | Y        |
+| `dart_out`         | Specifies the Dart code output directory                    | Y        |
+| `java_out`         | Specifies the Java code output directory                    | Android  |
+| `java_package`     | Specifies the package name of the generated Java code       | Android  |
+| `oc_out`           | Specifies the Objective-C code output directory             | iOS      |
+| `dart_null_safety` | Whether to generate null-safe Dart code                     | Y        |
+| `uniapi_prefix`    | Generated code prefix to avoid conflicts between libraries | N        |
 
-执行后,Unify 会在对应目录下生成各平台代码。
+After execution, Unify generates code for each platform in the corresponding directory.
 
-### 步骤 4: 实现原生模块
+### Step 4: Implement Native Modules
 
-生成的原生模块接口,需要我们补充具体实现:
+We need to provide the specific implementation for the generated native module interfaces:
 
-- Android 平台实现类：[DeviceInfoServiceImpl.java](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/android/app/src/main/java/com/example/uninativemodule_demo_example/DeviceInfoServiceImpl.java)
-- Android 平台注册实现：[MainActivity.java](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/android/app/src/main/java/com/example/uninativemodule_demo_example/MainActivity.java)
+- Android platform implementation class: [DeviceInfoServiceImpl.java](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/android/app/src/main/java/com/example/uninativemodule_demo_example/DeviceInfoServiceImpl.java)
+- Android platform implementation registration: [MainActivity.java](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/android/app/src/main/java/com/example/uninativemodule_demo_example/MainActivity.java)
 
-- iOS 平台实现类：[DeviceInfoServiceVendor.h](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/ios/Runner/DeviceInfoServiceVendor.h)、[DeviceInfoServiceVendor.m](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/ios/Runner/DeviceInfoServiceVendor.m)
-- iOS 平台注册实现：[AppDelegate.m](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/ios/Runner/AppDelegate.m)
+- iOS platform implementation class: [DeviceInfoServiceVendor.h](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/ios/Runner/DeviceInfoServiceVendor.h), [DeviceInfoServiceVendor.m](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/ios/Runner/DeviceInfoServiceVendor.m)
+- iOS platform implementation registration: [AppDelegate.m](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/ios/Runner/AppDelegate.m)
 
-可参考示例代码进行实现。
+You can refer to the example code for implementation.
 
-### 步骤 5: 在 Flutter 中调用
+### Step 5: Call in Flutter
 
-一切就绪! 在 Flutter 代码中，现在可以直接调用 Unify 封装的原生模块了:
+Everything is ready! In the Flutter code, you can now directly call the native module encapsulated by Unify:
 
 ```dart
 OutlinedButton(
-  child: const Text("获取设备信息"),
+  child: const Text("Get Device Info"),
   onPressed: () {
     DeviceInfoService.getDeviceInfo().then((deviceInfoModel) {
       setState(() {
@@ -199,59 +196,58 @@ OutlinedButton(
 
 ![](./docs/public/unify-demo.png)
 
-至此,你已经成功通过 Unify 将一个原生模块导入并在 Flutter 中使用。就像调用 Flutter 模块一样简单、直观！
+At this point, you have successfully imported a native module using Unify and used it in Flutter. It's as simple and intuitive as calling a Flutter module!
 
-### 小结
+### Summary
 
-通过这个示例,我们体验了 Unify 带来的价值:
+Through this example, we experienced the value brought by Unify:
 
-1. `统一模块声明`: 在任何平台下，统一的模块接口声明，避免实现不一致
-2. `UniModel`: 支持跨平台透明传输的数据模型
-3. 相比 Flutter 原生 Channel 方式:
-    1. 避免手动解析参数易出错
-    2. Android、iOS 双端自动对齐
-    3. 大量 Channel 自动生成，易于维护 
-    4. 复杂实体无缝序列化，降低管理成本
+1. `Unified Module Declaration`: Unified module interface declaration on any platform to avoid inconsistent implementations
+2. `UniModel`: Supports cross-platform transparent data model transmission
+3. Compared to Flutter's native channel approach:
+    1. Avoids errors caused by manual parameter parsing
+    2. Automatic alignment between Android and iOS
+    3. Automatic generation of a large number of channels, easy to maintain
+    4. Seamless serialization of complex entities, reducing management costs
 
 ## Decision Tree
 
-我们总结了如下决策流程：
+We have summarized the following decision-making process:
 
 ![](./docs/public/unify-decision-tree.png)
 
-
 ## More Examples
 
-在 Getting Started 中，给出了最基础、使用场景最多的【原生实现导入 Flutter】。Unify 的能力远不止这些。从简单的单一 SDK 封装，到复杂的企业级 App 大规模模块导出，Unify 都能够支持。
+In Getting Started, we provided the most basic and commonly used scenario of importing native implementations into Flutter. Unify's capabilities go far beyond that. From simple single SDK encapsulation to complex enterprise-level app large-scale module export, Unify can support it all.
 
-我们通过实例应用的方式，对这些典型场景及业务模式进行介绍：
+We introduce these typical scenarios and business models through example applications:
 
-|案例|说明|适用场景|
-|---|---|---|
-|[01_uninativemodule_demo](https://github.com/didi/Unify/tree/master/examples/01_uninativemodule_demo)|UniNativeModule 演示|如何将一个原生模块（Android/iOS双端实现）高效导入Flutter、实现统一调用|
-|[02_unifluttermodule_demo](https://github.com/didi/Unify/tree/master/examples/02_unifluttermodule_demo)|UniFlutterModule 演示|如何将一个 Flutter 模块，高效导入原生（Android/iOS），实现统一调用|
+| Case                                                                                                | Description                                                                                                  | Applicable Scenario                                                                                                        |
+|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| [01_uninativemodule_demo](https://github.com/didi/Unify/tree/master/examples/01_uninativemodule_demo) | UniNativeModule demo                                                                                        | How to efficiently import a native module (Android/iOS dual-end implementation) into Flutter and achieve unified calling |
+| [02_unifluttermodule_demo](https://github.com/didi/Unify/tree/master/examples/02_unifluttermodule_demo) | UniFlutterModule demo                                                                                       | How to efficiently import a Flutter module into native (Android/iOS) and achieve unified calling                        |
 
 ## Documentation
 
-对于更多高级用法，请参见详细文档。
+For more advanced usage, please refer to the detailed documentation.
 
-* 查看文档请参考 [Unify文档](docs/README.md)。
-* 想快速体验如何使用，请参考 [快速开始](docs/02.快速开始/README.md)。
-* 想了解 Unify 提供哪些能力，请参考 [基础能力](docs/06.基础能力/README.md)。
-* 想了解 Unify 模块设计原理，请参考 [原理概述](docs/08.原理概述/README.md)。
-* 想了解更多 Unify CLI 的使用说明，请参考 [CLI 使用教程](docs/04.CLI 使用教程.md)。
+* For documentation, please refer to [Unify Documentation](docs/README.md).
+* To quickly experience how to use it, please refer to [Getting Started](docs/02.快速开始/README.md).
+* To understand the capabilities provided by Unify, please refer to [Basic Capabilities](docs/06.基础能力/README.md).
+* To understand the design principles of Unify modules, please refer to [Principle Overview](docs/08.原理概述/README.md).
+* For more usage instructions of Unify CLI, please refer to [CLI Usage Tutorial](docs/04.CLI使用教程.md).
 
-> 注：目前我们也在积极整理文档，如果在使用、理解上有任何问题，欢迎提交 Issue 反馈、交流！
+> Note: We are also actively organizing the documentation. If you have any questions regarding usage or understanding, please feel free to submit an issue for feedback and discussion!
 
-## 协议
+## License
 
 <img alt="Apache-2.0 license" src="https://www.apache.org/img/ASF20thAnniversary.jpg" width="128">
 
-Unify 基于 Apache-2.0 协议进行分发和使用，更多信息参见 [协议文件](LICENSE)。
+Unify is distributed and used under the Apache-2.0 license. For more information, see the [License File](LICENSE).
 
-## 成员
+## Members
 
-研发团队：
+R&D Team:
 
 [maxiee](https://github.com/maxiee),
 [zhugeafanti](https://github.com/zhugeafanti),
@@ -269,7 +265,6 @@ Unify 基于 Apache-2.0 协议进行分发和使用，更多信息参见 [协议
 
 ## Contribution
 
-如果在使用、理解上有任何问题，欢迎提交 Issue 反馈、交流！
+If you have any questions regarding usage or understanding, please feel free to submit an issue for feedback and discussion!
 
-欢迎您的交流、贡献！
-
+Your communication and contributions are welcome!
