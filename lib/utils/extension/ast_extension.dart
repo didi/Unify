@@ -17,7 +17,7 @@ String get replyPlaceholder => _replyPlaceholder;
 extension AstTypeExtension on AstType {
   List<AstCustomType> recursiveCustomType() {
     final astTypes = <AstCustomType>[];
-    if (this is AstList || this is AstMap) {
+    if (this is AstList || this is AstMap || astType() == typeUniCallback) {
       for (final element in generics) {
         final tmp = element.recursiveCustomType();
         astTypes.addAll(tmp);
