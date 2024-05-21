@@ -16,6 +16,16 @@ abstract class WorkRunner<T> {
   void javaGenerator() {}
   void dartGenerator() {}
   void objcGenerator() {}
+
+  void detectErrorInJava(String clsName, String pascalFileName,
+      {String fileName = '', String absolutePath = ''}) {
+    // 抛出异常，模板类名与文件名不一致
+    if (clsName != pascalFileName) {
+      print(
+          '\nError: In Java language, the file name must exactly match the name of the class.\nPlease check file:\n\t"$absolutePath"\nRepair suggestion:\n\tYou can modify the class or file name to change the value of "$fileName" to "$clsName" after converting it to a larger hump.');
+      exit(-1);
+    }
+  }
 }
 
 class UniModelWorkRunner extends WorkRunner<Model> {
@@ -24,6 +34,10 @@ class UniModelWorkRunner extends WorkRunner<Model> {
 
   @override
   void javaGenerator() {
+    detectErrorInJava(module.name, module.inputFile.pascalName,
+        fileName: module.inputFile.name,
+        absolutePath: module.inputFile.absolutePath);
+
     final modelFile =
         File('${options.javaOutputPath}/${module.inputFile.javaPath()}');
     modelFile.createSync(recursive: true);
@@ -64,6 +78,10 @@ class UniFlutterModuleWorkRunner extends WorkRunner<Module> {
 
   @override
   void javaGenerator() {
+    detectErrorInJava(module.name, module.inputFile.pascalName,
+        fileName: module.inputFile.name,
+        absolutePath: module.inputFile.absolutePath);
+
     final file =
         File('${options.javaOutputPath}/${module.inputFile.javaPath()}');
     file.createSync(recursive: true);
@@ -99,6 +117,10 @@ class UniNativeModuleWorkRunner extends WorkRunner<Module> {
 
   @override
   void javaGenerator() {
+    detectErrorInJava(module.name, module.inputFile.pascalName,
+        fileName: module.inputFile.name,
+        absolutePath: module.inputFile.absolutePath);
+
     final file =
         File('${options.javaOutputPath}/${module.inputFile.javaPath()}');
     file.createSync(recursive: true);
