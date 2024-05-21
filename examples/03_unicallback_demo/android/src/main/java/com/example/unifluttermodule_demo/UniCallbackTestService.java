@@ -15,7 +15,7 @@ import com.example.unifluttermodule_demo.LocationInfoModel;
 /*
  Call flow direction : dart -> native
 */
-public interface UniCallBackTestService {
+public interface UniCallbackTestService {
 
 
     class OnDoCallbackAction0Callback {

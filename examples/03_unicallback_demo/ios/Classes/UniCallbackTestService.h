@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 /*
  Call flow direction : dart -> native
 */
-@protocol UniCallBackTestService
+@protocol UniCallbackTestService
 
 
 /*
@@ -38,6 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-extern void UniCallBackTestServiceSetup(id<FlutterBinaryMessenger> binaryMessenger, id<UniCallBackTestService> api);
+extern void UniCallbackTestServiceSetup(id<FlutterBinaryMessenger> binaryMessenger, id<UniCallbackTestService> api);
 
 NS_ASSUME_NONNULL_END

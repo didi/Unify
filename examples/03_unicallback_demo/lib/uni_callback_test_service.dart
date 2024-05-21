@@ -13,7 +13,7 @@ import 'uniapi/uni_api.dart';
 import 'location_info_model.dart';
 
 /// Call flow direction : dart -> native
-class UniCallBackTestService {
+class UniCallbackTestService {
     static Map<K, dynamic> mapClone<K, V>(Map<K, V> map) {
       Map<K, dynamic> newMap = <K, dynamic>{};
 
@@ -43,21 +43,21 @@ class UniCallBackTestService {
     
 
     static Future<void> doCallbackAction0(UniCallback<LocationInfoModel> callback) async  {
-        callback.callbackName = 'UniCallBackTestService_doCallbackAction0_callback_${callback.hashCode}';
-        uniCallbackCache['UniCallBackTestService_doCallbackAction0_callback_${callback.hashCode}'] = callback;
+        callback.callbackName = 'UniCallbackTestService_doCallbackAction0_callback_${callback.hashCode}';
+        uniCallbackCache['UniCallbackTestService_doCallbackAction0_callback_${callback.hashCode}'] = callback;
         final Map<String, dynamic> encoded = {};
-        encoded["callback"] = 'UniCallBackTestService_doCallbackAction0_callback_${callback.hashCode}';
+        encoded["callback"] = 'UniCallbackTestService_doCallbackAction0_callback_${callback.hashCode}';
         const BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?> (
-            'com.didi.flutter.uni_api.UniCallBackTestService.doCallbackAction0', StandardMessageCodec());
+            'com.didi.flutter.uni_api.UniCallbackTestService.doCallbackAction0', StandardMessageCodec());
         UniCallbackManager.getInstance();
         final Map<Object?, Object?>? replyMap =
             await channel.send(encoded) as Map<Object?, Object?>?;
         if (replyMap == null) {
-            UniApi.trackError('UniCallBackTestService', 'com.didi.flutter.uni_api.UniCallBackTestService.doCallbackAction0', 'Unable to establish connection on channel : "com.didi.flutter.uni_api.UniCallBackTestService.doCallbackAction0" .');
+            UniApi.trackError('UniCallbackTestService', 'com.didi.flutter.uni_api.UniCallbackTestService.doCallbackAction0', 'Unable to establish connection on channel : "com.didi.flutter.uni_api.UniCallbackTestService.doCallbackAction0" .');
             if (!kReleaseMode) {
                 throw PlatformException(
                     code: 'channel-error',
-                    message: 'Unable to establish connection on channel : "com.didi.flutter.uni_api.UniCallBackTestService.doCallbackAction0" .',
+                    message: 'Unable to establish connection on channel : "com.didi.flutter.uni_api.UniCallbackTestService.doCallbackAction0" .',
                     details: null,
                 );
             }
@@ -67,7 +67,7 @@ class UniCallBackTestService {
             if (error.containsKey('code')) errorMsg += '[ ${error['code']?.toString() ?? ''} ]';
             if (error.containsKey('message')) errorMsg += '[ ${error['message']?.toString() ?? ''} ]';
             if (error.containsKey('details')) errorMsg += '[ ${error['details']?.toString() ?? ''} ]';
-            UniApi.trackError('UniCallBackTestService', 'com.didi.flutter.uni_api.UniCallBackTestService.doCallbackAction0', 'doCallbackAction0: $errorMsg);');
+            UniApi.trackError('UniCallbackTestService', 'com.didi.flutter.uni_api.UniCallbackTestService.doCallbackAction0', 'doCallbackAction0: $errorMsg);');
             if (!kReleaseMode) {
                 throw PlatformException(
                     code: error['code'] as String,
@@ -81,21 +81,21 @@ class UniCallBackTestService {
     }
 
     static Future<void> doCallbackAction1(UniCallback<String> callback) async  {
-        callback.callbackName = 'UniCallBackTestService_doCallbackAction1_callback_${callback.hashCode}';
-        uniCallbackCache['UniCallBackTestService_doCallbackAction1_callback_${callback.hashCode}'] = callback;
+        callback.callbackName = 'UniCallbackTestService_doCallbackAction1_callback_${callback.hashCode}';
+        uniCallbackCache['UniCallbackTestService_doCallbackAction1_callback_${callback.hashCode}'] = callback;
         final Map<String, dynamic> encoded = {};
-        encoded["callback"] = 'UniCallBackTestService_doCallbackAction1_callback_${callback.hashCode}';
+        encoded["callback"] = 'UniCallbackTestService_doCallbackAction1_callback_${callback.hashCode}';
         const BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?> (
-            'com.didi.flutter.uni_api.UniCallBackTestService.doCallbackAction1', StandardMessageCodec());
+            'com.didi.flutter.uni_api.UniCallbackTestService.doCallbackAction1', StandardMessageCodec());
         UniCallbackManager.getInstance();
         final Map<Object?, Object?>? replyMap =
             await channel.send(encoded) as Map<Object?, Object?>?;
         if (replyMap == null) {
-            UniApi.trackError('UniCallBackTestService', 'com.didi.flutter.uni_api.UniCallBackTestService.doCallbackAction1', 'Unable to establish connection on channel : "com.didi.flutter.uni_api.UniCallBackTestService.doCallbackAction1" .');
+            UniApi.trackError('UniCallbackTestService', 'com.didi.flutter.uni_api.UniCallbackTestService.doCallbackAction1', 'Unable to establish connection on channel : "com.didi.flutter.uni_api.UniCallbackTestService.doCallbackAction1" .');
             if (!kReleaseMode) {
                 throw PlatformException(
                     code: 'channel-error',
-                    message: 'Unable to establish connection on channel : "com.didi.flutter.uni_api.UniCallBackTestService.doCallbackAction1" .',
+                    message: 'Unable to establish connection on channel : "com.didi.flutter.uni_api.UniCallbackTestService.doCallbackAction1" .',
                     details: null,
                 );
             }
@@ -105,7 +105,7 @@ class UniCallBackTestService {
             if (error.containsKey('code')) errorMsg += '[ ${error['code']?.toString() ?? ''} ]';
             if (error.containsKey('message')) errorMsg += '[ ${error['message']?.toString() ?? ''} ]';
             if (error.containsKey('details')) errorMsg += '[ ${error['details']?.toString() ?? ''} ]';
-            UniApi.trackError('UniCallBackTestService', 'com.didi.flutter.uni_api.UniCallBackTestService.doCallbackAction1', 'doCallbackAction1: $errorMsg);');
+            UniApi.trackError('UniCallbackTestService', 'com.didi.flutter.uni_api.UniCallbackTestService.doCallbackAction1', 'doCallbackAction1: $errorMsg);');
             if (!kReleaseMode) {
                 throw PlatformException(
                     code: error['code'] as String,

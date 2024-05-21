@@ -16,7 +16,7 @@ import com.example.unifluttermodule_demo.UFUniAPI;
 import static com.example.unifluttermodule_demo.uniapi.UniModel.map;
 import com.example.unifluttermodule_demo.LocationInfoModel;
 
-public class UniCallBackTestServiceRegister {
+public class UniCallbackTestServiceRegister {
 
     private static List<Object> listClone(List list) {
       List newList = new ArrayList<>();
@@ -72,17 +72,17 @@ public class UniCallBackTestServiceRegister {
       return  newDic;
     }
     
-    public static void setup(BinaryMessenger binaryMessenger, UniCallBackTestService impl) {
+    public static void setup(BinaryMessenger binaryMessenger, UniCallbackTestService impl) {
         {
             BasicMessageChannel<Object> channel =
-                    new BasicMessageChannel<>(binaryMessenger, "com.didi.flutter.uni_api.UniCallBackTestService.doCallbackAction0", new StandardMessageCodec());
+                    new BasicMessageChannel<>(binaryMessenger, "com.didi.flutter.uni_api.UniCallbackTestService.doCallbackAction0", new StandardMessageCodec());
             if (impl != null) {
                 UFUniAPI.registerModule(impl);
                 channel.setMessageHandler((message, reply) -> {
                     Map<String, Object> wrapped = new HashMap<>();
                     try {
                         Map<String, Object> params = (Map<String, Object>) message;
-                        UniCallBackTestService.OnDoCallbackAction0Callback callback = new UniCallBackTestService.OnDoCallbackAction0Callback(binaryMessenger, (String) params.get("callback"));
+                        UniCallbackTestService.OnDoCallbackAction0Callback callback = new UniCallbackTestService.OnDoCallbackAction0Callback(binaryMessenger, (String) params.get("callback"));
                         impl.doCallbackAction0(callback);
                         wrapped.put("result", null);
                     } catch (Error | RuntimeException exception) {
@@ -98,14 +98,14 @@ public class UniCallBackTestServiceRegister {
         }
         {
             BasicMessageChannel<Object> channel =
-                    new BasicMessageChannel<>(binaryMessenger, "com.didi.flutter.uni_api.UniCallBackTestService.doCallbackAction1", new StandardMessageCodec());
+                    new BasicMessageChannel<>(binaryMessenger, "com.didi.flutter.uni_api.UniCallbackTestService.doCallbackAction1", new StandardMessageCodec());
             if (impl != null) {
                 UFUniAPI.registerModule(impl);
                 channel.setMessageHandler((message, reply) -> {
                     Map<String, Object> wrapped = new HashMap<>();
                     try {
                         Map<String, Object> params = (Map<String, Object>) message;
-                        UniCallBackTestService.OnDoCallbackAction1Callback callback = new UniCallBackTestService.OnDoCallbackAction1Callback(binaryMessenger, (String) params.get("callback"));
+                        UniCallbackTestService.OnDoCallbackAction1Callback callback = new UniCallbackTestService.OnDoCallbackAction1Callback(binaryMessenger, (String) params.get("callback"));
                         impl.doCallbackAction1(callback);
                         wrapped.put("result", null);
                     } catch (Error | RuntimeException exception) {

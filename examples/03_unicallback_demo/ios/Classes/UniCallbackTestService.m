@@ -132,11 +132,11 @@ static NSDictionary<NSString*, id>* wrapResult(NSObject* result, FlutterError* e
         };
 }
 
-void UniCallBackTestServiceSetup(id<FlutterBinaryMessenger> binaryMessenger, id<UniCallBackTestService> api) {
+void UniCallbackTestServiceSetup(id<FlutterBinaryMessenger> binaryMessenger, id<UniCallbackTestService> api) {
     {
         FlutterBasicMessageChannel *channel =
             [FlutterBasicMessageChannel
-                messageChannelWithName:@"com.didi.flutter.uni_api.UniCallBackTestService.doCallbackAction0"
+                messageChannelWithName:@"com.didi.flutter.uni_api.UniCallbackTestService.doCallbackAction0"
                 binaryMessenger:binaryMessenger];
         if (api) {
             [channel setMessageHandler:^(id _Nullable message, FlutterReply reply) {
@@ -155,7 +155,7 @@ void UniCallBackTestServiceSetup(id<FlutterBinaryMessenger> binaryMessenger, id<
     {
         FlutterBasicMessageChannel *channel =
             [FlutterBasicMessageChannel
-                messageChannelWithName:@"com.didi.flutter.uni_api.UniCallBackTestService.doCallbackAction1"
+                messageChannelWithName:@"com.didi.flutter.uni_api.UniCallbackTestService.doCallbackAction1"
                 binaryMessenger:binaryMessenger];
         if (api) {
             [channel setMessageHandler:^(id _Nullable message, FlutterReply reply) {

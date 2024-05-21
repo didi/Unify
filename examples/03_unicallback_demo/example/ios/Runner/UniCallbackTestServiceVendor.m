@@ -21,7 +21,7 @@ UNI_EXPORT(UniCallbackTestServiceVendor)
     if (self = [super init]) {
         // binaryMessenger可通过Flutter Engine进行获取
         FlutterViewController *flutterVC = (FlutterViewController*)[UIApplication sharedApplication].delegate.window.rootViewController;
-        UniCallBackTestServiceSetup(flutterVC.binaryMessenger, self);
+        UniCallbackTestServiceSetup(flutterVC.binaryMessenger, self);
         [self didLocationUpdate];
     }
     return self;
