@@ -3,7 +3,7 @@ import 'package:unify/api/api.dart';
 import 'location_info_model.dart';
 
 @UniNativeModule()
-abstract class UniCallBackTestService {
+abstract class UniCallbackTestService {
   /// 更新定位信息
   void doCallbackAction0(UniCallback<LocationInfoModel> callback);
 

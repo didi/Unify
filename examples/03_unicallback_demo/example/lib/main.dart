@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:unicallback_demo/location_info_model.dart';
-import 'package:unicallback_demo/uni_call_back_test_service.dart';
+import 'package:unicallback_demo/uni_callback_test_service.dart';
 import 'package:unicallback_demo/uniapi/uni_callback.dart';
 
 void main() {
@@ -45,13 +45,13 @@ class _MyAppState extends State<MyApp> {
             children: [
               OutlinedButton(
                   onPressed: () {
-                    UniCallBackTestService.doCallbackAction0(uniCallback);
+                    UniCallbackTestService.doCallbackAction0(uniCallback);
                   },
                   child: const Text('doCallbackAction0')),
               OutlinedButton(
                   onPressed: () {
                     // 方式2：通过方法参数定义 UniCallback 对象
-                    UniCallBackTestService.doCallbackAction1(
+                    UniCallbackTestService.doCallbackAction1(
                         UniCallback<String>((value, disposable) {
                       print('【doCallbackAction1】- uniCallback value: $value');
                       // 方式2：释放资源

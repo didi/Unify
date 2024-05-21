@@ -6,11 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UniCallBackTestService.h"
+#import "UniCallbackTestService.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UniCallbackTestServiceVendor : NSObject<UniCallBackTestService>
+@interface UniCallbackTestServiceVendor : NSObject<UniCallbackTestService>
 @property (nonatomic, strong) dispatch_source_t timer;
 @end
 
