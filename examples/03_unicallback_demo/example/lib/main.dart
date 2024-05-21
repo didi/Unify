@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:unicallback_demo/location_info_model.dart';
-import 'package:unicallback_demo/uni_callback_test_service.dart';
+import 'package:unicallback_demo/uni_call_back_test_service.dart';
 import 'package:unicallback_demo/uniapi/uni_callback.dart';
 
 void main() {
