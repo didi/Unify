@@ -22,7 +22,7 @@ abstract class WorkRunner<T> {
     // 抛出异常，模板类名与文件名不一致
     if (clsName != pascalFileName) {
       print(
-          '\nError: In Java language, the file name must exactly match the name of the class.\nPlease check file:\n\t"$absolutePath"\nRepair suggestion:\n\tYou can modify the class or file name to change the value of "$fileName" to "$clsName" after converting it to a larger hump.');
+          '\nFailed to generate Java code for "$clsName".\nError output from Unify:\n↳\n  ** In Java language, the file name must exactly match the name of the class. **\nPlease check file:\n↳\n\t"$absolutePath"\nRepair suggestion:\n↳\n  You can modify the class or file name to change the value of "$fileName" to "$clsName" after converting it to a larger hump.');
       exit(-1);
     }
   }
