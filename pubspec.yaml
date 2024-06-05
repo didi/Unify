@@ -1,7 +1,7 @@
 name: unify
-description: A sample command-line application.
+description:  An efficient, flexible Flutter-Native hybrid communication framework for seamless module integration and automatic code generation. 
 version: 3.0.0
-homepage: https://www.example.com
+homepage: https://github.com/didi/Unify
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
