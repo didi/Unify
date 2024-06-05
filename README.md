@@ -50,7 +50,7 @@ Add `dev_dependencies` in the `pubspec.yaml` of your Flutter project:
 
 ```yaml
 dev_dependencies:
-  unify: latest_version
+  unify_flutter: latest_version
 ```
 
 > Note: Currently, Unify has not been released on pub.dev. You can experience it through git dependency for now. It will be officially released on pub.dev in the future, so stay tuned.
@@ -59,14 +59,14 @@ Git dependency:
 
 ```yaml
 dev_dependencies:
-  unify:
+  unify_flutter:
     git: git@github.com:maxiee/Unify.git
 ```
 
 Run `flutter pub get` to pull the dependencies. Then you can run Unify:
 
 ```sh
-flutter pub run unify api
+flutter pub run unify_flutter api
 ```
 
 > Note: Running the Unify command usually requires a series of parameters. For specific usage, please refer to Getting Started.

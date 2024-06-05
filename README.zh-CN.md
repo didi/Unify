@@ -50,7 +50,7 @@ Unify 是一个使用 Dart 开发的命令。
 
 ```yaml
 dev_dependencies:
-  unify: latest_version
+  unify_flutter: latest_version
 ```
 
 > 注：目前 Unify 尚未发布 pub.dev，可先通过 git 依赖方式体验。后续会正式发布 pub.dev，敬请期待。
@@ -59,14 +59,14 @@ git 依赖：
 
 ```yaml
 dev_dependencies:
-  unify:
+  unify_flutter:
     git: git@github.com:maxiee/Unify.git
 ```
 
 执行 `flutter pub get` 拉取依赖。之后即可运行 Unify：
 
 ```sh
-flutter pub run unify api
+flutter pub run unify_flutter api
 ```
 
 > 注：执行 Unify 命令通常需伴随一系列参数，具体可使用方式可参见 Getting Started。
