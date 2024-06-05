@@ -1,4 +1,4 @@
-name: unify
+name: unify_flutter
 description:  An efficient, flexible Flutter-Native hybrid communication framework for seamless module integration and automatic code generation. 
 version: 3.0.0
 homepage: https://github.com/didi/Unify
