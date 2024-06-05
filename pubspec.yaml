@@ -4,11 +4,11 @@ version: 3.0.0
 homepage: https://github.com/didi/Unify
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.12.0 <4.0.0'
 
 dependencies:
   args: ^2.3.0
-  analyzer: '<4.2.0'
+  analyzer: '>=4.1.0 <4.2.0'
   path: ^1.8.0
 
 dev_dependencies:

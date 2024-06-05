@@ -31,7 +31,7 @@ DeviceInfoService.getDeviceInfo().then((deviceInfoModel) {
 
 The overall principle of Unify is as follows:
 
-![](docs/public/unify-arch.png)
+![](doc/public/unify-arch.png)
 
 Unify can effectively solve some common problems in Flutter hybrid development, such as:
 
@@ -75,7 +75,7 @@ flutter pub run unify api
 
 Follow these steps to quickly start using Unify to uniformly encapsulate a native SDK (including Android and iOS versions) and import it into Flutter.
 
-> Reference example code: `examples/01_uninativemodule_demo`
+> Reference example code: `example/01_uninativemodule_demo`
 
 ### Prerequisites
 
@@ -169,11 +169,11 @@ After execution, Unify generates code for each platform in the corresponding dir
 
 We need to provide the specific implementation for the generated native module interfaces:
 
-- Android platform implementation class: [DeviceInfoServiceImpl.java](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/android/app/src/main/java/com/example/uninativemodule_demo_example/DeviceInfoServiceImpl.java)
-- Android platform implementation registration: [MainActivity.java](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/android/app/src/main/java/com/example/uninativemodule_demo_example/MainActivity.java)
+- Android platform implementation class: [DeviceInfoServiceImpl.java](https://github.com/didi/Unify/blob/master/example/01_uninativemodule_demo/example/android/app/src/main/java/com/example/uninativemodule_demo_example/DeviceInfoServiceImpl.java)
+- Android platform implementation registration: [MainActivity.java](https://github.com/didi/Unify/blob/master/example/01_uninativemodule_demo/example/android/app/src/main/java/com/example/uninativemodule_demo_example/MainActivity.java)
 
-- iOS platform implementation class: [DeviceInfoServiceVendor.h](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/ios/Runner/DeviceInfoServiceVendor.h), [DeviceInfoServiceVendor.m](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/ios/Runner/DeviceInfoServiceVendor.m)
-- iOS platform implementation registration: [AppDelegate.m](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/ios/Runner/AppDelegate.m)
+- iOS platform implementation class: [DeviceInfoServiceVendor.h](https://github.com/didi/Unify/blob/master/example/01_uninativemodule_demo/example/ios/Runner/DeviceInfoServiceVendor.h), [DeviceInfoServiceVendor.m](https://github.com/didi/Unify/blob/master/example/01_uninativemodule_demo/example/ios/Runner/DeviceInfoServiceVendor.m)
+- iOS platform implementation registration: [AppDelegate.m](https://github.com/didi/Unify/blob/master/example/01_uninativemodule_demo/example/ios/Runner/AppDelegate.m)
 
 You can refer to the example code for implementation.
 
@@ -194,7 +194,7 @@ OutlinedButton(
 ),
 ```
 
-![](./docs/public/unify-demo.png)
+![](./doc/public/unify-demo.png)
 
 At this point, you have successfully imported a native module using Unify and used it in Flutter. It's as simple and intuitive as calling a Flutter module!
 
@@ -214,7 +214,7 @@ Through this example, we experienced the value brought by Unify:
 
 We have summarized the following decision-making process:
 
-![](./docs/public/unify-decision-tree.png)
+![](./doc/public/unify-decision-tree.png)
 
 ## More Examples
 
@@ -224,18 +224,18 @@ We introduce these typical scenarios and business models through example applica
 
 | Case                                                                                                | Description                                                                                                  | Applicable Scenario                                                                                                        |
 |-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| [01_uninativemodule_demo](https://github.com/didi/Unify/tree/master/examples/01_uninativemodule_demo) | UniNativeModule demo                                                                                        | How to efficiently import a native module (Android/iOS dual-end implementation) into Flutter and achieve unified calling |
-| [02_unifluttermodule_demo](https://github.com/didi/Unify/tree/master/examples/02_unifluttermodule_demo) | UniFlutterModule demo                                                                                       | How to efficiently import a Flutter module into native (Android/iOS) and achieve unified calling                        |
+| [01_uninativemodule_demo](https://github.com/didi/Unify/tree/master/example/01_uninativemodule_demo) | UniNativeModule demo                                                                                        | How to efficiently import a native module (Android/iOS dual-end implementation) into Flutter and achieve unified calling |
+| [02_unifluttermodule_demo](https://github.com/didi/Unify/tree/master/example/02_unifluttermodule_demo) | UniFlutterModule demo                                                                                       | How to efficiently import a Flutter module into native (Android/iOS) and achieve unified calling                        |
 
 ## Documentation
 
 For more advanced usage, please refer to the detailed documentation.
 
-* For documentation, please refer to [Unify Documentation](docs/README.md).
-* To quickly experience how to use it, please refer to [Getting Started](docs/02.快速开始/README.md).
-* To understand the capabilities provided by Unify, please refer to [Basic Capabilities](docs/06.基础能力/README.md).
-* To understand the design principles of Unify modules, please refer to [Principle Overview](docs/08.原理概述/README.md).
-* For more usage instructions of Unify CLI, please refer to [CLI Usage Tutorial](docs/04.CLI使用教程.md).
+* For documentation, please refer to [Unify Documentation](doc/README.md).
+* To quickly experience how to use it, please refer to [Getting Started](doc/02.快速开始/README.md).
+* To understand the capabilities provided by Unify, please refer to [Basic Capabilities](doc/06.基础能力/README.md).
+* To understand the design principles of Unify modules, please refer to [Principle Overview](doc/08.原理概述/README.md).
+* For more usage instructions of Unify CLI, please refer to [CLI Usage Tutorial](doc/04.CLI使用教程.md).
 
 > Note: We are also actively organizing the documentation. If you have any questions regarding usage or understanding, please feel free to submit an issue for feedback and discussion!
 

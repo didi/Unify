@@ -9,8 +9,9 @@ Future<List<FileSystemEntity>> dirContents(Directory dir,
   final files = <FileSystemEntity>[];
   final completer = Completer<List<FileSystemEntity>>();
   final lister = dir.list(recursive: recursive);
-  lister.listen((file) => {if (!isDSStore(file.path)) files.add(file)},
-      onDone: () => completer.complete(files));
+  lister.listen((file) {
+    if (!isDSStore(file.path)) files.add(file);
+  }, onDone: () => completer.complete(files));
   return completer.future;
 }
 

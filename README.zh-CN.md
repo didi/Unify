@@ -29,7 +29,7 @@ DeviceInfoService.getDeviceInfo().then((deviceInfoModel) {
 
 Unify 的整体原理如下：
 
-![](docs/public/unify-arch.png)
+![](doc/public/unify-arch.png)
 
 Unify 能够很好地解决 Flutter 混合开发下的一些常见问题，例如:
 
@@ -76,7 +76,7 @@ flutter pub run unify api
 
 跟随以下步骤,快速开始使用 Unify 将一个原生 SDK(包含 Android、iOS 版本)统一封装并导入 Flutter 中。 
 
-> 可参考实例代码: `examples/01_uninativemodule_demo`
+> 可参考实例代码: `example/01_uninativemodule_demo`
 
 ### 前置条件
 
@@ -170,11 +170,11 @@ flutter pub run unify api\
 
 生成的原生模块接口,需要我们补充具体实现:
 
-- Android 平台实现类：[DeviceInfoServiceImpl.java](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/android/app/src/main/java/com/example/uninativemodule_demo_example/DeviceInfoServiceImpl.java)
-- Android 平台注册实现：[MainActivity.java](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/android/app/src/main/java/com/example/uninativemodule_demo_example/MainActivity.java)
+- Android 平台实现类：[DeviceInfoServiceImpl.java](https://github.com/didi/Unify/blob/master/example/01_uninativemodule_demo/example/android/app/src/main/java/com/example/uninativemodule_demo_example/DeviceInfoServiceImpl.java)
+- Android 平台注册实现：[MainActivity.java](https://github.com/didi/Unify/blob/master/example/01_uninativemodule_demo/example/android/app/src/main/java/com/example/uninativemodule_demo_example/MainActivity.java)
 
-- iOS 平台实现类：[DeviceInfoServiceVendor.h](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/ios/Runner/DeviceInfoServiceVendor.h)、[DeviceInfoServiceVendor.m](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/ios/Runner/DeviceInfoServiceVendor.m)
-- iOS 平台注册实现：[AppDelegate.m](https://github.com/didi/Unify/blob/master/examples/01_uninativemodule_demo/example/ios/Runner/AppDelegate.m)
+- iOS 平台实现类：[DeviceInfoServiceVendor.h](https://github.com/didi/Unify/blob/master/example/01_uninativemodule_demo/example/ios/Runner/DeviceInfoServiceVendor.h)、[DeviceInfoServiceVendor.m](https://github.com/didi/Unify/blob/master/example/01_uninativemodule_demo/example/ios/Runner/DeviceInfoServiceVendor.m)
+- iOS 平台注册实现：[AppDelegate.m](https://github.com/didi/Unify/blob/master/example/01_uninativemodule_demo/example/ios/Runner/AppDelegate.m)
 
 可参考示例代码进行实现。
 
@@ -195,7 +195,7 @@ OutlinedButton(
 ),
 ```
 
-![](./docs/public/unify-demo.png)
+![](./doc/public/unify-demo.png)
 
 至此,你已经成功通过 Unify 将一个原生模块导入并在 Flutter 中使用。就像调用 Flutter 模块一样简单、直观！
 
@@ -215,7 +215,7 @@ OutlinedButton(
 
 我们总结了如下决策流程：
 
-![](./docs/public/unify-decision-tree.png)
+![](./doc/public/unify-decision-tree.png)
 
 
 ## More Examples
@@ -226,18 +226,18 @@ OutlinedButton(
 
 |案例|说明|适用场景|
 |---|---|---|
-|[01_uninativemodule_demo](https://github.com/didi/Unify/tree/master/examples/01_uninativemodule_demo)|UniNativeModule 演示|如何将一个原生模块（Android/iOS双端实现）高效导入Flutter、实现统一调用|
-|[02_unifluttermodule_demo](https://github.com/didi/Unify/tree/master/examples/02_unifluttermodule_demo)|UniFlutterModule 演示|如何将一个 Flutter 模块，高效导入原生（Android/iOS），实现统一调用|
+|[01_uninativemodule_demo](https://github.com/didi/Unify/tree/master/example/01_uninativemodule_demo)|UniNativeModule 演示|如何将一个原生模块（Android/iOS双端实现）高效导入Flutter、实现统一调用|
+|[02_unifluttermodule_demo](https://github.com/didi/Unify/tree/master/example/02_unifluttermodule_demo)|UniFlutterModule 演示|如何将一个 Flutter 模块，高效导入原生（Android/iOS），实现统一调用|
 
 ## Documentation
 
 对于更多高级用法，请参见详细文档。
 
-* 查看文档请参考 [Unify文档](docs/README.md)。
-* 想快速体验如何使用，请参考 [快速开始](docs/02.快速开始/README.md)。
-* 想了解 Unify 提供哪些能力，请参考 [基础能力](docs/06.基础能力/README.md)。
-* 想了解 Unify 模块设计原理，请参考 [原理概述](docs/08.原理概述/README.md)。
-* 想了解更多 Unify CLI 的使用说明，请参考 [CLI 使用教程](docs/04.CLI 使用教程.md)。
+* 查看文档请参考 [Unify文档](doc/README.md)。
+* 想快速体验如何使用，请参考 [快速开始](doc/02.快速开始/README.md)。
+* 想了解 Unify 提供哪些能力，请参考 [基础能力](doc/06.基础能力/README.md)。
+* 想了解 Unify 模块设计原理，请参考 [原理概述](doc/08.原理概述/README.md)。
+* 想了解更多 Unify CLI 的使用说明，请参考 [CLI 使用教程](doc/04.CLI 使用教程.md)。
 
 > 注：目前我们也在积极整理文档，如果在使用、理解上有任何问题，欢迎提交 Issue 反馈、交流！
 
