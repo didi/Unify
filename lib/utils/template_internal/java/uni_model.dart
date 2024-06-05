@@ -1,4 +1,4 @@
-import 'package:unify/utils/constants.dart';
+import 'package:unify_flutter/utils/constants.dart';
 
 String javaUniModelContent(String package) {
   return '''

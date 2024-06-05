@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:unify/analyzer/parse_results.dart';
-import 'package:unify/utils/extension/list_extension.dart';
-import 'package:unify/utils/log.dart';
+import 'package:unify_flutter/analyzer/parse_results.dart';
+import 'package:unify_flutter/utils/extension/list_extension.dart';
+import 'package:unify_flutter/utils/log.dart';
 
 void checkDuplicateSymbol(ParseResults results) {
   final uniModelASTs = results.models;

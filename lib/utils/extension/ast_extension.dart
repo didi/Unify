@@ -1,12 +1,12 @@
-import 'package:unify/ast/base.dart';
-import 'package:unify/ast/basic/ast_custom.dart';
-import 'package:unify/ast/basic/ast_int.dart';
-import 'package:unify/ast/basic/ast_list.dart';
-import 'package:unify/ast/basic/ast_map.dart';
-import 'package:unify/ast/basic/ast_void.dart';
-import 'package:unify/cli/options.dart';
-import 'package:unify/utils/constants.dart';
-import 'package:unify/utils/utils.dart';
+import 'package:unify_flutter/ast/base.dart';
+import 'package:unify_flutter/ast/basic/ast_custom.dart';
+import 'package:unify_flutter/ast/basic/ast_int.dart';
+import 'package:unify_flutter/ast/basic/ast_list.dart';
+import 'package:unify_flutter/ast/basic/ast_map.dart';
+import 'package:unify_flutter/ast/basic/ast_void.dart';
+import 'package:unify_flutter/cli/options.dart';
+import 'package:unify_flutter/utils/constants.dart';
+import 'package:unify_flutter/utils/utils.dart';
 
 const _funcPlaceholder = '@@function@@';
 const _valuePlaceholder = '@@value@@';

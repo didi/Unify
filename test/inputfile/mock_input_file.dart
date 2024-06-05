@@ -1,4 +1,4 @@
-import 'package:unify/utils/file/input_file.dart';
+import 'package:unify_flutter/utils/file/input_file.dart';
 
 const mockProjectPath =
     '/Users/jerry/work/iOS/rider.ios.flutter/uni_api_test/interface/';

@@ -1,13 +1,13 @@
 import 'dart:io';
 
-import 'package:unify/ast/uniapi/ast_model.dart';
-import 'package:unify/ast/uniapi/ast_module.dart';
-import 'package:unify/cli/options.dart';
-import 'package:unify/generator/model.dart';
-import 'package:unify/generator/module_flutter.dart';
-import 'package:unify/generator/module_native.dart';
-import 'package:unify/generator/uniapi.dart';
-import 'package:unify/utils/constants.dart';
+import 'package:unify_flutter/ast/uniapi/ast_model.dart';
+import 'package:unify_flutter/ast/uniapi/ast_module.dart';
+import 'package:unify_flutter/cli/options.dart';
+import 'package:unify_flutter/generator/model.dart';
+import 'package:unify_flutter/generator/module_flutter.dart';
+import 'package:unify_flutter/generator/module_native.dart';
+import 'package:unify_flutter/generator/uniapi.dart';
+import 'package:unify_flutter/utils/constants.dart';
 
 abstract class WorkRunner<T> {
   const WorkRunner({required this.module, required this.options});

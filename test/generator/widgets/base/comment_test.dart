@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
-import 'package:unify/generator/widgets/base/comment.dart';
-import 'package:unify/generator/widgets/code_unit.dart';
+import 'package:unify_flutter/generator/widgets/base/comment.dart';
+import 'package:unify_flutter/generator/widgets/code_unit.dart';
 
 void main() {
   test('Comment OneLine COMMENT_DOUBLE_BACK_SLASH', () {

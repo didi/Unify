@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:test/test.dart';
-import 'package:unify/analyzer/analyzer_lib.dart';
-import 'package:unify/ast/basic/ast_void.dart';
-import 'package:unify/utils/file/file.dart';
+import 'package:unify_flutter/analyzer/analyzer_lib.dart';
+import 'package:unify_flutter/ast/basic/ast_void.dart';
+import 'package:unify_flutter/utils/file/file.dart';
 
 /// input path parse & ast parse testing
 Future<void> main() async {

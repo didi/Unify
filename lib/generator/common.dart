@@ -1,6 +1,6 @@
-import 'package:unify/ast/uniapi/ast_method.dart';
-import 'package:unify/ast/uniapi/ast_module.dart';
-import 'package:unify/utils/constants.dart';
+import 'package:unify_flutter/ast/uniapi/ast_method.dart';
+import 'package:unify_flutter/ast/uniapi/ast_module.dart';
+import 'package:unify_flutter/utils/constants.dart';
 
 const String generatedCodeWarning = generatedWarning;
 

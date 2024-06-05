@@ -1,11 +1,11 @@
 import 'package:test/test.dart';
-import 'package:unify/ast/basic/ast_bool.dart';
-import 'package:unify/ast/basic/ast_int.dart';
-import 'package:unify/ast/basic/ast_list.dart';
-import 'package:unify/ast/basic/ast_map.dart';
-import 'package:unify/ast/basic/ast_string.dart';
-import 'package:unify/ast/basic/ast_variable.dart';
-import 'package:unify/generator/widgets/lang/java/java_field.dart';
+import 'package:unify_flutter/ast/basic/ast_bool.dart';
+import 'package:unify_flutter/ast/basic/ast_int.dart';
+import 'package:unify_flutter/ast/basic/ast_list.dart';
+import 'package:unify_flutter/ast/basic/ast_map.dart';
+import 'package:unify_flutter/ast/basic/ast_string.dart';
+import 'package:unify_flutter/ast/basic/ast_variable.dart';
+import 'package:unify_flutter/generator/widgets/lang/java/java_field.dart';
 
 void main() {
   test('int field', () {

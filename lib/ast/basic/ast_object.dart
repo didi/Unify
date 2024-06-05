@@ -1,5 +1,5 @@
-import 'package:unify/ast/base.dart';
-import 'package:unify/cli/options.dart';
+import 'package:unify_flutter/ast/base.dart';
+import 'package:unify_flutter/cli/options.dart';
 
 class AstObject extends AstType {
   const AstObject({bool maybeNull = false}) : super(maybeNull, const []);

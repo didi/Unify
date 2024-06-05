@@ -3,17 +3,17 @@ import 'dart:io';
 import 'dart:isolate';
 
 import 'package:args/command_runner.dart';
-import 'package:unify/cli/generate_script.dart';
-import 'package:unify/cli/options.dart';
-import 'package:unify/utils/constants.dart';
-import 'package:unify/utils/file/file.dart';
-import 'package:unify/utils/log.dart';
+import 'package:unify_flutter/cli/generate_script.dart';
+import 'package:unify_flutter/cli/options.dart';
+import 'package:unify_flutter/utils/constants.dart';
+import 'package:unify_flutter/utils/file/file.dart';
+import 'package:unify_flutter/utils/log.dart';
 import 'package:path/path.dart' as path;
-import 'package:unify/utils/template_internal/dart/caches.dart';
-import 'package:unify/utils/template_internal/dart/uni_api.dart';
-import 'package:unify/utils/template_internal/dart/uni_callback.dart';
-import 'package:unify/utils/template_internal/dart/uni_model.dart';
-import 'package:unify/utils/template_internal/java/uni_model.dart';
+import 'package:unify_flutter/utils/template_internal/dart/caches.dart';
+import 'package:unify_flutter/utils/template_internal/dart/uni_api.dart';
+import 'package:unify_flutter/utils/template_internal/dart/uni_callback.dart';
+import 'package:unify_flutter/utils/template_internal/dart/uni_model.dart';
+import 'package:unify_flutter/utils/template_internal/java/uni_model.dart';
 
 class GenerateApiCommand extends Command<int> {
   GenerateApiCommand()

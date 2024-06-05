@@ -1,8 +1,8 @@
-import 'package:unify/ast/basic/ast_string.dart';
-import 'package:unify/ast/basic/ast_variable.dart';
-import 'package:unify/ast/uniapi/ast_method.dart';
-import 'package:unify/ast/uniapi/ast_module.dart';
-import 'package:unify/generator/common.dart';
+import 'package:unify_flutter/ast/basic/ast_string.dart';
+import 'package:unify_flutter/ast/basic/ast_variable.dart';
+import 'package:unify_flutter/ast/uniapi/ast_method.dart';
+import 'package:unify_flutter/ast/uniapi/ast_module.dart';
+import 'package:unify_flutter/generator/common.dart';
 
 import '../../inputfile/mock_input_file.dart';
 

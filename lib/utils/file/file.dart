@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:path/path.dart' as path;
-import 'package:unify/utils/constants.dart';
-import 'package:unify/utils/file/input_file.dart';
+import 'package:unify_flutter/utils/constants.dart';
+import 'package:unify_flutter/utils/file/input_file.dart';
 
 Future<List<FileSystemEntity>> dirContents(Directory dir,
     {bool recursive = false}) async {

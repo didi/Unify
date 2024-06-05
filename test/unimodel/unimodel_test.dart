@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:test/test.dart';
-import 'package:unify/analyzer/analyzer_lib.dart';
-import 'package:unify/cli/options.dart';
-import 'package:unify/generator/model.dart';
-import 'package:unify/utils/file/file.dart';
+import 'package:unify_flutter/analyzer/analyzer_lib.dart';
+import 'package:unify_flutter/cli/options.dart';
+import 'package:unify_flutter/generator/model.dart';
+import 'package:unify_flutter/utils/file/file.dart';
 
 import '../inputfile/mock_input_file.dart';
 import 'cases/case_simple_types.dart';

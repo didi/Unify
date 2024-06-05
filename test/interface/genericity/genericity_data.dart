@@ -1,4 +1,4 @@
-import 'package:unify/api/api.dart';
+import 'package:unify_flutter/api/api.dart';
 
 @UniModel()
 class GenericityData {

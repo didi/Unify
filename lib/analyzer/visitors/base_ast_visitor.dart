@@ -1,6 +1,6 @@
 import 'package:analyzer/dart/ast/ast.dart' as dart_ast;
 import 'package:analyzer/dart/ast/visitor.dart' as dart_ast_visitor;
-import 'package:unify/utils/constants.dart';
+import 'package:unify_flutter/utils/constants.dart';
 
 class BaseAstVisitor extends dart_ast_visitor.RecursiveAstVisitor<Object?> {
   dart_ast.Annotation? _findMetadata(

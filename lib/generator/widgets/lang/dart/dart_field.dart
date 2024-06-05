@@ -1,6 +1,6 @@
-import 'package:unify/ast/basic/ast_variable.dart';
-import 'package:unify/generator/widgets/base/line.dart';
-import 'package:unify/generator/widgets/code_unit.dart';
+import 'package:unify_flutter/ast/basic/ast_variable.dart';
+import 'package:unify_flutter/generator/widgets/base/line.dart';
+import 'package:unify_flutter/generator/widgets/code_unit.dart';
 
 class DartField extends CodeUnit {
   DartField(this.field, {int depth = 0}) : super(depth);

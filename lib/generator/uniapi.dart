@@ -1,14 +1,14 @@
-import 'package:unify/cli/options.dart';
-import 'package:unify/generator/widgets/base/comment.dart';
-import 'package:unify/generator/widgets/base/line.dart';
-import 'package:unify/generator/widgets/code_template.dart';
-import 'package:unify/generator/widgets/lang/java/java_import.dart';
-import 'package:unify/generator/widgets/lang/java/java_package.dart';
-import 'package:unify/generator/widgets/lang/oc/oc_import.dart';
-import 'package:unify/utils/constants.dart';
-import 'package:unify/utils/template_internal/java/uni_class_methods.dart';
-import 'package:unify/utils/template_internal/objc/uni_class_methods.dart';
-import 'package:unify/utils/template_internal/objc/uni_static_function.dart';
+import 'package:unify_flutter/cli/options.dart';
+import 'package:unify_flutter/generator/widgets/base/comment.dart';
+import 'package:unify_flutter/generator/widgets/base/line.dart';
+import 'package:unify_flutter/generator/widgets/code_template.dart';
+import 'package:unify_flutter/generator/widgets/lang/java/java_import.dart';
+import 'package:unify_flutter/generator/widgets/lang/java/java_package.dart';
+import 'package:unify_flutter/generator/widgets/lang/oc/oc_import.dart';
+import 'package:unify_flutter/utils/constants.dart';
+import 'package:unify_flutter/utils/template_internal/java/uni_class_methods.dart';
+import 'package:unify_flutter/utils/template_internal/objc/uni_class_methods.dart';
+import 'package:unify_flutter/utils/template_internal/objc/uni_static_function.dart';
 
 abstract class UniApiGenerator {
   static String genObjcHeaderFileName(UniAPIOptions options) {

@@ -1,9 +1,9 @@
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
-import 'package:unify/ast/basic/ast_int.dart';
-import 'package:unify/ast/basic/ast_string.dart';
-import 'package:unify/ast/basic/ast_variable.dart';
-import 'package:unify/generator/widgets/lang/java/java_function.dart';
+import 'package:unify_flutter/ast/basic/ast_int.dart';
+import 'package:unify_flutter/ast/basic/ast_string.dart';
+import 'package:unify_flutter/ast/basic/ast_variable.dart';
+import 'package:unify_flutter/generator/widgets/lang/java/java_function.dart';
 
 void main() {
   // java signature test

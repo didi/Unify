@@ -1,4 +1,4 @@
-import 'package:unify/utils/constants.dart';
+import 'package:unify_flutter/utils/constants.dart';
 
 extension ListExtensions on List {
   List getDuplicates() {

@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:unify/analyzer/analyzer_lib.dart';
-import 'package:unify/cli/commands/generate_api_command.dart';
-import 'package:unify/worker/check_duplicate.dart';
-import 'package:unify/worker/clean_outdated.dart';
-import 'package:unify/utils/file/file.dart';
-import 'package:unify/utils/log.dart';
-import 'package:unify/worker/work_runner.dart';
+import 'package:unify_flutter/analyzer/analyzer_lib.dart';
+import 'package:unify_flutter/cli/commands/generate_api_command.dart';
+import 'package:unify_flutter/worker/check_duplicate.dart';
+import 'package:unify_flutter/worker/clean_outdated.dart';
+import 'package:unify_flutter/utils/file/file.dart';
+import 'package:unify_flutter/utils/log.dart';
+import 'package:unify_flutter/worker/work_runner.dart';
 
 Future<int> isolateRun(List<String> args) async {
   log('isolateRun', value: args);

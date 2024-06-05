@@ -1,6 +1,6 @@
-import 'package:unify/ast/base.dart';
-import 'package:unify/ast/basic/ast_object.dart';
-import 'package:unify/generator/widgets/lang/oc/oc_reference.dart';
+import 'package:unify_flutter/ast/base.dart';
+import 'package:unify_flutter/ast/basic/ast_object.dart';
+import 'package:unify_flutter/generator/widgets/lang/oc/oc_reference.dart';
 
 class AstMap extends AstType {
   AstMap(

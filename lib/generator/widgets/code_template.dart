@@ -1,4 +1,4 @@
-import 'package:unify/generator/widgets/code_unit.dart';
+import 'package:unify_flutter/generator/widgets/code_unit.dart';
 
 class CodeTemplate extends CodeUnit {
   CodeTemplate({

@@ -1,12 +1,12 @@
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
-import 'package:unify/analyzer/analyzer_lib.dart';
-import 'package:unify/ast/basic/ast_custom.dart';
-import 'package:unify/ast/basic/ast_variable.dart';
-import 'package:unify/ast/uniapi/ast_model.dart';
-import 'package:unify/cli/options.dart';
-import 'package:unify/generator/widgets/lang/java/java_import.dart';
-import 'package:unify/utils/file/input_file.dart';
+import 'package:unify_flutter/analyzer/analyzer_lib.dart';
+import 'package:unify_flutter/ast/basic/ast_custom.dart';
+import 'package:unify_flutter/ast/basic/ast_variable.dart';
+import 'package:unify_flutter/ast/uniapi/ast_model.dart';
+import 'package:unify_flutter/cli/options.dart';
+import 'package:unify_flutter/generator/widgets/lang/java/java_import.dart';
+import 'package:unify_flutter/utils/file/input_file.dart';
 
 void main() {
   final options = UniAPIOptions();

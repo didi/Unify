@@ -1,4 +1,4 @@
-import 'package:unify/ast/base.dart';
+import 'package:unify_flutter/ast/base.dart';
 
 class AstVoid extends AstType {
   const AstVoid({bool maybeNull = false}) : super(maybeNull, const []);

@@ -1,4 +1,4 @@
-import 'package:unify/generator/common.dart';
+import 'package:unify_flutter/generator/common.dart';
 
 String dartUniCallbackManagerContent(String generate,
         {bool nullSafty = true, String channelSuffix = ''}) =>

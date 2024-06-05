@@ -1,5 +1,5 @@
-import 'package:unify/ast/base.dart';
-import 'package:unify/generator/widgets/code_unit.dart';
+import 'package:unify_flutter/ast/base.dart';
+import 'package:unify_flutter/generator/widgets/code_unit.dart';
 
 /// 传入 AST 类型，由组件白名单决定是直接引用还是指针引用
 class OCReference extends CodeUnit {

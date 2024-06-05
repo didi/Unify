@@ -1,6 +1,6 @@
-import 'package:unify/ast/base.dart';
-import 'package:unify/ast/uniapi/ast_method.dart';
-import 'package:unify/utils/file/input_file.dart';
+import 'package:unify_flutter/ast/base.dart';
+import 'package:unify_flutter/ast/uniapi/ast_method.dart';
+import 'package:unify_flutter/utils/file/input_file.dart';
 
 class Module extends UniApiNode {
   Module(

@@ -1,5 +1,5 @@
 import 'package:analyzer/dart/ast/ast.dart' as dart_ast;
-import 'package:unify/analyzer/visitors/base_ast_visitor.dart';
+import 'package:unify_flutter/analyzer/visitors/base_ast_visitor.dart';
 
 class CustomTypeVisitor extends BaseAstVisitor {
   final List<String> _customTypes = <String>[];

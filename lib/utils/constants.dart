@@ -1,4 +1,4 @@
-import 'package:unify/version.dart';
+import 'package:unify_flutter/version.dart';
 
 /// Define suffix constant
 const dartSuffix = '.dart';

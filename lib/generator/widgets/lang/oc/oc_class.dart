@@ -1,21 +1,21 @@
-import 'package:unify/analyzer/analyzer_lib.dart';
-import 'package:unify/ast/base.dart';
-import 'package:unify/ast/basic/ast_custom.dart';
-import 'package:unify/ast/basic/ast_string.dart';
-import 'package:unify/ast/basic/ast_variable.dart';
-import 'package:unify/ast/basic/ast_void.dart';
-import 'package:unify/ast/uniapi/ast_method.dart';
-import 'package:unify/cli/options.dart';
-import 'package:unify/generator/common.dart';
-import 'package:unify/generator/widgets/base/comment.dart';
-import 'package:unify/generator/widgets/base/condition.dart';
-import 'package:unify/generator/widgets/base/line.dart';
-import 'package:unify/generator/widgets/code_unit.dart';
-import 'package:unify/generator/widgets/lang/java/java_class.dart';
-import 'package:unify/generator/widgets/lang/oc/oc_function.dart';
-import 'package:unify/generator/widgets/lang/oc/oc_property.dart';
-import 'package:unify/utils/constants.dart';
-import 'package:unify/utils/extension/string_extension.dart';
+import 'package:unify_flutter/analyzer/analyzer_lib.dart';
+import 'package:unify_flutter/ast/base.dart';
+import 'package:unify_flutter/ast/basic/ast_custom.dart';
+import 'package:unify_flutter/ast/basic/ast_string.dart';
+import 'package:unify_flutter/ast/basic/ast_variable.dart';
+import 'package:unify_flutter/ast/basic/ast_void.dart';
+import 'package:unify_flutter/ast/uniapi/ast_method.dart';
+import 'package:unify_flutter/cli/options.dart';
+import 'package:unify_flutter/generator/common.dart';
+import 'package:unify_flutter/generator/widgets/base/comment.dart';
+import 'package:unify_flutter/generator/widgets/base/condition.dart';
+import 'package:unify_flutter/generator/widgets/base/line.dart';
+import 'package:unify_flutter/generator/widgets/code_unit.dart';
+import 'package:unify_flutter/generator/widgets/lang/java/java_class.dart';
+import 'package:unify_flutter/generator/widgets/lang/oc/oc_function.dart';
+import 'package:unify_flutter/generator/widgets/lang/oc/oc_property.dart';
+import 'package:unify_flutter/utils/constants.dart';
+import 'package:unify_flutter/utils/extension/string_extension.dart';
 
 class OCClassDeclaration extends CodeUnit {
   OCClassDeclaration(
@@ -281,18 +281,21 @@ class OCClassUniCallback {
 
   static List<CodeUnit> genImplementationImplementation(List<Method> methods,
       {int depth = 0, UniAPIOptions? options}) {
-    return _parseMethodGenCodes(methods,
-        (uniCallback) => uniCallback.getImplementationImplementation(), options: options);
+    return _parseMethodGenCodes(
+        methods, (uniCallback) => uniCallback.getImplementationImplementation(),
+        options: options);
   }
 
   static List<CodeUnit> _parseMethodGenCodes(List<Method> methods,
-      CodeUnit Function(OCClassUniCallback uniCallback) mapper, {UniAPIOptions? options}) {
+      CodeUnit Function(OCClassUniCallback uniCallback) mapper,
+      {UniAPIOptions? options}) {
     final ret = <CodeUnit>[];
     for (final method in methods) {
       for (final param in method.parameters) {
         if (param.type.ocType() == typeUniCallback) {
           ret.add(mapper(OCClassUniCallback(method.name, param.name,
-              paramGeneric: param.type.generics[0], channelSuffix: options?.objcUniAPIPrefix.suffix()??'')));
+              paramGeneric: param.type.generics[0],
+              channelSuffix: options?.objcUniAPIPrefix.suffix() ?? '')));
           ret.add(EmptyLine());
         }
       }

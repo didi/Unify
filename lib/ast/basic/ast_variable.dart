@@ -1,4 +1,4 @@
-import 'package:unify/ast/base.dart';
+import 'package:unify_flutter/ast/base.dart';
 
 class Variable extends Node {
   Variable(this.type, this.name, {this.codeComments = const <String>[]});

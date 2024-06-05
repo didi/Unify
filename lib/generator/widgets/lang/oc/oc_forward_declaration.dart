@@ -1,5 +1,5 @@
-import 'package:unify/generator/widgets/base/line.dart';
-import 'package:unify/generator/widgets/code_unit.dart';
+import 'package:unify_flutter/generator/widgets/base/line.dart';
+import 'package:unify_flutter/generator/widgets/code_unit.dart';
 
 class OCForwardDeclaration extends CodeUnit {
   OCForwardDeclaration(

@@ -1,12 +1,12 @@
-import 'package:unify/ast/basic/ast_variable.dart';
-import 'package:unify/ast/uniapi/ast_method.dart';
-import 'package:unify/generator/widgets/base/line.dart';
-import 'package:unify/generator/widgets/code_unit.dart';
-import 'package:unify/generator/widgets/code_unit_mixin.dart';
-import 'package:unify/generator/widgets/lang/dart/dart_field.dart';
-import 'package:unify/generator/widgets/lang/dart/dart_function.dart';
-import 'package:unify/generator/widgets/lang/java/java_class.dart';
-import 'package:unify/utils/extension/codeunit_extension.dart';
+import 'package:unify_flutter/ast/basic/ast_variable.dart';
+import 'package:unify_flutter/ast/uniapi/ast_method.dart';
+import 'package:unify_flutter/generator/widgets/base/line.dart';
+import 'package:unify_flutter/generator/widgets/code_unit.dart';
+import 'package:unify_flutter/generator/widgets/code_unit_mixin.dart';
+import 'package:unify_flutter/generator/widgets/lang/dart/dart_field.dart';
+import 'package:unify_flutter/generator/widgets/lang/dart/dart_function.dart';
+import 'package:unify_flutter/generator/widgets/lang/java/java_class.dart';
+import 'package:unify_flutter/utils/extension/codeunit_extension.dart';
 
 class DartClass extends CodeUnit with CodeUnitMixin {
   DartClass({

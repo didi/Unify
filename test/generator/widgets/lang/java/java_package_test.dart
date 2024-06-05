@@ -1,13 +1,13 @@
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
-import 'package:unify/ast/basic/ast_bool.dart';
-import 'package:unify/ast/basic/ast_int.dart';
-import 'package:unify/ast/basic/ast_string.dart';
-import 'package:unify/ast/basic/ast_variable.dart';
-import 'package:unify/ast/uniapi/ast_model.dart';
-import 'package:unify/cli/options.dart';
-import 'package:unify/generator/widgets/lang/java/java_package.dart';
-import 'package:unify/utils/file/input_file.dart';
+import 'package:unify_flutter/ast/basic/ast_bool.dart';
+import 'package:unify_flutter/ast/basic/ast_int.dart';
+import 'package:unify_flutter/ast/basic/ast_string.dart';
+import 'package:unify_flutter/ast/basic/ast_variable.dart';
+import 'package:unify_flutter/ast/uniapi/ast_model.dart';
+import 'package:unify_flutter/cli/options.dart';
+import 'package:unify_flutter/generator/widgets/lang/java/java_package.dart';
+import 'package:unify_flutter/utils/file/input_file.dart';
 
 void main() {
   final inputFile = InputFile();

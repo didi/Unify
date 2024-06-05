@@ -1,4 +1,4 @@
-import 'package:unify/api/api.dart';
+import 'package:unify_flutter/api/api.dart';
 
 /// 设备信息 实体类
 @UniModel()

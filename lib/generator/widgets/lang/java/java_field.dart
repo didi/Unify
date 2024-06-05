@@ -1,7 +1,7 @@
-import 'package:unify/ast/basic/ast_variable.dart';
-import 'package:unify/generator/widgets/base/line.dart';
-import 'package:unify/generator/widgets/code_unit.dart';
-import 'package:unify/generator/widgets/lang/java/java_constants.dart';
+import 'package:unify_flutter/ast/basic/ast_variable.dart';
+import 'package:unify_flutter/generator/widgets/base/line.dart';
+import 'package:unify_flutter/generator/widgets/code_unit.dart';
+import 'package:unify_flutter/generator/widgets/lang/java/java_constants.dart';
 
 class JavaField extends CodeUnit {
   JavaField(this.field,

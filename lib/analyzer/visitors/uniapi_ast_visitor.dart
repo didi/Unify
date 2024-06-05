@@ -1,18 +1,18 @@
-import 'package:unify/analyzer/parse_results.dart';
+import 'package:unify_flutter/analyzer/parse_results.dart';
 import 'package:analyzer/dart/ast/ast.dart' as dart_ast;
-import 'package:unify/analyzer/visitors/base_ast_visitor.dart';
-import 'package:unify/analyzer/visitors/initializer_visitor.dart';
-import 'package:unify/ast/base.dart';
-import 'package:unify/ast/basic/ast_custom.dart';
-import 'package:unify/ast/basic/ast_variable.dart';
-import 'package:unify/ast/uniapi/ast_method.dart';
-import 'package:unify/ast/uniapi/ast_model.dart';
-import 'package:unify/ast/uniapi/ast_module.dart';
-import 'package:unify/utils/constants.dart';
-import 'package:unify/utils/extension/string_extension.dart';
-import 'package:unify/utils/file/input_file.dart';
+import 'package:unify_flutter/analyzer/visitors/base_ast_visitor.dart';
+import 'package:unify_flutter/analyzer/visitors/initializer_visitor.dart';
+import 'package:unify_flutter/ast/base.dart';
+import 'package:unify_flutter/ast/basic/ast_custom.dart';
+import 'package:unify_flutter/ast/basic/ast_variable.dart';
+import 'package:unify_flutter/ast/uniapi/ast_method.dart';
+import 'package:unify_flutter/ast/uniapi/ast_model.dart';
+import 'package:unify_flutter/ast/uniapi/ast_module.dart';
+import 'package:unify_flutter/utils/constants.dart';
+import 'package:unify_flutter/utils/extension/string_extension.dart';
+import 'package:unify_flutter/utils/file/input_file.dart';
 import 'package:analyzer/dart/ast/token.dart';
-import 'package:unify/utils/log.dart';
+import 'package:unify_flutter/utils/log.dart';
 
 class UniApiAstVisitor extends BaseAstVisitor {
   UniApiAstVisitor();

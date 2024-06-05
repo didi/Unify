@@ -1,4 +1,4 @@
-import 'package:unify/generator/widgets/code_unit.dart';
+import 'package:unify_flutter/generator/widgets/code_unit.dart';
 
 class OneLine extends CodeUnit {
   OneLine({int depth = 0, this.body = '', this.hasNewline = true})

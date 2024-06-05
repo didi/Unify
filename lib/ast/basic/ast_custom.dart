@@ -1,5 +1,5 @@
-import 'package:unify/ast/base.dart';
-import 'package:unify/utils/constants.dart';
+import 'package:unify_flutter/ast/base.dart';
+import 'package:unify_flutter/utils/constants.dart';
 
 class AstCustomType extends AstType {
   AstCustomType(

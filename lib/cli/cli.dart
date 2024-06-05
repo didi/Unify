@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:unify/cli/unify_command_runner.dart';
+import 'package:unify_flutter/cli/unify_command_runner.dart';
 
 Future<void> cli(List<String> args) async {
   await _runAndExit(await UnifyCommandRunner().run(args));

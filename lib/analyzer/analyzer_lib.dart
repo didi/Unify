@@ -7,15 +7,15 @@ import 'package:analyzer/dart/analysis/analysis_context_collection.dart'
 import 'package:analyzer/dart/analysis/results.dart' show ParsedUnitResult;
 import 'package:analyzer/dart/ast/ast.dart' as dart_ast;
 import 'package:analyzer/error/error.dart' show AnalysisError;
-import 'package:unify/analyzer/analyzer_error.dart';
-import 'package:unify/analyzer/parse_results.dart';
-import 'package:unify/analyzer/visitors/custom_type_visitor.dart';
-import 'package:unify/analyzer/visitors/uniapi_ast_visitor.dart';
-import 'package:unify/ast/base.dart';
-import 'package:unify/ast/uniapi/ast_model.dart';
-import 'package:unify/ast/uniapi/ast_module.dart';
-import 'package:unify/utils/constants.dart';
-import 'package:unify/utils/file/input_file.dart';
+import 'package:unify_flutter/analyzer/analyzer_error.dart';
+import 'package:unify_flutter/analyzer/parse_results.dart';
+import 'package:unify_flutter/analyzer/visitors/custom_type_visitor.dart';
+import 'package:unify_flutter/analyzer/visitors/uniapi_ast_visitor.dart';
+import 'package:unify_flutter/ast/base.dart';
+import 'package:unify_flutter/ast/uniapi/ast_model.dart';
+import 'package:unify_flutter/ast/uniapi/ast_module.dart';
+import 'package:unify_flutter/utils/constants.dart';
+import 'package:unify_flutter/utils/file/input_file.dart';
 
 class _UniApiAnalyzerCache {
   _UniApiAnalyzerCache();

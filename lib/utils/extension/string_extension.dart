@@ -1,13 +1,13 @@
-import 'package:unify/ast/base.dart';
-import 'package:unify/ast/basic/ast_bool.dart';
-import 'package:unify/ast/basic/ast_custom.dart';
-import 'package:unify/ast/basic/ast_double.dart';
-import 'package:unify/ast/basic/ast_int.dart';
-import 'package:unify/ast/basic/ast_list.dart';
-import 'package:unify/ast/basic/ast_map.dart';
-import 'package:unify/ast/basic/ast_object.dart';
-import 'package:unify/ast/basic/ast_string.dart';
-import 'package:unify/ast/basic/ast_void.dart';
+import 'package:unify_flutter/ast/base.dart';
+import 'package:unify_flutter/ast/basic/ast_bool.dart';
+import 'package:unify_flutter/ast/basic/ast_custom.dart';
+import 'package:unify_flutter/ast/basic/ast_double.dart';
+import 'package:unify_flutter/ast/basic/ast_int.dart';
+import 'package:unify_flutter/ast/basic/ast_list.dart';
+import 'package:unify_flutter/ast/basic/ast_map.dart';
+import 'package:unify_flutter/ast/basic/ast_object.dart';
+import 'package:unify_flutter/ast/basic/ast_string.dart';
+import 'package:unify_flutter/ast/basic/ast_void.dart';
 
 extension StringExtension on String {
   /// Convert string to 'AstType'
@@ -76,7 +76,7 @@ extension StringExtension on String {
   /// String initial uppercase
   String capitalize() =>
       length > 1 ? this[0].toUpperCase() + substring(1) : toUpperCase();
-  
+
   /// Convert non empty strings to lowercase and append "dots" to the beginning of the string.
   /// For example, converting "Com" to ".com"
   String suffix() => isNotEmpty ? '.${toLowerCase()}' : '';

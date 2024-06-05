@@ -1,17 +1,17 @@
 import 'dart:io';
-import 'package:unify/analyzer/analyzer_lib.dart';
-import 'package:unify/ast/basic/ast_bool.dart';
-import 'package:unify/ast/basic/ast_custom.dart';
-import 'package:unify/ast/basic/ast_int.dart';
-import 'package:unify/ast/basic/ast_list.dart';
-import 'package:unify/ast/basic/ast_string.dart';
-import 'package:unify/ast/basic/ast_variable.dart';
-import 'package:unify/ast/uniapi/ast_model.dart';
-import 'package:unify/cli/options.dart';
-import 'package:unify/generator/model.dart';
-import 'package:unify/utils/file/input_file.dart';
-import 'package:unify/utils/file/file.dart';
-import 'package:unify/utils/log.dart';
+import 'package:unify_flutter/analyzer/analyzer_lib.dart';
+import 'package:unify_flutter/ast/basic/ast_bool.dart';
+import 'package:unify_flutter/ast/basic/ast_custom.dart';
+import 'package:unify_flutter/ast/basic/ast_int.dart';
+import 'package:unify_flutter/ast/basic/ast_list.dart';
+import 'package:unify_flutter/ast/basic/ast_string.dart';
+import 'package:unify_flutter/ast/basic/ast_variable.dart';
+import 'package:unify_flutter/ast/uniapi/ast_model.dart';
+import 'package:unify_flutter/cli/options.dart';
+import 'package:unify_flutter/generator/model.dart';
+import 'package:unify_flutter/utils/file/input_file.dart';
+import 'package:unify_flutter/utils/file/file.dart';
+import 'package:unify_flutter/utils/log.dart';
 
 Future<void> main() async {
   final tempDir = createTempDir();

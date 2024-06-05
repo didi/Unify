@@ -1,10 +1,10 @@
-import 'package:unify/ast/basic/ast_variable.dart';
-import 'package:unify/ast/uniapi/ast_method.dart';
-import 'package:unify/generator/widgets/base/line.dart';
-import 'package:unify/generator/widgets/code_unit.dart';
-import 'package:unify/utils/constants.dart';
-import 'package:unify/utils/extension/list_extension.dart';
-import 'package:unify/utils/utils.dart';
+import 'package:unify_flutter/ast/basic/ast_variable.dart';
+import 'package:unify_flutter/ast/uniapi/ast_method.dart';
+import 'package:unify_flutter/generator/widgets/base/line.dart';
+import 'package:unify_flutter/generator/widgets/code_unit.dart';
+import 'package:unify_flutter/utils/constants.dart';
+import 'package:unify_flutter/utils/extension/list_extension.dart';
+import 'package:unify_flutter/utils/utils.dart';
 
 extension CodeUnitExtension on CodeUnit {
   // clone函数里  动态生成Dart代码

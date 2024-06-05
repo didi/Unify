@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
-import 'package:unify/cli/commands/generate_api_command.dart';
-import 'package:unify/utils/constants.dart';
+import 'package:unify_flutter/cli/commands/generate_api_command.dart';
+import 'package:unify_flutter/utils/constants.dart';
 
 /// cli args testing
 void main() {

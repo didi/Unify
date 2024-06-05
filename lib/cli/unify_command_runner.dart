@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
-import 'package:unify/cli/commands/generate_api_command.dart';
-import 'package:unify/utils/constants.dart';
+import 'package:unify_flutter/cli/commands/generate_api_command.dart';
+import 'package:unify_flutter/utils/constants.dart';
 
-import 'package:unify/utils/log.dart';
-import 'package:unify/version.dart';
+import 'package:unify_flutter/utils/log.dart';
+import 'package:unify_flutter/version.dart';
 
 class UnifyCommandRunner extends CommandRunner<int> {
   UnifyCommandRunner() : super('unify', '') {

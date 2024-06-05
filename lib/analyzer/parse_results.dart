@@ -1,5 +1,5 @@
-import 'package:unify/ast/uniapi/ast_model.dart';
-import 'package:unify/ast/uniapi/ast_module.dart';
+import 'package:unify_flutter/ast/uniapi/ast_model.dart';
+import 'package:unify_flutter/ast/uniapi/ast_module.dart';
 
 class ParseResults {
   ParseResults(

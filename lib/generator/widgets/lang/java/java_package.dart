@@ -1,7 +1,7 @@
-import 'package:unify/cli/options.dart';
-import 'package:unify/generator/widgets/base/line.dart';
-import 'package:unify/generator/widgets/code_unit.dart';
-import 'package:unify/utils/file/input_file.dart';
+import 'package:unify_flutter/cli/options.dart';
+import 'package:unify_flutter/generator/widgets/base/line.dart';
+import 'package:unify_flutter/generator/widgets/code_unit.dart';
+import 'package:unify_flutter/utils/file/input_file.dart';
 
 /// Java 包声明
 class JavaPackage extends CodeUnit {

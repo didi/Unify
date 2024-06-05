@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:unify/analyzer/parse_results.dart';
-import 'package:unify/cli/options.dart';
-import 'package:unify/generator/common.dart';
-import 'package:unify/utils/constants.dart';
-import 'package:unify/utils/file/file.dart';
-import 'package:unify/utils/file/input_file.dart';
-import 'package:unify/utils/log.dart';
+import 'package:unify_flutter/analyzer/parse_results.dart';
+import 'package:unify_flutter/cli/options.dart';
+import 'package:unify_flutter/generator/common.dart';
+import 'package:unify_flutter/utils/constants.dart';
+import 'package:unify_flutter/utils/file/file.dart';
+import 'package:unify_flutter/utils/file/input_file.dart';
+import 'package:unify_flutter/utils/log.dart';
 
 final _whiteList = [kUniAPI, typeUniCallbackManager];
 final _blackList = [
