@@ -21,9 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)pop:(id)result;
 
-/// create生命周期，用户通过override此接口创建原生视图
-- (UIView *)onCreate;
-
+/// create生命周期，用户通过override此接口创建原生视图元素
+- (void)onCreate;
 
 /// 销毁生命周期，可以通过override此接处理销毁后续工作
 - (void)onDispose;

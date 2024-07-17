@@ -67,8 +67,8 @@
 }
 
 
-- (UIView *)onCreate {
-    return self;
+- (void)onCreate {
+    NSLog(@"@@@@@@@@ call %s", _cmd);
 }
 
 - (void)onDispose {
@@ -79,7 +79,8 @@
 
 /// 返回真正的视图
 - (UIView *)view {
-    return [self onCreate];
+    [self onCreate];
+    return self;
 }
 
 

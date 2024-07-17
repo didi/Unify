@@ -19,7 +19,8 @@
 
 @implementation UniPageDemo
 
-- (UIView *)onCreate {
+- (void)onCreate {
+    [super onCreate];
     [self addSubview:self.title];
     [self addSubview:self.paramsTitle];
     [self addSubview:self.paramsContent];
@@ -27,8 +28,6 @@
     [self addSubview:self.btnPop];
     
     [self setupSubviews];
-    
-    return self;
 }
 
 -(void)layoutSubviews {
