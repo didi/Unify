@@ -10,13 +10,13 @@
 
 @interface AbsUniPageFactory()
 
-@property (nonatomic, copy) UniPageFactorCallback block;
+@property (nonatomic, copy) UniPageFactoryCallback block;
 
 @end
 
 @implementation AbsUniPageFactory
 
-- (instancetype)init:(UniPageFactorCallback)block {
+- (instancetype)init:(UniPageFactoryCallback)block {
     self = [super init];
     if (self) {
         self.block = block;
