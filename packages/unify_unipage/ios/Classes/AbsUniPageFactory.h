@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class UniPage;
 
 // 别名定义
-typedef UniPage* _Nonnull (^UniPageFactoryCallback)(CGRect frame, int64_t viewId, id _Nullable args);
+typedef UniPage* _Nonnull (^UniPageFactoryCallback)(CGRect frame, int64_t viewId, NSDictionary *args);
 
 @interface AbsUniPageFactory : NSObject<FlutterPlatformViewFactory>
 

@@ -14,10 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithWithFrame:(CGRect)frame
                    viewIdentifier:(int64_t)viewId
-                        arguments:(id _Nullable)args
+                         viewType:(NSString*)viewType
+                        arguments:(NSDictionary*)args
                   binaryMessenger:(NSObject<FlutterBinaryMessenger>*)messenger;
 
-- (void)pushNamed:(NSString*)routePath param:(id)args;
+- (void)pushNamed:(NSString*)routePath param:(NSDictionary*)args;
 
 - (void)pop:(id)result;
 
@@ -31,7 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (int64_t)getViewId;
 
 /// 获取Flutter传递过来的嵌原生页面参数
-- (id)getCreationParams;
+- (NSDictionary*)getCreationParams;
+
+/// 获取UniPage对应的 viewType
+- (NSString*)getViewType;
 
 @end
 

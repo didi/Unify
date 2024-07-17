@@ -1,20 +1,46 @@
 #import "UnifyUnipagePlugin.h"
+#import "AbsUniPageFactory.h"
+#import "UniPage.h"
+
+static NSMutableDictionary<NSString*, Class> *pageRegister;
 
 @implementation UnifyUnipagePlugin
+
++ (void)registerUniPage:(Class)clsName viewType:(NSString*)viewType {
+    NSAssert(![clsName isKindOfClass:UniPage.class], @"clsName must be UniPage or its derived class");
+    NSAssert(viewType != nil, @"viewType cannot be nil");
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (pageRegister == nil) {
+            pageRegister = [NSMutableDictionary new];
+        }
+    });
+    
+    pageRegister[viewType] = clsName;
+}
+
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-  FlutterMethodChannel* channel = [FlutterMethodChannel
+    for (NSString *key in pageRegister.allKeys) {
+        Class cls = pageRegister[key];
+        [registrar registerViewFactory:[[AbsUniPageFactory alloc] init:^UniPage * _Nonnull(CGRect frame, int64_t viewId, id  _Nullable args) {
+            return [[cls alloc] initWithWithFrame:frame viewIdentifier:viewId viewType:key arguments:args binaryMessenger:[registrar messenger]];
+        }] withId:key];
+    }
+    
+    FlutterMethodChannel* channel = [FlutterMethodChannel
       methodChannelWithName:@"unify_unipage"
             binaryMessenger:[registrar messenger]];
-  UnifyUnipagePlugin* instance = [[UnifyUnipagePlugin alloc] init];
-  [registrar addMethodCallDelegate:instance channel:channel];
+    UnifyUnipagePlugin* instance = [[UnifyUnipagePlugin alloc] init];
+    [registrar addMethodCallDelegate:instance channel:channel];
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
-  if ([@"getPlatformVersion" isEqualToString:call.method]) {
-    result([@"iOS " stringByAppendingString:[[UIDevice currentDevice] systemVersion]]);
-  } else {
-    result(FlutterMethodNotImplemented);
-  }
+    if ([@"getPlatformVersion" isEqualToString:call.method]) {
+        result([@"iOS " stringByAppendingString:[[UIDevice currentDevice] systemVersion]]);
+    } else {
+        result(FlutterMethodNotImplemented);
+    }
 }
 
 @end
