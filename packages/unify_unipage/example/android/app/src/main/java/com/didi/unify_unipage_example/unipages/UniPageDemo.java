@@ -50,15 +50,37 @@ public class UniPageDemo extends UniPage {
 
         Button btnPop = new Button(getContext());
         btnPop.setText("Pop to previous Flutter page with result");
-        btnPop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Map<String, Object> params = new HashMap<>();
-                params.put("hello", "this value is passed from Native UniPage");
-                pop(params);
-            }
+        btnPop.setOnClickListener(v -> {
+            Map<String, Object> params = new HashMap<>();
+            params.put("hello", "this value is passed from Native UniPage");
+            pop(params);
         });
         ll.addView(btnPop);
+
+        Button btnUpdateTitleBar = new Button(getContext());
+        btnUpdateTitleBar.setText("update Flutter titlebar");
+        btnUpdateTitleBar.setOnClickListener(view -> {
+            HashMap<String, Object> params = new HashMap<>();
+            params.put("title", "Updated from native unipage!");
+            invoke("updateTitleBar", params);
+        });
+        ll.addView(btnUpdateTitleBar);
+
+        TextView tvFlutterUpdate = new TextView(getContext());
+        tvFlutterUpdate.setText("");
+        ll.addView(tvFlutterUpdate);
+
+        // update Flutter Titlebar directly when onCreate
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("title", "Updated tilebar na unipage onCreate");
+        invoke("updateTitleBar", params);
+
+        // register a method for flutter to update tvFlutterUpdate
+        registerMethod("flutterUpdateTextView", (mP -> {
+            String text = (String) mP.get("text");
+            tvFlutterUpdate.setText(text);
+            return true;
+        }));
 
         return ll;
     }

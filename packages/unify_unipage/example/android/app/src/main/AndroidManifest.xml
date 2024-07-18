@@ -2,7 +2,7 @@
     package="com.didi.unify_unipage_example">
    <application
         android:label="unify_unipage_example"
-        android:name="${applicationName}"
+        android:name=".MainApplication"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

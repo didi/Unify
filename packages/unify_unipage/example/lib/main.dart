@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 
-import 'package:flutter/services.dart';
-import 'package:unify_unipage/unify_unipage.dart';
 import 'package:unify_unipage_example/page/flutter_hello_page.dart';
 import 'package:unify_unipage_example/unipage/uni_page_demo.dart';
 
@@ -30,6 +27,6 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(routes: {
       '/demo': (context) => const UniPageDemo(),
       '/hello': (context) => const FlutterHelloPage(),
-    }, home: UniPageProvider(child: HomePage()));
+    }, home: const HomePage());
   }
 }

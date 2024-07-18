@@ -9,14 +9,22 @@ import androidx.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.platform.PlatformView;
 
 public abstract class UniPage implements PlatformView {
     private View view;
     private Context context;
+
+    private String viewType;
+
     private int viewId;
     private Map<String, Object> creationParams;
+
+    private MethodChannel channel;
+
+    private HashMap<String, IUniPageMethod> methods = new HashMap<>();
 
     public UniPage() {
     }
@@ -27,6 +35,7 @@ public abstract class UniPage implements PlatformView {
 
     /**
      * 嵌原生页面创建
+     *
      * @return 嵌原生页面的根视图
      */
     public abstract View onCreate();
@@ -61,23 +70,57 @@ public abstract class UniPage implements PlatformView {
         Map<String, Object> paramsMap = new HashMap<>();
         paramsMap.put(Constants.UNI_PAGE_CHANNEL_PARAMS_PATH, routePath);
         paramsMap.put(Constants.UNI_PAGE_CHANNEL_PARAMS_PARAMS, params);
-        UniPageRegister.channel.invokeMethod(Constants.UNI_PAGE_ROUTE_PUSH_NAMED, paramsMap);
+        channel.invokeMethod(Constants.UNI_PAGE_ROUTE_PUSH_NAMED, paramsMap);
     }
 
     public void pop(Object result) {
         Map<String, Object> paramsMap = new HashMap<>();
         paramsMap.put(Constants.UNI_PAGE_CHANNEL_PARAMS_PARAMS, result);
-        UniPageRegister.channel.invokeMethod(Constants.UNI_PAGE_ROUTE_POP, paramsMap);
+        channel.invokeMethod(Constants.UNI_PAGE_ROUTE_POP, paramsMap);
+    }
+
+    /**********************************************
+     *  Invoke 调用 Flutter 方法
+     **********************************************/
+    public void invoke(String methodName, Map<String, Object> params) {
+        invoke(methodName, params, null);
+    }
+
+    public void invoke(String methodName, Map<String, Object> params, MethodChannel.Result callback) {
+        HashMap<String, Object> arguments = new HashMap<>();
+        arguments.put(Constants.UNI_PAGE_CHANNEL_VIEW_TYPE, viewType);
+        arguments.put(Constants.UNI_PAGE_CHANNEL_VIEW_ID, viewId);
+        arguments.put(Constants.UNI_PAGE_CHANNEL_METHOD_NAME, methodName);
+        arguments.put(Constants.UNI_PAGE_CHANNEL_PARAMS_PARAMS, params);
+        channel.invokeMethod(Constants.UNI_PAGE_CHANNEL_INVOKE, arguments, callback);
+    }
+
+    public void registerMethod(String methodName, IUniPageMethod method) {
+        methods.put(methodName, method);
     }
 
     /**********************************************
      *  嵌原生接口
      **********************************************/
-
-    public void init(@NonNull Context context, int id, @Nullable Map<String, Object> creationParams) {
+    public void init(@NonNull Context context, String viewType, int id, BinaryMessenger binaryMessenger, @Nullable Map<String, Object> creationParams) {
         this.context = context;
+        this.viewType = viewType;
         this.viewId = id;
         this.creationParams = creationParams;
+        this.channel = new MethodChannel(
+                binaryMessenger,
+                Constants.createChannelName(viewType, viewId));
+
+        channel.setMethodCallHandler((call, result) -> {
+            Map<String, Object> arguments = (Map<String, Object>) call.arguments;
+            if (call.method.equals(Constants.UNI_PAGE_CHANNEL_INVOKE)) {
+                String methodName = (String) arguments.get(Constants.UNI_PAGE_CHANNEL_METHOD_NAME);
+                if (methods.containsKey(methodName)) {
+                    Object ret = methods.get(methodName).call((Map<String, Object>) arguments.get(Constants.UNI_PAGE_CHANNEL_PARAMS_PARAMS));
+                    result.success(ret);
+                }
+            }
+        });
     }
 
     @Nullable
@@ -93,5 +136,7 @@ public abstract class UniPage implements PlatformView {
     public void dispose() {
         onDispose();
         this.context = null;
+        this.channel.setMethodCallHandler(null);
+        this.methods.clear();
     }
 }

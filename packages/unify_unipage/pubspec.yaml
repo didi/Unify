@@ -29,7 +29,7 @@ flutter:
     platforms:
       android:
         package: com.didi.unify_unipage
-        pluginClass: UnifyUnipagePlugin
+        pluginClass: UnifyUniPagePlugin
       ios:
         pluginClass: UnifyUnipagePlugin
 
