@@ -24,7 +24,7 @@ static NSMutableDictionary<NSString*, Class> *pageRegister;
     for (NSString *key in pageRegister.allKeys) {
         Class cls = pageRegister[key];
         [registrar registerViewFactory:[[AbsUniPageFactory alloc] init:^UniPage * _Nonnull(CGRect frame, int64_t viewId, id  _Nullable args) {
-            return [[cls alloc] initWithWithFrame:frame viewIdentifier:viewId viewType:key arguments:args binaryMessenger:[registrar messenger]];
+            return [[cls alloc] initWithWithFrame:frame viewType:key viewIdentifier:viewId arguments:args binaryMessenger:[registrar messenger]];
         }] withId:key];
     }
 }
