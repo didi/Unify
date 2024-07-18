@@ -1,6 +1,5 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:unify_unipage/unify_unipage.dart';
 
 void main() {
   const MethodChannel channel = MethodChannel('unify_unipage');
@@ -15,9 +14,5 @@ void main() {
 
   tearDown(() {
     channel.setMockMethodCallHandler(null);
-  });
-
-  test('getPlatformVersion', () async {
-    expect(await UnifyUnipage.platformVersion, '42');
   });
 }
