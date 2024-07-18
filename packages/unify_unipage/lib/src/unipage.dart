@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
@@ -12,6 +14,15 @@ class UniPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (Platform.isIOS) {
+      return UiKitView(
+        viewType: viewType,
+        gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{},
+        creationParams: createParams,
+        creationParamsCodec: const StandardMessageCodec(),
+      );
+    }
+
     return PlatformViewLink(
         surfaceFactory: (context, controller) {
           return AndroidViewSurface(

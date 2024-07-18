@@ -28,7 +28,7 @@ class _UniPageProviderState extends State<UniPageProvider> {
           Navigator.of(context).pushNamed(path, arguments: params);
           return true;
         case kChannelRoutePop:
-          Map<String, dynamic> params = arguments[kChannelParamsPrams];
+          Map<String, dynamic> params = Map<String, dynamic>.from(arguments[kChannelParamsPrams]);
           Navigator.of(context).pop(params);
           return true;
       }
