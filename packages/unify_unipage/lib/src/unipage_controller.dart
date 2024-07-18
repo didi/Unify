@@ -46,6 +46,7 @@ class UniPageController {
     channel.setMethodCallHandler((call) async {
       Map<String, dynamic> arguments =
           Map<String, dynamic>.from(call.arguments);
+
       switch (call.method) {
         case kChannelRoutePushNamed:
           String path = call.arguments[kChannelParamsPath];

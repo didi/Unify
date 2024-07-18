@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-import io.flutter.plugin.common.MethodCall;
+import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.platform.PlatformView;
 
@@ -102,12 +102,14 @@ public abstract class UniPage implements PlatformView {
     /**********************************************
      *  嵌原生接口
      **********************************************/
-    public void init(@NonNull Context context, String viewType, int id, MethodChannel channel, @Nullable Map<String, Object> creationParams) {
+    public void init(@NonNull Context context, String viewType, int id, BinaryMessenger binaryMessenger, @Nullable Map<String, Object> creationParams) {
         this.context = context;
-        this.channel = channel;
         this.viewType = viewType;
         this.viewId = id;
         this.creationParams = creationParams;
+        this.channel = new MethodChannel(
+                binaryMessenger,
+                Constants.createChannelName(viewType, viewId));
 
         channel.setMethodCallHandler((call, result) -> {
             Map<String, Object> arguments = (Map<String, Object>) call.arguments;
@@ -135,5 +137,6 @@ public abstract class UniPage implements PlatformView {
         onDispose();
         this.context = null;
         this.channel.setMethodCallHandler(null);
+        this.methods.clear();
     }
 }
