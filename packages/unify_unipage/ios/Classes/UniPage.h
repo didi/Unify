@@ -7,15 +7,18 @@
 
 #import <UIKit/UIKit.h>
 #import <Flutter/Flutter.h>
+#import "IUniPageMethod.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UniPage : UIView<FlutterPlatformView>
+@interface UniPage : UIView<FlutterPlatformView, IUniPageMethod>
+
+@property (nonatomic, weak) id<IUniPageMethod> delegate;
 
 - (instancetype)initWithWithFrame:(CGRect)frame
-                   viewIdentifier:(int64_t)viewId
                          viewType:(NSString*)viewType
-                        arguments:(NSDictionary*)args
+                   viewIdentifier:(int64_t)viewId
+                        arguments:(NSDictionary *)args
                   binaryMessenger:(NSObject<FlutterBinaryMessenger>*)messenger;
 
 - (void)pushNamed:(NSString*)routePath param:(NSDictionary*)args;
@@ -36,6 +39,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 获取UniPage对应的 viewType
 - (NSString*)getViewType;
+
+
+/// 调用指定的 Flutter 侧方法，并向其传递指定参数
+/// - Parameters:
+///   - methodName: 要调用的 Flutter 侧方法名
+///   - params: 传递的参数。注意：参数必须是此Channel关联的编解码器支持的类型
+- (void)invoke:(NSString*)methodName arguments:(id _Nullable)params;
+
+
+/// 调用指定的 Flutter 侧方法，并向其传递指定参数，可异步接收返回结果
+/// - Parameters:
+///   - methodName: 要调用的 Flutter 侧方法名
+///   - params: 传递的参数。注意：参数必须是此Channel关联的编解码器支持的类型
+///   - callback: 接收异步结果而使用的回调
+- (void)invoke:(NSString*)methodName
+     arguments:(id _Nullable)params
+        result:(FlutterResult _Nullable)callback;
 
 @end
 
