@@ -12,8 +12,10 @@
 @property (nonatomic, strong) UILabel *title;
 @property (nonatomic, strong) UILabel *paramsTitle;
 @property (nonatomic, strong) UILabel *paramsContent;
+@property (nonatomic, strong) UILabel *updateContent;
 @property (nonatomic, strong) UIButton *btnPush;
 @property (nonatomic, strong) UIButton *btnPop;
+@property (nonatomic, strong) UIButton *btnUpdateTitleBar;
 @end
 
 
@@ -21,11 +23,14 @@
 
 - (void)onCreate {
     [super onCreate];
+    
     [self addSubview:self.title];
     [self addSubview:self.paramsTitle];
     [self addSubview:self.paramsContent];
     [self addSubview:self.btnPush];
     [self addSubview:self.btnPop];
+    [self addSubview:self.btnUpdateTitleBar];
+    [self addSubview:self.updateContent];
     
     [self setupSubviews];
 }
@@ -73,9 +78,35 @@
         make.height.mas_equalTo(@40);
         make.top.equalTo(strongSelf.btnPush.mas_bottom).offset(5);
     }];
+    
+    [self.btnUpdateTitleBar mas_makeConstraints:^(MASConstraintMaker *make) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.left.equalTo(strongSelf.mas_left).offset(10);
+        make.right.equalTo(strongSelf.mas_right).offset(-10);
+        make.height.mas_equalTo(@40);
+        make.top.equalTo(strongSelf.btnPop.mas_bottom).offset(5);
+    }];
+    
+    [self.updateContent mas_makeConstraints:^(MASConstraintMaker *make) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.left.equalTo(strongSelf.mas_left).offset(10);
+        make.right.equalTo(strongSelf.mas_right).offset(-10);
+        make.height.mas_equalTo(@40);
+        make.top.equalTo(strongSelf.btnUpdateTitleBar.mas_bottom).offset(5);
+    }];
+}
+
+#pragma mark - Override parent's method
+
+- (id)onMethodCall:(NSString*)methodName params:(NSDictionary *)args {
+    if ([methodName isEqualToString:@"flutterUpdateTextView"]) {
+        self.updateContent.text = [args objectForKey:@"text"];
+    }
+    return @YES;
 }
 
 #pragma mark - Getter/Setter
+
 - (UILabel *)title {
     if (!_title) {
         _title = [[UILabel alloc] init];
@@ -113,6 +144,19 @@
     return _paramsContent;
 }
 
+- (UILabel *)updateContent {
+    if (!_updateContent) {
+        _updateContent = [[UILabel alloc] init];
+        _updateContent.textAlignment = NSTextAlignmentCenter;
+        _updateContent.font = [UIFont systemFontOfSize:14];
+        _updateContent.backgroundColor = [UIColor clearColor];
+        _updateContent.textColor = [UIColor grayColor];
+        _updateContent.numberOfLines = 10;
+    }
+    return _updateContent;
+}
+
+
 - (UIButton*)btnPush {
     if (!_btnPush) {
         _btnPush = [[UIButton alloc] init];
@@ -134,10 +178,24 @@
         [_btnPop setTitle:@"Pop to previous Flutter page with result" forState:UIControlStateNormal];
         [_btnPop setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_btnPop setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
-        [_btnPop addTarget:self action:@selector(btnPopction:) forControlEvents:UIControlEventTouchUpInside];
+        [_btnPop addTarget:self action:@selector(btnPopAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnPop;
 }
+
+- (UIButton*)btnUpdateTitleBar {
+    if (!_btnUpdateTitleBar) {
+        _btnUpdateTitleBar = [[UIButton alloc] init];
+        _btnUpdateTitleBar.backgroundColor = UIColor.blueColor;
+        _btnUpdateTitleBar.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [_btnUpdateTitleBar setTitle:@"Update Flutter titlebar" forState:UIControlStateNormal];
+        [_btnUpdateTitleBar setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_btnUpdateTitleBar setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+        [_btnUpdateTitleBar addTarget:self action:@selector(btnUpdateTitleBarAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _btnUpdateTitleBar;
+}
+
 
 #pragma mark - button action
 
@@ -148,11 +206,19 @@
     [self pushNamed:@"/hello" param:params];
 }
 
--(void)btnPopction:(id)sender {
+-(void)btnPopAction:(id)sender {
     NSDictionary *params = @{
         @"hello": @"Pop - this value is passed from Native UniPage"
     };
     [self pop:params];
 }
+
+-(void)btnUpdateTitleBarAction:(id)sender {
+    NSDictionary *params = @{
+        @"title": @"Updated from native unipage!"
+    };
+    [self invoke:@"updateTitleBar" arguments:params];
+}
+
 
 @end

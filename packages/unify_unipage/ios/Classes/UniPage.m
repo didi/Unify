@@ -24,15 +24,20 @@
 }
 
 - (instancetype)initWithWithFrame:(CGRect)frame
-                   viewIdentifier:(int64_t)viewId
                          viewType:(NSString*)viewType
+                   viewIdentifier:(int64_t)viewId
                         arguments:(NSDictionary *)args
                   binaryMessenger:(NSObject<FlutterBinaryMessenger>*)messenger {
     if ([super init]) {
         self.viewId = viewId;
         self.viewType = viewType;
         self.arguments = args;
-        self.channel = [FlutterMethodChannel methodChannelWithName:UNI_PAGE_CHANNEL binaryMessenger:messenger];
+        self.channel = [FlutterMethodChannel methodChannelWithName:[self createChannelName:viewType viewId:viewId] binaryMessenger:messenger];
+        __weak __typeof(self) weakSelf = self;
+        [self.channel setMethodCallHandler:^(FlutterMethodCall * _Nonnull call, FlutterResult  _Nonnull result) {
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf onMethodCall:call result:result];
+        }];
     }
     return self;
 }
@@ -61,6 +66,29 @@
     [self.channel invokeMethod:UNI_PAGE_ROUTE_POP arguments:params];
 }
 
+- (void)invoke:(NSString*)methodName arguments:(id _Nullable)params {
+    [self invoke:methodName arguments:params result:nil];
+}
+
+- (void)invoke:(NSString*)methodName
+     arguments:(id _Nullable)params
+        result:(FlutterResult _Nullable)callback {
+    NSAssert(methodName != nil, @"methodName cannot be nil");
+    
+    NSDictionary *arguments = @{
+        UNI_PAGE_CHANNEL_VIEW_TYPE: self.viewType,
+        UNI_PAGE_CHANNEL_VIEW_ID: @(self.viewId),
+        UNI_PAGE_CHANNEL_METHOD_NAME: methodName,
+        UNI_PAGE_CHANNEL_PARAMS_PARAMS: params != nil ? params : @{},
+    };
+    
+    [self.channel invokeMethod:UNI_PAGE_CHANNEL_INVOKE arguments:arguments result:callback];
+}
+
+- (id)onMethodCall:(NSString*)methodName params:(NSDictionary *)args {
+    return nil;
+}
+
 - (int64_t)getViewId {
     return self.viewId;
 }
@@ -79,7 +107,7 @@
 }
 
 - (void)onDispose {
-   
+    
 }
 
 #pragma mark - FlutterPlatformView
@@ -90,5 +118,22 @@
     return self;
 }
 
+#pragma mark - private methods
+
+- (NSString*)createChannelName:(NSString*)viewType viewId:(int64_t)viewId {
+    return [NSString stringWithFormat:@"%@.%@.%lld", UNI_PAGE_CHANNEL, viewType, viewId];
+}
+
+- (void)onMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
+    if ([call.method isEqualToString:UNI_PAGE_CHANNEL_INVOKE]) {
+        id args = call.arguments;
+        NSString *methodName = [args objectForKey:UNI_PAGE_CHANNEL_METHOD_NAME];
+        id params = [args objectForKey:UNI_PAGE_CHANNEL_PARAMS_PARAMS];
+        id ret = [self onMethodCall:methodName params:params];
+        result(ret);
+        return;
+    }
+    result(nil);
+}
 
 @end
