@@ -23,7 +23,6 @@
 
 - (void)onCreate {
     [super onCreate];
-    self.delegate = self;
     
     [self addSubview:self.title];
     [self addSubview:self.paramsTitle];
@@ -97,7 +96,7 @@
     }];
 }
 
-#pragma mark - IUniPageMethod
+#pragma mark - Override parent's method
 
 - (id)onMethodCall:(NSString*)methodName params:(NSDictionary *)args {
     if ([methodName isEqualToString:@"flutterUpdateTextView"]) {
@@ -107,6 +106,7 @@
 }
 
 #pragma mark - Getter/Setter
+
 - (UILabel *)title {
     if (!_title) {
         _title = [[UILabel alloc] init];

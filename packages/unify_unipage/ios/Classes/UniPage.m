@@ -85,6 +85,10 @@
     [self.channel invokeMethod:UNI_PAGE_CHANNEL_INVOKE arguments:arguments result:callback];
 }
 
+- (id)onMethodCall:(NSString*)methodName params:(NSDictionary *)args {
+    return nil;
+}
+
 - (int64_t)getViewId {
     return self.viewId;
 }
@@ -103,7 +107,7 @@
 }
 
 - (void)onDispose {
-   
+    
 }
 
 #pragma mark - FlutterPlatformView
@@ -122,14 +126,12 @@
 
 - (void)onMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
     if ([call.method isEqualToString:UNI_PAGE_CHANNEL_INVOKE]) {
-        if (self.delegate != nil && [self.delegate respondsToSelector:@selector(onMethodCall:params:)]) {
-            id args = call.arguments;
-            NSString *methodName = [args objectForKey:UNI_PAGE_CHANNEL_METHOD_NAME];
-            id params = [args objectForKey:UNI_PAGE_CHANNEL_PARAMS_PARAMS];
-            id ret = [self.delegate onMethodCall:methodName params:params];
-            result(ret);
-            return;
-        }
+        id args = call.arguments;
+        NSString *methodName = [args objectForKey:UNI_PAGE_CHANNEL_METHOD_NAME];
+        id params = [args objectForKey:UNI_PAGE_CHANNEL_PARAMS_PARAMS];
+        id ret = [self onMethodCall:methodName params:params];
+        result(ret);
+        return;
     }
     result(nil);
 }

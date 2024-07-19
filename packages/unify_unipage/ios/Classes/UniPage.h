@@ -7,13 +7,10 @@
 
 #import <UIKit/UIKit.h>
 #import <Flutter/Flutter.h>
-#import "IUniPageMethod.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UniPage : UIView<FlutterPlatformView, IUniPageMethod>
-
-@property (nonatomic, weak) id<IUniPageMethod> delegate;
+@interface UniPage : UIView<FlutterPlatformView>
 
 - (instancetype)initWithWithFrame:(CGRect)frame
                          viewType:(NSString*)viewType
@@ -56,6 +53,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)invoke:(NSString*)methodName
      arguments:(id _Nullable)params
         result:(FlutterResult _Nullable)callback;
+
+/// 处理 UniPage 收到的 Flutter 事件
+/// - Parameters:
+///   - methodName: 方法名 / 事件名
+///   - args: 收到的参数
+- (id)onMethodCall:(NSString*)methodName params:(NSDictionary *)args;
 
 @end
 
