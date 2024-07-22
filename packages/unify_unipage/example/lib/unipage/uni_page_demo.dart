@@ -15,12 +15,17 @@ class _UniPageDemoState extends State<UniPageDemo> {
   @override
   void initState() {
     super.initState();
-    controller.registerMethod("updateTitleBar", (params) async {
-      assert(params.containsKey('title'));
-      setState(() {
-        titleBarText = params['title'];
-      });
-    });
+    controller.methodCallHandler = (method, params) async {
+      switch (method) {
+        case 'updateTitleBar':
+          assert(params.containsKey('title'));
+          setState(() {
+            titleBarText = params['title'];
+          });
+          return true;
+      }
+      return false;
+    };
   }
 
   @override
@@ -40,8 +45,8 @@ class _UniPageDemoState extends State<UniPageDemo> {
             icon: const Icon(Icons.refresh),
             tooltip: "Update NAText",
             onPressed: () {
-              controller
-                  .invoke("flutterUpdateTextView", {"text": 'UpdatedFromFlutter'});
+              controller.invoke(
+                  "flutterUpdateTextView", {"text": 'UpdatedFromFlutter'});
             },
           ),
         ],

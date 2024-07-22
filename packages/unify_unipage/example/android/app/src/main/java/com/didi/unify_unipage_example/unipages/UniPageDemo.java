@@ -1,21 +1,21 @@
 package com.didi.unify_unipage_example.unipages;
 
-import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.didi.unify_unipage.UniPage;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import io.flutter.plugin.common.MethodChannel;
+
 public class UniPageDemo extends UniPage {
+    TextView tvFlutterUpdate;
+
     public UniPageDemo() {
         Log.d("Maxiee", "UniPageDemo()");
     }
@@ -66,7 +66,7 @@ public class UniPageDemo extends UniPage {
         });
         ll.addView(btnUpdateTitleBar);
 
-        TextView tvFlutterUpdate = new TextView(getContext());
+        tvFlutterUpdate = new TextView(getContext());
         tvFlutterUpdate.setText("");
         ll.addView(tvFlutterUpdate);
 
@@ -75,14 +75,19 @@ public class UniPageDemo extends UniPage {
         params.put("title", "Updated tilebar na unipage onCreate");
         invoke("updateTitleBar", params);
 
-        // register a method for flutter to update tvFlutterUpdate
-        registerMethod("flutterUpdateTextView", (mP -> {
-            String text = (String) mP.get("text");
-            tvFlutterUpdate.setText(text);
-            return true;
-        }));
 
         return ll;
+    }
+
+    @Override
+    public void onMethodCall(String methodName, Map<String, Object> params, MethodChannel.Result result) {
+        switch (methodName) {
+            case "flutterUpdateTextView":
+                String text = (String) params.get("text");
+                tvFlutterUpdate.setText(text);
+                result.success(true);
+                break;
+        }
     }
 
     @Override
