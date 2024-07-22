@@ -25,8 +25,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// create生命周期，用户通过override此接口创建原生视图元素
 - (void)onCreate;
 
-/// 销毁生命周期，可以通过override此接处理销毁后续工作
+/// 销毁生命周期，可以通过override此接口处理销毁后续工作
 - (void)onDispose;
+
+/// 进前台生命周期，可以通过override此接口处理进前台时机的事件
+- (void)onForeground;
+
+/// /// 退后台生命周期，可以通过override此接口处理退后台时机的事件
+- (void)onBackground;
 
 /// 获取viewId
 - (int64_t)getViewId;

@@ -20,6 +20,7 @@
 @implementation UniPage
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self onDispose];
 }
 
@@ -38,6 +39,17 @@
             __strong __typeof(weakSelf) strongSelf = weakSelf;
             [strongSelf onMethodCall:call result:result];
         }];
+        
+        NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+        [center addObserver:self
+                   selector:@selector(applicationWillEnterForeground:)
+                       name:UIApplicationWillEnterForegroundNotification
+                     object:nil];
+
+        [center addObserver:self
+                   selector:@selector(applicationDidEnterBackground:)
+                       name:UIApplicationDidEnterBackgroundNotification
+                     object:nil];
     }
     return self;
 }
@@ -106,8 +118,26 @@
     
 }
 
+- (void)onForeground {
+    
+}
+
+- (void)onBackground {
+    
+}
+
 - (void)onDispose {
     
+}
+
+#pragma mark - Notifications
+
+- (void)applicationWillEnterForeground:(NSNotification*)notification {
+  [self onForeground];
+}
+
+- (void)applicationDidEnterBackground:(NSNotification*)notification {
+  [self onBackground];
 }
 
 #pragma mark - FlutterPlatformView
