@@ -8,14 +8,14 @@ class FlutterHelloPage extends StatelessWidget {
     dynamic params = ModalRoute.of(context)!.settings.arguments;
 
     return Scaffold(
-      appBar: AppBar(title: Text('FlutterHelloPage')),
+      appBar: AppBar(title: const Text('FlutterHelloPage')),
       backgroundColor: Colors.blue,
       body: Center(
           child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text('Hello UniPage!'),
-          Text('Received params from NativeUniPage'),
+          const Text('Hello UniPage!'),
+          const Text('Received params from NativeUniPage'),
           Text('$params')
         ],
       )),

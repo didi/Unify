@@ -2,19 +2,19 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:unify_unipage/src/constants.dart';
 
-typedef UniPageMethod = Future<dynamic> Function(Map<String, dynamic> params);
+typedef MethodCallHandler = Future<dynamic> Function(
+    String methodName, Map<String, dynamic> prams);
 
 class UniPageController {
-  final Map<String, UniPageMethod> _methods = {};
+  MethodCallHandler? _methodCallHandler;
 
   BuildContext? buildContext;
   late String viewType;
   late int viewId;
   late MethodChannel channel;
 
-  void registerMethod(String methodName, UniPageMethod method) {
-    assert(!_methods.containsKey(methodName));
-    _methods[methodName] = method;
+  set methodCallHandler(MethodCallHandler handler) {
+    _methodCallHandler = handler;
   }
 
   Future<dynamic> invoke(String methodName, Map<String, dynamic> params) async {
@@ -25,12 +25,6 @@ class UniPageController {
       kChannelMethodName: methodName,
       kChannelParamsPrams: params
     });
-  }
-
-  Future<dynamic> onMethodCall(
-      String method, Map<String, dynamic> params) async {
-    assert(_methods.containsKey(method));
-    return await _methods[method]!(params);
   }
 
   void init(BuildContext buildContext, String viewType, int viewId) {
@@ -65,7 +59,9 @@ class UniPageController {
           String methodName = arguments[kChannelMethodName];
           Map<String, dynamic> params =
               Map.from(arguments[kChannelParamsPrams]);
-          return await onMethodCall(methodName, params);
+          if (_methodCallHandler != null) {
+            return await _methodCallHandler!(methodName, params);
+          }
       }
       return false;
     });
@@ -75,5 +71,6 @@ class UniPageController {
     assert(buildContext != null);
     buildContext = null;
     channel.setMethodCallHandler(null);
+    _methodCallHandler = null;
   }
 }

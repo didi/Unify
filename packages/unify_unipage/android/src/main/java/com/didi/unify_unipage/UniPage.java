@@ -24,8 +24,6 @@ public abstract class UniPage implements PlatformView {
 
     private MethodChannel channel;
 
-    private HashMap<String, IUniPageMethod> methods = new HashMap<>();
-
     public UniPage() {
     }
 
@@ -95,8 +93,7 @@ public abstract class UniPage implements PlatformView {
         channel.invokeMethod(Constants.UNI_PAGE_CHANNEL_INVOKE, arguments, callback);
     }
 
-    public void registerMethod(String methodName, IUniPageMethod method) {
-        methods.put(methodName, method);
+    public void onMethodCall(String methodName, Map<String, Object> params, MethodChannel.Result result) {
     }
 
     /**********************************************
@@ -115,10 +112,8 @@ public abstract class UniPage implements PlatformView {
             Map<String, Object> arguments = (Map<String, Object>) call.arguments;
             if (call.method.equals(Constants.UNI_PAGE_CHANNEL_INVOKE)) {
                 String methodName = (String) arguments.get(Constants.UNI_PAGE_CHANNEL_METHOD_NAME);
-                if (methods.containsKey(methodName)) {
-                    Object ret = methods.get(methodName).call((Map<String, Object>) arguments.get(Constants.UNI_PAGE_CHANNEL_PARAMS_PARAMS));
-                    result.success(ret);
-                }
+                Map<String, Object> methodParams = (Map<String, Object>) arguments.get(Constants.UNI_PAGE_CHANNEL_PARAMS_PARAMS);
+                onMethodCall(methodName, methodParams, result);
             }
         });
     }
@@ -137,6 +132,5 @@ public abstract class UniPage implements PlatformView {
         onDispose();
         this.context = null;
         this.channel.setMethodCallHandler(null);
-        this.methods.clear();
     }
 }

@@ -13,9 +13,9 @@ class HomePage extends StatelessWidget {
         OutlinedButton(
             onPressed: () {
               Navigator.of(context).pushNamed('/demo',
-                  arguments: '${DateTime.now().toIso8601String()}').then((value) => null);
+                  arguments: DateTime.now().toIso8601String()).then((value) => null);
             },
-            child: Text('goto Unipage: demo'))
+            child: const Text('goto Unipage: demo'))
       ]),
     );
   }
