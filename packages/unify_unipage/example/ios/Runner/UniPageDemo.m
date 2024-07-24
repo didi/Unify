@@ -215,7 +215,7 @@
 
 -(void)btnUpdateTitleBarAction:(id)sender {
     NSDictionary *params = @{
-        @"title": @"Updated from native unipage!"
+        @"title": @"Updated from native uni_page!"
     };
     [self invoke:@"updateTitleBar" arguments:params];
 }
