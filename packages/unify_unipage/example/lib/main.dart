@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:unify_unipage_example/page/flutter_hello_page.dart';
-import 'package:unify_unipage_example/unipage/uni_page_demo.dart';
+import 'package:unify_uni_page_example/page/flutter_hello_page.dart';
+import 'package:unify_uni_page_example/unipage/uni_page_demo.dart';
 
 import 'home_page.dart';
 

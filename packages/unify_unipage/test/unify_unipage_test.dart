@@ -2,7 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  const MethodChannel channel = MethodChannel('unify_unipage');
+  const MethodChannel channel = MethodChannel('unify_uni_page');
 
   TestWidgetsFlutterBinding.ensureInitialized();
 

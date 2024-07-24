@@ -1,4 +1,4 @@
-group 'com.didi.unify_unipage'
+group 'com.didi.unify_uni_page'
 version '1.0'
 
 buildscript {

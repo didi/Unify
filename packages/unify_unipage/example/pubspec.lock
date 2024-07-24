@@ -163,7 +163,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0"
-  unify_unipage:
+  unify_uni_page:
     dependency: "direct main"
     description:
       path: ".."

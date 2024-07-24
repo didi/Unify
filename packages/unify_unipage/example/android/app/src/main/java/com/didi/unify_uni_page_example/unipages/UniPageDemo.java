@@ -1,4 +1,4 @@
-package com.didi.unify_unipage_example.unipages;
+package com.didi.unify_uni_page_example.uni_pages;
 
 import android.util.Log;
 import android.view.View;
@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.didi.unify_unipage.UniPage;
+import com.didi.unify_uni_page.UniPage;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -61,7 +61,7 @@ public class UniPageDemo extends UniPage {
         btnUpdateTitleBar.setText("update Flutter titlebar");
         btnUpdateTitleBar.setOnClickListener(view -> {
             HashMap<String, Object> params = new HashMap<>();
-            params.put("title", "Updated from native unipage!");
+            params.put("title", "Updated from native UniPage!");
             invoke("updateTitleBar", params);
         });
         ll.addView(btnUpdateTitleBar);
@@ -72,7 +72,7 @@ public class UniPageDemo extends UniPage {
 
         // update Flutter Titlebar directly when onCreate
         HashMap<String, Object> params = new HashMap<>();
-        params.put("title", "Updated tilebar na unipage onCreate");
+        params.put("title", "Updated tilebar na UniPage onCreate");
         invoke("updateTitleBar", params);
 
 

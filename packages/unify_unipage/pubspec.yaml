@@ -1,4 +1,4 @@
-name: unify_unipage
+name: unify_uni_page
 description: A new Flutter project.
 version: 0.0.1
 homepage:
@@ -28,10 +28,10 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.didi.unify_unipage
+        package: com.didi.unify_uni_page
         pluginClass: UnifyUniPagePlugin
       ios:
-        pluginClass: UnifyUnipagePlugin
+        pluginClass: UnifyUniPagePlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

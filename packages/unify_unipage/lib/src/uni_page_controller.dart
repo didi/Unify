@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:unify_unipage/src/constants.dart';
+import 'package:unify_uni_page/src/constants.dart';
 
 typedef MethodCallHandler = Future<dynamic> Function(
     String methodName, Map<String, dynamic> prams);
