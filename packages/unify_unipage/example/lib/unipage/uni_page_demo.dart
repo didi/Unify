@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:unify_unipage/unify_unipage.dart';
+import 'package:unify_uni_page/unify_uni_page.dart';
 
 class UniPageDemo extends StatefulWidget {
   const UniPageDemo({Key? key}) : super(key: key);

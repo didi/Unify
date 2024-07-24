@@ -1,4 +1,4 @@
-package com.didi.unify_unipage;
+package com.didi.unify_uni_page;
 
 import androidx.annotation.NonNull;
 

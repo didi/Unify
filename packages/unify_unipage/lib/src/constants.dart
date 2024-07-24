@@ -1,4 +1,4 @@
-const String kUniPageChannel = 'com.didi.unify.unipage';
+const String kUniPageChannel = 'com.didi.unify.uni_page';
 const String kChannelRoutePushNamed = 'pushNamed';
 const String kChannelRoutePop = 'pop';
 const String kChannelInvoke = 'invoke';

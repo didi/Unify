@@ -1,6 +1,6 @@
-# unify_unipage_example
+# unify_uni_page_example
 
-Demonstrates how to use the unify_unipage plugin.
+Demonstrates how to use the unify_uni_page plugin.
 
 ## Getting Started
 

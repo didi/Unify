@@ -1,7 +1,7 @@
-package com.didi.unify_unipage_example;
+package com.didi.unify_uni_page_example;
 
-import com.didi.unify_unipage.UnifyUniPagePlugin;
-import com.didi.unify_unipage_example.unipages.UniPageDemo;
+import com.didi.unify_uni_page.UnifyUniPagePlugin;
+import com.didi.unify_uni_page_example.uni_pages.UniPageDemo;
 
 import io.flutter.app.FlutterApplication;
 
