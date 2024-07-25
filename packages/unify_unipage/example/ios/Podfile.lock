@@ -1,13 +1,13 @@
 PODS:
   - Flutter (1.0.0)
   - Masonry (0.6.3)
-  - unify_unipage (0.0.1):
+  - unify_uni_page (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - Masonry (= 0.6.3)
-  - unify_unipage (from `.symlinks/plugins/unify_unipage/ios`)
+  - unify_uni_page (from `.symlinks/plugins/unify_uni_page/ios`)
 
 SPEC REPOS:
   trunk:
@@ -16,13 +16,13 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  unify_unipage:
-    :path: ".symlinks/plugins/unify_unipage/ios"
+  unify_uni_page:
+    :path: ".symlinks/plugins/unify_uni_page/ios"
 
 SPEC CHECKSUMS:
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
-  unify_unipage: 4640790ae56025e634c152291b95d5a3da4acdcd
+  unify_uni_page: a12caa5e12170ebb4ff641a4ff363678d1bec7ed
 
 PODFILE CHECKSUM: cfe02b8a98e61beec1bbfab7cfef44b7f7ab8b4f
 

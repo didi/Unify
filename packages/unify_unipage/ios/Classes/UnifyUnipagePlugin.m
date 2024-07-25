@@ -1,10 +1,10 @@
-#import "UnifyUnipagePlugin.h"
+#import "UnifyUniPagePlugin.h"
 #import "AbsUniPageFactory.h"
 #import "UniPage.h"
 
 static NSMutableDictionary<NSString*, Class> *pageRegister;
 
-@implementation UnifyUnipagePlugin
+@implementation UnifyUniPagePlugin
 
 + (void)registerUniPage:(Class)clsName viewType:(NSString*)viewType {
     NSAssert(![clsName isKindOfClass:UniPage.class], @"clsName must be UniPage or its derived class");

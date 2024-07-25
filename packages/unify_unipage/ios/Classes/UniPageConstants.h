@@ -8,7 +8,7 @@
 #ifndef UniPageConstants_h
 #define UniPageConstants_h
 
-#define UNI_PAGE_CHANNEL @"com.didi.unify.unipage"
+#define UNI_PAGE_CHANNEL @"com.didi.unify.uni_page"
 #define UNI_PAGE_ROUTE_PUSH_NAMED @"pushNamed"
 #define UNI_PAGE_ROUTE_POP @"pop"
 #define UNI_PAGE_CHANNEL_PARAMS_PATH @"path"

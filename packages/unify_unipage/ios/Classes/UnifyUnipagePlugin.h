@@ -1,6 +1,6 @@
 #import <Flutter/Flutter.h>
 
-@interface UnifyUnipagePlugin : NSObject<FlutterPlugin>
+@interface UnifyUniPagePlugin : NSObject<FlutterPlugin>
 
 ///  注册 UniPage 类
 /// - Parameters:
