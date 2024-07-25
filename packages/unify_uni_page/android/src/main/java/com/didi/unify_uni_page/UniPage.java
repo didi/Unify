@@ -44,6 +44,14 @@ public abstract class UniPage implements PlatformView {
      */
     public abstract void onDispose();
 
+    void onForeground() {
+        throw new UnsupportedOperationException();
+    }
+
+    void onBackground() {
+        throw new UnsupportedOperationException();
+    }
+
     /**********************************************
      *  资源获取
      **********************************************/
