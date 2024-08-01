@@ -44,12 +44,20 @@ public abstract class UniPage implements PlatformView {
      */
     public abstract void onDispose();
 
-    void onForeground() {
-        throw new UnsupportedOperationException();
+    /**
+     * 嵌原生页面进入前台；
+     * 该方法 <bold>不保证</bold> 在首次显示时调用，仅响应 Activity 的 onStart 事件。
+     */
+    public void onForeground() {
+
     }
 
-    void onBackground() {
-        throw new UnsupportedOperationException();
+    /**
+     * 嵌原生页面进入后台；
+     * 该方法 <bold>不保证</bold> 在销毁前调用，仅响应 Activity 的 onStop 事件。
+     */
+    public void onBackground() {
+
     }
 
     /**********************************************
@@ -124,6 +132,8 @@ public abstract class UniPage implements PlatformView {
                 onMethodCall(methodName, methodParams, result);
             }
         });
+
+        UniPageLifecycleHolder.getInstance().bindUniPageToCurrentActivity(this);
     }
 
     @Nullable
@@ -140,5 +150,7 @@ public abstract class UniPage implements PlatformView {
         onDispose();
         this.context = null;
         this.channel.setMethodCallHandler(null);
+
+        UniPageLifecycleHolder.getInstance().unbindUniPageFromActivity(this);
     }
 }
