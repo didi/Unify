@@ -50,10 +50,10 @@ Add `dev_dependencies` in the `pubspec.yaml` of your Flutter project:
 
 ```yaml
 dev_dependencies:
-  unify_flutter: latest_version
+  unify_flutter: ^3.0.0
 ```
 
-> Note: Currently, Unify has not been released on pub.dev. You can experience it through git dependency for now. It will be officially released on pub.dev in the future, so stay tuned.
+> Note: pub.dev: https://pub.dev/packages/unify_flutter
 
 Git dependency:
 
