@@ -142,7 +142,7 @@ class DeviceInfoModel {
 接口声明完成后，执行如下命令生成跨平台代码:
 
 ```sh
-flutter pub run unify api\
+flutter pub run unify_flutter api\
   --input=`pwd`/interface \
   --dart_out=`pwd`/lib \
   --java_out=`pwd`/android/src/main/java/com/example/uninativemodule_demo \

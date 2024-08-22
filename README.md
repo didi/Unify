@@ -141,7 +141,7 @@ The `@UniModel` annotation indicates that this is a cross-platform data model.
 After completing the interface declaration, execute the following command to generate cross-platform code:
 
 ```sh
-flutter pub run unify api\
+flutter pub run unify_flutter api\
   --input=`pwd`/interface \
   --dart_out=`pwd`/lib \
   --java_out=`pwd`/android/src/main/java/com/example/uninativemodule_demo \

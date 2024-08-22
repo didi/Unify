@@ -16,7 +16,7 @@ String generateWorkerIsolateScript(List<InputFile> inputFiles) =>
           .toList(),
       DartImport(fullClassName: 'dart:io'),
       DartImport(fullClassName: 'dart:isolate'),
-      DartImport(fullClassName: 'package:unify/worker/worker.dart'),
+      DartImport(fullClassName: 'package:unify_flutter/worker/worker.dart'),
       EmptyLine(),
       DartFunction(
         functionName: 'main',
