@@ -50,10 +50,10 @@ Unify 是一个使用 Dart 开发的命令。
 
 ```yaml
 dev_dependencies:
-  unify_flutter: latest_version
+  unify_flutter: ^3.0.0
 ```
 
-> 注：目前 Unify 尚未发布 pub.dev，可先通过 git 依赖方式体验。后续会正式发布 pub.dev，敬请期待。
+> 注：pub.dev https://pub.dev/packages/unify_flutter
 
 git 依赖：
 
