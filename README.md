@@ -239,6 +239,9 @@ For more advanced usage, please refer to the detailed documentation.
 
 > Note: We are also actively organizing the documentation. If you have any questions regarding usage or understanding, please feel free to submit an issue for feedback and discussion!
 
+## WeChat Communication Group
+![](doc/public/wx.png)
+
 ## License
 
 <img alt="Apache-2.0 license" src="https://www.apache.org/img/ASF20thAnniversary.jpg" width="128">

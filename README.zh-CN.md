@@ -241,6 +241,9 @@ OutlinedButton(
 
 > 注：目前我们也在积极整理文档，如果在使用、理解上有任何问题，欢迎提交 Issue 反馈、交流！
 
+## 微信社区交流群
+![](doc/public/wx.png)
+
 ## 协议
 
 <img alt="Apache-2.0 license" src="https://www.apache.org/img/ASF20thAnniversary.jpg" width="128">
