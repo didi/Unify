@@ -24,6 +24,8 @@ public abstract class UniPage implements PlatformView {
 
     private MethodChannel channel;
 
+    private AbsUniPageFactoryListener uniPageFactoryListener;
+
     public UniPage() {
     }
 
@@ -148,9 +150,21 @@ public abstract class UniPage implements PlatformView {
     @Override
     public void dispose() {
         onDispose();
-        this.context = null;
         this.channel.setMethodCallHandler(null);
 
         UniPageLifecycleHolder.getInstance().unbindUniPageFromActivity(this);
+
+        if (uniPageFactoryListener != null) {
+            uniPageFactoryListener.onPlatformViewDispose(
+                    getContext(),
+                    getViewId());
+            uniPageFactoryListener = null;
+        }
+
+        this.context = null;
+    }
+
+    public void setUniPageFactoryListener(AbsUniPageFactoryListener uniPageFactoryListener) {
+        this.uniPageFactoryListener = uniPageFactoryListener;
     }
 }
