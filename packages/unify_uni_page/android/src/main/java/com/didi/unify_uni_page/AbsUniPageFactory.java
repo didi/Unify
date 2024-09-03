@@ -14,8 +14,14 @@ import io.flutter.plugin.platform.PlatformViewFactory;
 
 public abstract class AbsUniPageFactory extends PlatformViewFactory {
 
+    private AbsUniPageFactoryListener factoryListener;
+
     public AbsUniPageFactory() {
         super(StandardMessageCodec.INSTANCE);
+    }
+
+    public void setFactoryListener(AbsUniPageFactoryListener factoryListener) {
+        this.factoryListener = factoryListener;
     }
 
     abstract Class<? extends UniPage> pageClass();
@@ -27,6 +33,9 @@ public abstract class AbsUniPageFactory extends PlatformViewFactory {
     @NonNull
     @Override
     public PlatformView create(Context context, int viewId, @Nullable Object args) {
+        if (factoryListener != null) {
+            factoryListener.onPlatformViewCreate(context, viewId, args);
+        }
         try {
             UniPage instance = pageClass().newInstance();
             instance.init(context, viewType(), viewId, getBinaryMessenger(), (Map<String, Object>) args);
