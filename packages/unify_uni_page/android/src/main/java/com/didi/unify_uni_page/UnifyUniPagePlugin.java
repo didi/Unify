@@ -14,6 +14,7 @@ import io.flutter.plugin.common.BinaryMessenger;
 public class UnifyUniPagePlugin implements FlutterPlugin {
 
     private static final Map<String, Class<? extends UniPage>> pageRegister = new HashMap<>();
+    private static final Map<String, AbsUniPageFactoryListener> factoryListenerRegister = new HashMap<>();
 
     public static void registerUniPage(String viewType, Class<? extends UniPage> pageClass) {
         if (!pageRegister.containsKey(viewType)) {
@@ -21,10 +22,17 @@ public class UnifyUniPagePlugin implements FlutterPlugin {
         }
     }
 
+    public static void registerUniPage(String viewType, Class<? extends UniPage> pageClass, AbsUniPageFactoryListener factoryListener) {
+        registerUniPage(viewType, pageClass);
+        if (!factoryListenerRegister.containsKey(viewType)) {
+            factoryListenerRegister.put(viewType, factoryListener);
+        }
+    }
+
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
         for (Map.Entry<String, Class<? extends UniPage>> item : pageRegister.entrySet()) {
-            flutterPluginBinding.getPlatformViewRegistry().registerViewFactory(item.getKey(), new AbsUniPageFactory() {
+            final AbsUniPageFactory factory = new AbsUniPageFactory() {
                 @Override
                 Class<? extends UniPage> pageClass() {
                     return item.getValue();
@@ -39,7 +47,9 @@ public class UnifyUniPagePlugin implements FlutterPlugin {
                 BinaryMessenger getBinaryMessenger() {
                     return flutterPluginBinding.getBinaryMessenger();
                 }
-            });
+            };
+            factory.setFactoryListener(factoryListenerRegister.get(item.getKey()));
+            flutterPluginBinding.getPlatformViewRegistry().registerViewFactory(item.getKey(), factory);
         }
     }
 
