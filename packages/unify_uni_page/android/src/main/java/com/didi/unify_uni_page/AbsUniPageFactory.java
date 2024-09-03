@@ -38,6 +38,11 @@ public abstract class AbsUniPageFactory extends PlatformViewFactory {
         }
         try {
             UniPage instance = pageClass().newInstance();
+
+            if (factoryListener != null) {
+                instance.setUniPageFactoryListener(factoryListener);
+            }
+
             instance.init(context, viewType(), viewId, getBinaryMessenger(), (Map<String, Object>) args);
             return instance;
         } catch (IllegalAccessException e) {
