@@ -1,3 +1,7 @@
+## 0.0.3
+
+- add an onPlatformViewDispose callback to AbsUniPageFactoryListener
+
 ## 0.0.2
 
 - Android UniPage: make onForeground and public
