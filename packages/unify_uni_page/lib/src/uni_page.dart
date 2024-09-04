@@ -7,22 +7,27 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:unify_uni_page/unify_uni_page.dart';
 
+typedef CommonParamsCallback = Map<String, dynamic> Function();
+
 class UniPage extends StatelessWidget {
-  const UniPage(this.viewType,
-      {Key? key, this.createParams, required this.controller})
+  const UniPage(this.viewType, {Key? key, this.createParams, this.onCreateCommonParams, required this.controller})
       : super(key: key);
 
   final String viewType;
-  final dynamic createParams;
+  final Map<String, dynamic>? createParams;
+  final CommonParamsCallback? onCreateCommonParams;
   final UniPageController? controller;
 
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic> finalCreateParams = {};
+    finalCreateParams.addAll(createParams ?? {});
+    finalCreateParams.addAll(onCreateCommonParams?.call() ?? {});
     if (Platform.isIOS) {
       return UiKitView(
         viewType: viewType,
         gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{},
-        creationParams: createParams,
+        creationParams: finalCreateParams,
         creationParamsCodec: const StandardMessageCodec(),
         onPlatformViewCreated: (viewId) {
           controller?.init(context, viewType, viewId);
@@ -44,7 +49,7 @@ class UniPage extends StatelessWidget {
               id: params.id,
               viewType: viewType,
               layoutDirection: TextDirection.ltr,
-              creationParams: createParams,
+              creationParams: finalCreateParams,
               creationParamsCodec: const StandardMessageCodec(),
               onFocus: () {
                 params.onFocusChanged(true);
