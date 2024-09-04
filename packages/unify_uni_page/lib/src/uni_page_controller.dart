@@ -45,12 +45,12 @@ class UniPageController {
         case kChannelRoutePushNamed:
           String path = call.arguments[kChannelParamsPath];
           Map<String, dynamic> params =
-              Map<String, dynamic>.from(arguments[kChannelParamsPrams]);
+              Map<String, dynamic>.from(arguments[kChannelParamsPrams] ?? {});
           Navigator.of(buildContext!).pushNamed(path, arguments: params);
           return true;
         case kChannelRoutePop:
           Map<String, dynamic> params =
-              Map<String, dynamic>.from(arguments[kChannelParamsPrams]);
+              Map<String, dynamic>.from(arguments[kChannelParamsPrams] ?? {});
           Navigator.of(buildContext!).pop(params);
           return true;
         case kChannelInvoke:
@@ -58,7 +58,7 @@ class UniPageController {
           assert(arguments.containsKey(kChannelParamsPrams));
           String methodName = arguments[kChannelMethodName];
           Map<String, dynamic> params =
-              Map.from(arguments[kChannelParamsPrams]);
+              Map.from(arguments[kChannelParamsPrams] ?? {});
           if (_methodCallHandler != null) {
             return await _methodCallHandler!(methodName, params);
           }
