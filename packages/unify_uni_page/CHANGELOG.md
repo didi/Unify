@@ -1,3 +1,8 @@
+## 0.0.4
+
+- feat: CommonParams
+- fix: use empty Map as params to avoid casting Null to Map
+
 ## 0.0.3
 
 - add an onPlatformViewDispose callback to AbsUniPageFactoryListener
