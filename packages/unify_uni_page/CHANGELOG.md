@@ -1,3 +1,7 @@
+## 0.0.5
+
+- feat: UniPageLifecycleHolder: add findUniPagesByActivity method
+
 ## 0.0.4
 
 - feat: CommonParams
