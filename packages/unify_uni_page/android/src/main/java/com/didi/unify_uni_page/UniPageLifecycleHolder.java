@@ -16,9 +16,9 @@ import java.util.Map;
  */
 public final class UniPageLifecycleHolder {
     private static UniPageLifecycleHolder instance;
-    private UniPageLifecycleHolder() {
 
-    }
+    private UniPageLifecycleHolder() {}
+
     @NonNull
     public static UniPageLifecycleHolder getInstance() {
         UniPageLifecycleHolder result = instance;
@@ -31,6 +31,13 @@ public final class UniPageLifecycleHolder {
 
     private Activity mCurrentActivity;
     private Map<Activity, List<UniPage>> mUniPageMap;
+
+    public List<UniPage> findUniPagesByActivity(Activity activity) {
+        if (mUniPageMap.containsKey(activity)) {
+            return mUniPageMap.get(activity);
+        }
+        return new ArrayList<>();
+    }
 
     public void bindUniPageToCurrentActivity(@NonNull UniPage uniPage) {
         List<UniPage> pageList = mUniPageMap.get(mCurrentActivity);
