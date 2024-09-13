@@ -4,6 +4,8 @@
 
 Unify is an efficient, flexible, and easy-to-use Flutter hybrid development framework designed to solve communication issues between Flutter and native modules. It supports platform-independent module abstraction, flexible implementation injection, automatic code generation, and other features, significantly improving the efficiency of hybrid development and reducing maintenance costs.
 
+> [For relevant introduction, please refer to Didi official account.](https://mp.weixin.qq.com/s/Di8czdY3KCqDAYrzEvePrg)
+
 Unify is developed by Didi's international food delivery team and has been widely used in Didi's international food delivery and international travel business, effectively supporting the Flutter-based development process.
 
 Key features:
