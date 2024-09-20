@@ -10,7 +10,11 @@ import 'package:unify_uni_page/unify_uni_page.dart';
 typedef CommonParamsCallback = Map<String, dynamic> Function();
 
 class UniPage extends StatelessWidget {
-  const UniPage(this.viewType, {Key? key, this.createParams, this.onCreateCommonParams, required this.controller})
+  const UniPage(this.viewType,
+      {Key? key,
+      this.createParams,
+      this.onCreateCommonParams,
+      required this.controller})
       : super(key: key);
 
   final String viewType;
@@ -26,7 +30,11 @@ class UniPage extends StatelessWidget {
     if (Platform.isIOS) {
       return UiKitView(
         viewType: viewType,
-        gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{},
+        gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+          Factory<OneSequenceGestureRecognizer>(
+            () => EagerGestureRecognizer(),
+          ),
+        },
         creationParams: finalCreateParams,
         creationParamsCodec: const StandardMessageCodec(),
         onPlatformViewCreated: (viewId) {
@@ -40,8 +48,11 @@ class UniPage extends StatelessWidget {
           return AndroidViewSurface(
               controller: controller as AndroidViewController,
               hitTestBehavior: PlatformViewHitTestBehavior.opaque,
-              gestureRecognizers: const <Factory<
-                  OneSequenceGestureRecognizer>>{});
+              gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+                Factory<OneSequenceGestureRecognizer>(
+                  () => EagerGestureRecognizer(),
+                ),
+              });
         },
         onCreatePlatformView: (params) {
           controller?.init(context, viewType, params.id);
