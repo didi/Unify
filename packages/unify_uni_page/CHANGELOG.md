@@ -1,3 +1,7 @@
+## 0.0.6
+
+- Updated the gestureRecognizers for both iOS and Android platforms to use EagerGestureRecognizer instead of an empty set, improving the responsiveness of the UI.
+
 ## 0.0.5
 
 - feat: UniPageLifecycleHolder: add findUniPagesByActivity method
