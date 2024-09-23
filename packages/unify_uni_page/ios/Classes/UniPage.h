@@ -25,6 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// create生命周期，用户通过override此接口创建原生视图元素
 - (void)onCreate;
 
+/// postCreate生命周期，在UniPage已被创建要layout时，用户通过override此接口, 注入逻辑
+- (void)postCreate;
+
 /// 销毁生命周期，可以通过override此接口处理销毁后续工作
 - (void)onDispose;
 

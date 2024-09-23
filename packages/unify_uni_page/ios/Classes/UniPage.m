@@ -14,6 +14,7 @@
 @property (nonatomic, assign) int64_t viewId;
 @property (nonatomic, strong) NSDictionary *arguments;
 @property (nonatomic, strong) FlutterMethodChannel *channel;
+@property (nonatomic, assign) BOOL isPosted;
 
 @end
 
@@ -52,6 +53,14 @@
                      object:nil];
     }
     return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    if (!self.isPosted) {
+        [self postCreate];
+        self.isPosted = YES;
+    }
 }
 
 #pragma - public methods
@@ -115,6 +124,10 @@
 
 
 - (void)onCreate {
+    
+}
+
+- (void)postCreate {
     
 }
 
