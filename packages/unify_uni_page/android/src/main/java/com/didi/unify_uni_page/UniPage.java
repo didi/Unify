@@ -2,6 +2,7 @@ package com.didi.unify_uni_page;
 
 import android.content.Context;
 import android.view.View;
+import android.view.ViewTreeObserver;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,6 +46,13 @@ public abstract class UniPage implements PlatformView {
      * 释放页面所依赖的资源，避免内存泄漏
      */
     public abstract void onDispose();
+
+    /**
+     * 嵌原生视图创建完成，被添加到布局树
+     */
+    public void postCreate() {
+
+    }
 
     /**
      * 嵌原生页面进入前台；
@@ -141,8 +149,18 @@ public abstract class UniPage implements PlatformView {
     @Nullable
     @Override
     public View getView() {
-        if (view == null) {
-            view = onCreate();
+        if (view != null) {
+            return view;
+        }
+        view = onCreate();
+        if (view != null) {
+            view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    postCreate();
+                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                }
+            });
         }
         return view;
     }
