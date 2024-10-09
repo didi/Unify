@@ -1,3 +1,7 @@
+## 0.0.8
+
+- feat: Android impl of UniPage postCreate
+
 ## 0.0.7
 
 - feat: Unipage adds postCreate lifecycle method
