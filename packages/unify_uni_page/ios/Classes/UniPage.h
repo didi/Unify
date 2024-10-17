@@ -7,16 +7,13 @@
 
 #import <UIKit/UIKit.h>
 #import <Flutter/Flutter.h>
+#import "UniPageProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UniPage : UIView<FlutterPlatformView>
+@interface UniPage : UIView
 
-- (instancetype)initWithWithFrame:(CGRect)frame
-                         viewType:(NSString*)viewType
-                   viewIdentifier:(int64_t)viewId
-                        arguments:(NSDictionary *)args
-                  binaryMessenger:(NSObject<FlutterBinaryMessenger>*)messenger;
+@property (nonatomic, weak) id<UniPageProtocol> delegate;
 
 - (void)pushNamed:(NSString*)routePath param:(NSDictionary*)args;
 
@@ -68,6 +65,10 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - methodName: 方法名 / 事件名
 ///   - args: 收到的参数
 - (id)onMethodCall:(NSString*)methodName params:(NSDictionary *)args;
+
+
+/// 获取当前视图被添加在哪个VC上的id标识，返回hash值
+- (NSUInteger)getOwnerId;
 
 @end
 
