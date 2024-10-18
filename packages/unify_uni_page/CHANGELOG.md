@@ -1,3 +1,9 @@
+## 0.0.8+bugfix1
+
+- iOS:
+  - Fixed an issue where UniPage was not released when directly closing the container after opening a new one.
+  - Improved compatibility with swipe-back gesture in hybrid routing scenarios.
+
 ## 0.0.8
 
 - feat: Android impl of UniPage postCreate
