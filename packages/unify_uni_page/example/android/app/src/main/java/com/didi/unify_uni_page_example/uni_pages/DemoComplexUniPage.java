@@ -3,6 +3,7 @@ package com.didi.unify_uni_page_example.uni_pages;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,10 +14,10 @@ import java.util.Map;
 
 import io.flutter.plugin.common.MethodChannel;
 
-public class UniPageDemo extends UniPage {
+public class DemoComplexUniPage extends UniPage {
     TextView tvFlutterUpdate;
 
-    public UniPageDemo() {
+    public DemoComplexUniPage() {
         Log.d("Maxiee", "UniPageDemo()");
     }
 
@@ -35,15 +36,21 @@ public class UniPageDemo extends UniPage {
         ll.addView(tvCreateParamsTitle);
 
         String words = (String) getCreationParams().get("words");
+
         TextView tvCreateParamsParams = new TextView(getContext());
         tvCreateParamsParams.setText(words);
         ll.addView(tvCreateParamsParams);
+
+        EditText etPageParams = new EditText(getContext());
+        etPageParams.setHint("Input params to be passed");
+        ll.addView(etPageParams);
 
         Button btnPush = new Button(getContext());
         btnPush.setText("Push to Flutter Page with params");
         btnPush.setOnClickListener(v -> {
             Map<String, Object> params = new HashMap<>();
-            params.put("hello", "this value is passed from Native UniPage");
+//            params.put("hello", "this value is passed from Native UniPage");
+            params.put("hello", etPageParams.getText());
             pushNamed("/hello", params);
         });
         ll.addView(btnPush);
@@ -52,7 +59,8 @@ public class UniPageDemo extends UniPage {
         btnPop.setText("Pop to previous Flutter page with result");
         btnPop.setOnClickListener(v -> {
             Map<String, Object> params = new HashMap<>();
-            params.put("hello", "this value is passed from Native UniPage");
+//            params.put("hello", "this value is passed from Native UniPage");
+            params.put("hello", etPageParams.getText());
             pop(params);
         });
         ll.addView(btnPop);
@@ -61,7 +69,7 @@ public class UniPageDemo extends UniPage {
         btnUpdateTitleBar.setText("update Flutter titlebar");
         btnUpdateTitleBar.setOnClickListener(view -> {
             HashMap<String, Object> params = new HashMap<>();
-            params.put("title", "Updated from native UniPage!");
+            params.put("title", "Updated from native! " + etPageParams.getText());
             invoke("updateTitleBar", params);
         });
         ll.addView(btnUpdateTitleBar);
@@ -77,6 +85,12 @@ public class UniPageDemo extends UniPage {
 
 
         return ll;
+    }
+
+    @Override
+    public void postCreate() {
+        super.postCreate();
+        Log.d("POST", "create");
     }
 
     @Override

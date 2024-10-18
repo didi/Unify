@@ -52,8 +52,11 @@ class _UniPageDemoState extends State<UniPageDemo> {
         ],
       ),
       backgroundColor: Colors.white,
-      body: UniPage('demo',
-          controller: controller, createParams: {'words': words}),
+      body: UniPage(
+        'demo',
+        controller: controller,
+        createParams: {'words': words},
+      ),
     );
   }
 }
