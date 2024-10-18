@@ -7,6 +7,7 @@
 
 #import "AbsUniPageFactory.h"
 #import "UniPage.h"
+#import "UniPageContainer.h"
 
 @interface AbsUniPageFactory()
 
@@ -29,7 +30,8 @@
 - (NSObject<FlutterPlatformView>*)createWithFrame:(CGRect)frame
                                    viewIdentifier:(int64_t)viewId
                                         arguments:(id _Nullable)args {
-    return self.block(frame, viewId, args);
+    id<FlutterPlatformView> embededView = self.block(frame, viewId, args);
+    return embededView;
 }
 
 - (NSObject<FlutterMessageCodec> *)createArgsCodec {

@@ -7,16 +7,18 @@
 
 #import <UIKit/UIKit.h>
 #import <Flutter/Flutter.h>
+#import "UniPageProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UniPage : UIView<FlutterPlatformView>
+/// FlutterViewController处于dealloc生命周期，如果想让UniPage感知到，可以 post 此通知，举例：
+///  - // Notify FlutterViewController will dealloc
+///  - [[NSNotificationCenter defaultCenter] postNotificationName:NotifyUniPageFlutterViewControllerWillDealloc object:self];
+FOUNDATION_EXTERN NSString *const NotifyUniPageFlutterViewControllerWillDealloc;
 
-- (instancetype)initWithWithFrame:(CGRect)frame
-                         viewType:(NSString*)viewType
-                   viewIdentifier:(int64_t)viewId
-                        arguments:(NSDictionary *)args
-                  binaryMessenger:(NSObject<FlutterBinaryMessenger>*)messenger;
+@interface UniPage : UIView
+
+@property (nonatomic, weak) id<UniPageProtocol> delegate;
 
 - (void)pushNamed:(NSString*)routePath param:(NSDictionary*)args;
 
@@ -34,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 进前台生命周期，可以通过override此接口处理进前台时机的事件
 - (void)onForeground;
 
-/// /// 退后台生命周期，可以通过override此接口处理退后台时机的事件
+/// 退后台生命周期，可以通过override此接口处理退后台时机的事件
 - (void)onBackground;
 
 /// 获取viewId
@@ -68,6 +70,10 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - methodName: 方法名 / 事件名
 ///   - args: 收到的参数
 - (id)onMethodCall:(NSString*)methodName params:(NSDictionary *)args;
+
+
+/// 获取当前视图被添加在哪个VC上的id标识，返回hash值
+- (NSUInteger)getOwnerId;
 
 @end
 

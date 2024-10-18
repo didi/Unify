@@ -7,9 +7,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:unify_uni_page/unify_uni_page.dart';
 
+import 'constants.dart';
+
 typedef CommonParamsCallback = Map<String, dynamic> Function();
 
-class UniPage extends StatelessWidget {
+class UniPage extends StatefulWidget {
   const UniPage(this.viewType,
       {Key? key,
       this.createParams,
@@ -23,10 +25,15 @@ class UniPage extends StatelessWidget {
   final UniPageController? controller;
 
   @override
+  State<StatefulWidget> createState() => _UniPageState();
+}
+
+class _UniPageState extends State<UniPage> {
+  @override
   Widget build(BuildContext context) {
     Map<String, dynamic> finalCreateParams = {};
-    finalCreateParams.addAll(createParams ?? {});
-    finalCreateParams.addAll(onCreateCommonParams?.call() ?? {});
+    finalCreateParams.addAll(widget.createParams ?? {});
+    finalCreateParams.addAll(widget.onCreateCommonParams?.call() ?? {});
     if (Platform.isIOS) {
       return UiKitView(
         viewType: viewType,
@@ -38,7 +45,7 @@ class UniPage extends StatelessWidget {
         creationParams: finalCreateParams,
         creationParamsCodec: const StandardMessageCodec(),
         onPlatformViewCreated: (viewId) {
-          controller?.init(context, viewType, viewId);
+          widget.controller?.init(context, viewType, viewId);
         },
       );
     }
@@ -55,7 +62,7 @@ class UniPage extends StatelessWidget {
               });
         },
         onCreatePlatformView: (params) {
-          controller?.init(context, viewType, params.id);
+          widget.controller?.init(context, viewType, params.id);
           return PlatformViewsService.initSurfaceAndroidView(
               id: params.id,
               viewType: viewType,
@@ -69,5 +76,23 @@ class UniPage extends StatelessWidget {
             ..create();
         },
         viewType: viewType);
+  }
+
+  @override
+  void dispose() {
+    if (Platform.isIOS) {
+      _syncDisposeEvent();
+    }
+    super.dispose();
+  }
+
+  get viewType => widget.viewType;
+  get viewId => widget.controller?.viewId;
+
+  void _syncDisposeEvent() {
+    String channelName = '${createChannelName(viewType, viewId)}.dispose';
+    MethodChannel _disposeChannel = MethodChannel(channelName);
+    _disposeChannel.invokeMethod<void>('dispose');
+    print('jerry => call _syncDisposeEvent');
   }
 }

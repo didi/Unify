@@ -7,52 +7,22 @@
 
 #import "UniPage.h"
 #import "UniPageConstants.h"
+#import "UIView+GetController.h"
 
-@interface UniPage()<FlutterPlatformView>
+/// 通知名，周知UniPage，FlutterViewController将要dealloc
+NSString *const NotifyUniPageFlutterViewControllerWillDealloc = @"NotifyUniPageFlutterViewControllerWillDealloc";
 
-@property (nonatomic, copy) NSString *viewType;
-@property (nonatomic, assign) int64_t viewId;
-@property (nonatomic, strong) NSDictionary *arguments;
-@property (nonatomic, strong) FlutterMethodChannel *channel;
+@interface UniPage()
+
 @property (nonatomic, assign) BOOL isPosted;
+@property (nonatomic, assign) NSUInteger ownerId;
 
 @end
 
 @implementation UniPage
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self onDispose];
-}
-
-- (instancetype)initWithWithFrame:(CGRect)frame
-                         viewType:(NSString*)viewType
-                   viewIdentifier:(int64_t)viewId
-                        arguments:(NSDictionary *)args
-                  binaryMessenger:(NSObject<FlutterBinaryMessenger>*)messenger {
-    if ([super init]) {
-        self.viewId = viewId;
-        self.viewType = viewType;
-        self.arguments = args;
-        self.channel = [FlutterMethodChannel methodChannelWithName:[self createChannelName:viewType viewId:viewId] binaryMessenger:messenger];
-        __weak __typeof(self) weakSelf = self;
-        [self.channel setMethodCallHandler:^(FlutterMethodCall * _Nonnull call, FlutterResult  _Nonnull result) {
-            __strong __typeof(weakSelf) strongSelf = weakSelf;
-            [strongSelf onMethodCall:call result:result];
-        }];
-        
-        NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
-        [center addObserver:self
-                   selector:@selector(applicationWillEnterForeground:)
-                       name:UIApplicationWillEnterForegroundNotification
-                     object:nil];
-
-        [center addObserver:self
-                   selector:@selector(applicationDidEnterBackground:)
-                       name:UIApplicationDidEnterBackgroundNotification
-                     object:nil];
-    }
-    return self;
+    NSLog(@"jerry - 1017 dealloc UniPage: %@", self);
 }
 
 - (void)layoutSubviews {
@@ -68,23 +38,18 @@
 - (void)pushNamed:(NSString*)routePath param:(NSDictionary *)args {
     NSAssert(routePath != nil, @"routePath cannot be nil");
     NSAssert(args != nil, @"args cannot be nil");
-    
-    NSDictionary *params = @{
-        UNI_PAGE_CHANNEL_PARAMS_PATH: routePath,
-        UNI_PAGE_CHANNEL_PARAMS_PARAMS: args
-    };
-    
-    [self.channel invokeMethod:UNI_PAGE_ROUTE_PUSH_NAMED arguments:params];
+
+    if (self.delegate && [self.delegate respondsToSelector:@selector(pushNamed:param:)]) {
+        [self.delegate pushNamed:routePath param: args];
+    }
 }
 
 - (void)pop:(id)result {
     NSAssert(result != nil, @"result cannot be nil");
     
-    NSDictionary *params = @{
-        UNI_PAGE_CHANNEL_PARAMS_PARAMS: result
-    };
-    
-    [self.channel invokeMethod:UNI_PAGE_ROUTE_POP arguments:params];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(pop:)]) {
+        [self.delegate pop:result];
+    }
 }
 
 - (void)invoke:(NSString*)methodName arguments:(id _Nullable)params {
@@ -96,14 +61,9 @@
         result:(FlutterResult _Nullable)callback {
     NSAssert(methodName != nil, @"methodName cannot be nil");
     
-    NSDictionary *arguments = @{
-        UNI_PAGE_CHANNEL_VIEW_TYPE: self.viewType,
-        UNI_PAGE_CHANNEL_VIEW_ID: @(self.viewId),
-        UNI_PAGE_CHANNEL_METHOD_NAME: methodName,
-        UNI_PAGE_CHANNEL_PARAMS_PARAMS: params != nil ? params : @{},
-    };
-    
-    [self.channel invokeMethod:UNI_PAGE_CHANNEL_INVOKE arguments:arguments result:callback];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(invoke:arguments:result:)]) {
+        [self.delegate invoke:methodName arguments:params result:callback];
+    }
 }
 
 - (id)onMethodCall:(NSString*)methodName params:(NSDictionary *)args {
@@ -111,15 +71,27 @@
 }
 
 - (int64_t)getViewId {
-    return self.viewId;
+    int64_t viewId = -1;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(getViewId)]) {
+        viewId = [self.delegate getViewId];
+    }
+    return viewId;
 }
 
 - (NSDictionary*)getCreationParams {
-    return self.arguments;
+    NSDictionary *params;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(getCreationParams)]) {
+        params = [self.delegate getCreationParams];
+    }
+    return params;
 }
 
 - (NSString*)getViewType {
-    return self.viewType;
+    NSString *viewType;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(getViewType)]) {
+        viewType = [self.delegate getViewType];
+    }
+    return viewType;
 }
 
 
@@ -128,7 +100,7 @@
 }
 
 - (void)postCreate {
-    
+    self.ownerId = [[self currentController] hash];
 }
 
 - (void)onForeground {
@@ -143,40 +115,8 @@
     
 }
 
-#pragma mark - Notifications
-
-- (void)applicationWillEnterForeground:(NSNotification*)notification {
-  [self onForeground];
-}
-
-- (void)applicationDidEnterBackground:(NSNotification*)notification {
-  [self onBackground];
-}
-
-#pragma mark - FlutterPlatformView
-
-/// 返回真正的视图
-- (UIView *)view {
-    [self onCreate];
-    return self;
-}
-
-#pragma mark - private methods
-
-- (NSString*)createChannelName:(NSString*)viewType viewId:(int64_t)viewId {
-    return [NSString stringWithFormat:@"%@.%@.%lld", UNI_PAGE_CHANNEL, viewType, viewId];
-}
-
-- (void)onMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
-    if ([call.method isEqualToString:UNI_PAGE_CHANNEL_INVOKE]) {
-        id args = call.arguments;
-        NSString *methodName = [args objectForKey:UNI_PAGE_CHANNEL_METHOD_NAME];
-        id params = [args objectForKey:UNI_PAGE_CHANNEL_PARAMS_PARAMS];
-        id ret = [self onMethodCall:methodName params:params];
-        result(ret);
-        return;
-    }
-    result(nil);
+- (NSUInteger)getOwnerId {
+    return self.ownerId;
 }
 
 @end
