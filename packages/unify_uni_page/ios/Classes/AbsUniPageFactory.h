@@ -17,8 +17,8 @@ typedef UniPageContainer* _Nonnull (^UniPageFactoryCallback)(CGRect frame, int64
 
 @interface AbsUniPageFactory : NSObject<FlutterPlatformViewFactory>
 
-///  UniPage 工厂类
-/// - Parameter page: UniPage 对象实例
+///  UniPageContainer 工厂类
+/// - Parameter page: UniPageContainer 对象实例
 - (instancetype)init:(UniPageFactoryCallback)block;
 
 @end
