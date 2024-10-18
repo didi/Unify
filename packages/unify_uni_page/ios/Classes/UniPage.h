@@ -11,6 +11,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// FlutterViewController处于dealloc生命周期，如果想让UniPage感知到，可以 post 此通知，举例：
+///  - // Notify FlutterViewController will dealloc
+///  - [[NSNotificationCenter defaultCenter] postNotificationName:NotifyUniPageFlutterViewControllerWillDealloc object:self];
+FOUNDATION_EXTERN NSString *const NotifyUniPageFlutterViewControllerWillDealloc;
+
 @interface UniPage : UIView
 
 @property (nonatomic, weak) id<UniPageProtocol> delegate;
@@ -31,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 进前台生命周期，可以通过override此接口处理进前台时机的事件
 - (void)onForeground;
 
-/// /// 退后台生命周期，可以通过override此接口处理退后台时机的事件
+/// 退后台生命周期，可以通过override此接口处理退后台时机的事件
 - (void)onBackground;
 
 /// 获取viewId

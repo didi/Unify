@@ -61,6 +61,11 @@
                    selector:@selector(applicationDidEnterBackground:)
                        name:UIApplicationDidEnterBackgroundNotification
                      object:nil];
+        
+        [center addObserver:self
+                   selector:@selector(onFlutterViewControllerWillDealloc:)
+                       name:NotifyUniPageFlutterViewControllerWillDealloc
+                     object:nil];
     }
     return self;
 }
@@ -74,12 +79,8 @@
 }
 
 - (void)onDispose {
-    [self.disposeChannel setMethodCallHandler:nil];
     [self.uniPage onDispose];
-}
-
-- (void)addFlutterViewControllerWillDeallocObserver:(NSString*)noticeName {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onFlutterViewControllerWillDealloc:) name:noticeName object:nil];
+    [self.disposeChannel setMethodCallHandler:nil];
 }
 
 #pragma mark - UniPageProtocol
@@ -159,6 +160,16 @@
     
     [self.uniPage onCreate];
     return container;
+}
+
+#pragma mark - Notifications
+
+- (void)applicationWillEnterForeground:(NSNotification*)notification {
+    [self.uniPage onForeground];
+}
+
+- (void)applicationDidEnterBackground:(NSNotification*)notification {
+    [self.uniPage onBackground];
 }
 
 #pragma mark - private methods

@@ -9,6 +9,9 @@
 #import "UniPageConstants.h"
 #import "UIView+GetController.h"
 
+/// 通知名，周知UniPage，FlutterViewController将要dealloc
+NSString *const NotifyUniPageFlutterViewControllerWillDealloc = @"NotifyUniPageFlutterViewControllerWillDealloc";
+
 @interface UniPage()
 
 @property (nonatomic, assign) BOOL isPosted;
@@ -19,7 +22,6 @@
 @implementation UniPage
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"jerry - 1017 dealloc UniPage: %@", self);
 }
 
@@ -115,16 +117,6 @@
 
 - (NSUInteger)getOwnerId {
     return self.ownerId;
-}
-
-#pragma mark - Notifications
-
-- (void)applicationWillEnterForeground:(NSNotification*)notification {
-  [self onForeground];
-}
-
-- (void)applicationDidEnterBackground:(NSNotification*)notification {
-  [self onBackground];
 }
 
 @end

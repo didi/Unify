@@ -5,8 +5,6 @@
 
 static NSMutableDictionary<NSString*, Class> *pageRegister;
 
-static NSMutableDictionary<NSString*, NSString*> *noticeNameRegister;
-
 @implementation UnifyUniPagePlugin
 
 + (void)registerUniPage:(Class)clsName viewType:(NSString*)viewType {
@@ -17,18 +15,10 @@ static NSMutableDictionary<NSString*, NSString*> *noticeNameRegister;
     dispatch_once(&onceToken, ^{
         if (pageRegister == nil) {
             pageRegister = [NSMutableDictionary new];
-            noticeNameRegister = [NSMutableDictionary new];
         }
     });
     
     pageRegister[viewType] = clsName;
-}
-
-+ (void)registerFlutterViewControllerWillDeallocObserver:(NSString*)noticeName {
-    NSAssert(noticeName != nil, @"noticeName cannot be nil");
-    for (NSString *key in pageRegister.allKeys) {
-        noticeNameRegister[key] = noticeName;
-    }
 }
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
@@ -43,9 +33,6 @@ static NSMutableDictionary<NSString*, NSString*> *noticeNameRegister;
              */
             UniPageContainer *container = [[UniPageContainer alloc] initWithWithFrame:frame viewType:key viewIdentifier:viewId arguments:args binaryMessenger:[registrar messenger]];
             
-            if ([noticeNameRegister objectForKey:key] != NULL) {
-                [container addFlutterViewControllerWillDeallocObserver:[noticeNameRegister objectForKey:key]];
-            }
             NSLog(@"jerry - 1017 create UniPageContainer: %@", container);
             UniPage *page = [[cls alloc] init];
             page.delegate = container;

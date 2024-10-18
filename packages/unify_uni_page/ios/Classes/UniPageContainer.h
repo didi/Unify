@@ -21,8 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupUniPage:(UniPage*)uniPage;
 
-- (void)addFlutterViewControllerWillDeallocObserver:(NSString*)noticeName;
-
 @end
 
 NS_ASSUME_NONNULL_END
