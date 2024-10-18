@@ -80,7 +80,9 @@ class _UniPageState extends State<UniPage> {
 
   @override
   void dispose() {
-    _syncDisposeEvent();
+    if (Platform.isIOS) {
+      _syncDisposeEvent();
+    }
     super.dispose();
   }
 
