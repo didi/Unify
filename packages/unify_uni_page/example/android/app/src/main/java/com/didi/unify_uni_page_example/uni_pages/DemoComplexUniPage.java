@@ -7,6 +7,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.didi.unify_uni_page.UniPage;
 
 import java.util.HashMap;
@@ -54,6 +56,30 @@ public class DemoComplexUniPage extends UniPage {
             pushNamed("/hello", params);
         });
         ll.addView(btnPush);
+
+        Button btnPushWithResult = new Button(getContext());
+        btnPushWithResult.setText("Push to Flutter Page & wait for result");
+        btnPushWithResult.setOnClickListener(v -> {
+            pushNamed("/hello_with_result", null, new MethodChannel.Result() {
+                @Override
+                public void success(@Nullable Object result) {
+                    if (result != null) {
+                        etPageParams.setText(result.toString());
+                    }
+                }
+
+                @Override
+                public void error(String errorCode, @Nullable String errorMessage, @Nullable Object errorDetails) {
+                    etPageParams.setText(errorMessage);
+                }
+
+                @Override
+                public void notImplemented() {
+
+                }
+            });
+        });
+        ll.addView(btnPushWithResult);
 
         Button btnPop = new Button(getContext());
         btnPop.setText("Pop to previous Flutter page with result");
