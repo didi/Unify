@@ -91,10 +91,14 @@ public abstract class UniPage implements PlatformView {
      **********************************************/
 
     public void pushNamed(String routePath, Map<String, Object> params) {
+        pushNamed(routePath, params, null);
+    }
+
+    public void pushNamed(String routePath, Map<String, Object> params, MethodChannel.Result callback) {
         Map<String, Object> paramsMap = new HashMap<>();
         paramsMap.put(Constants.UNI_PAGE_CHANNEL_PARAMS_PATH, routePath);
         paramsMap.put(Constants.UNI_PAGE_CHANNEL_PARAMS_PARAMS, params);
-        channel.invokeMethod(Constants.UNI_PAGE_ROUTE_PUSH_NAMED, paramsMap);
+        channel.invokeMethod(Constants.UNI_PAGE_ROUTE_PUSH_NAMED, paramsMap, callback);
     }
 
     public void pop(Object result) {
