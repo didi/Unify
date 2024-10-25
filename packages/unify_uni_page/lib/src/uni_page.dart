@@ -39,6 +39,9 @@ class UniPage extends StatelessWidget {
         creationParamsCodec: const StandardMessageCodec(),
         onPlatformViewCreated: (viewId) {
           controller?.init(context, viewType, viewId);
+          if (controller?.onPlatformViewCreatedListener != null) {
+            controller?.onPlatformViewCreatedListener!(viewId);
+          }
         },
       );
     }
@@ -56,17 +59,24 @@ class UniPage extends StatelessWidget {
         },
         onCreatePlatformView: (params) {
           controller?.init(context, viewType, params.id);
-          return PlatformViewsService.initSurfaceAndroidView(
-              id: params.id,
-              viewType: viewType,
-              layoutDirection: TextDirection.ltr,
-              creationParams: finalCreateParams,
-              creationParamsCodec: const StandardMessageCodec(),
-              onFocus: () {
-                params.onFocusChanged(true);
-              })
-            ..addOnPlatformViewCreatedListener(params.onPlatformViewCreated)
-            ..create();
+          SurfaceAndroidViewController surfaceAndroidViewController =
+              PlatformViewsService.initSurfaceAndroidView(
+                  id: params.id,
+                  viewType: viewType,
+                  layoutDirection: TextDirection.ltr,
+                  creationParams: finalCreateParams,
+                  creationParamsCodec: const StandardMessageCodec(),
+                  onFocus: () {
+                    params.onFocusChanged(true);
+                  });
+          surfaceAndroidViewController
+              .addOnPlatformViewCreatedListener(params.onPlatformViewCreated);
+          if (controller?.onPlatformViewCreatedListener != null) {
+            surfaceAndroidViewController.addOnPlatformViewCreatedListener(
+                controller!.onPlatformViewCreatedListener!);
+          }
+          surfaceAndroidViewController.create();
+          return surfaceAndroidViewController;
         },
         viewType: viewType);
   }
