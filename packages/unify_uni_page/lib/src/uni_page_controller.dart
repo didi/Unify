@@ -22,6 +22,7 @@ class UniPageController {
 
   Future<dynamic> invoke(String methodName, Map<String, dynamic> params) async {
     assert(buildContext != null);
+    print('UniPage: invoking native method $methodName');
     return await channel.invokeMethod(kChannelInvoke, {
       kChannelViewType: viewType,
       kChannelViewId: viewId,
