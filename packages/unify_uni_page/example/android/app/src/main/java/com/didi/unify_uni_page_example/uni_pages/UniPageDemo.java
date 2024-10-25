@@ -80,6 +80,12 @@ public class UniPageDemo extends UniPage {
     }
 
     @Override
+    public void postCreate() {
+        super.postCreate();
+        Log.d("POST", "create");
+    }
+
+    @Override
     public void onMethodCall(String methodName, Map<String, Object> params, MethodChannel.Result result) {
         switch (methodName) {
             case "flutterUpdateTextView":

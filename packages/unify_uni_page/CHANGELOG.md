@@ -1,3 +1,11 @@
+## 0.0.8
+
+- feat: Android impl of UniPage postCreate
+
+## 0.0.7
+
+- feat: Unipage adds postCreate lifecycle method
+
 ## 0.0.6
 
 - Updated the gestureRecognizers for both iOS and Android platforms to use EagerGestureRecognizer instead of an empty set, improving the responsiveness of the UI.

@@ -2,6 +2,7 @@ package com.didi.unify_uni_page;
 
 import android.content.Context;
 import android.view.View;
+import android.view.ViewTreeObserver;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -47,6 +48,13 @@ public abstract class UniPage implements PlatformView {
     public abstract void onDispose();
 
     /**
+     * 嵌原生视图创建完成，被添加到布局树
+     */
+    public void postCreate() {
+
+    }
+
+    /**
      * 嵌原生页面进入前台；
      * 该方法 <bold>不保证</bold> 在首次显示时调用，仅响应 Activity 的 onStart 事件。
      */
@@ -83,10 +91,14 @@ public abstract class UniPage implements PlatformView {
      **********************************************/
 
     public void pushNamed(String routePath, Map<String, Object> params) {
+        pushNamed(routePath, params, null);
+    }
+
+    public void pushNamed(String routePath, Map<String, Object> params, MethodChannel.Result callback) {
         Map<String, Object> paramsMap = new HashMap<>();
         paramsMap.put(Constants.UNI_PAGE_CHANNEL_PARAMS_PATH, routePath);
         paramsMap.put(Constants.UNI_PAGE_CHANNEL_PARAMS_PARAMS, params);
-        channel.invokeMethod(Constants.UNI_PAGE_ROUTE_PUSH_NAMED, paramsMap);
+        channel.invokeMethod(Constants.UNI_PAGE_ROUTE_PUSH_NAMED, paramsMap, callback);
     }
 
     public void pop(Object result) {
@@ -141,8 +153,18 @@ public abstract class UniPage implements PlatformView {
     @Nullable
     @Override
     public View getView() {
-        if (view == null) {
-            view = onCreate();
+        if (view != null) {
+            return view;
+        }
+        view = onCreate();
+        if (view != null) {
+            view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    postCreate();
+                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                }
+            });
         }
         return view;
     }

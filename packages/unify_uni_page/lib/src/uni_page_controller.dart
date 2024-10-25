@@ -46,8 +46,7 @@ class UniPageController {
           String path = call.arguments[kChannelParamsPath];
           Map<String, dynamic> params =
               Map<String, dynamic>.from(arguments[kChannelParamsPrams] ?? {});
-          Navigator.of(buildContext!).pushNamed(path, arguments: params);
-          return true;
+          return Navigator.of(buildContext!).pushNamed(path, arguments: params);
         case kChannelRoutePop:
           Map<String, dynamic> params =
               Map<String, dynamic>.from(arguments[kChannelParamsPrams] ?? {});
