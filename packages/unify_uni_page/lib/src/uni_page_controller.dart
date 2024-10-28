@@ -5,8 +5,11 @@ import 'package:unify_uni_page/src/constants.dart';
 typedef MethodCallHandler = Future<dynamic> Function(
     String methodName, Map<String, dynamic> prams);
 
+typedef OnPlatformViewCreatedListener = void Function(int viewId);
+
 class UniPageController {
   MethodCallHandler? _methodCallHandler;
+  OnPlatformViewCreatedListener? onPlatformViewCreatedListener;
 
   BuildContext? buildContext;
   late String viewType;
@@ -19,6 +22,7 @@ class UniPageController {
 
   Future<dynamic> invoke(String methodName, Map<String, dynamic> params) async {
     assert(buildContext != null);
+    print('UniPage: invoking native method $methodName');
     return await channel.invokeMethod(kChannelInvoke, {
       kChannelViewType: viewType,
       kChannelViewId: viewId,

@@ -1,6 +1,7 @@
 package com.didi.unify_uni_page;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
@@ -115,6 +116,7 @@ public abstract class UniPage implements PlatformView {
     }
 
     public void invoke(String methodName, Map<String, Object> params, MethodChannel.Result callback) {
+        Log.i("UniPage", "invoking Flutter method " + methodName);
         HashMap<String, Object> arguments = new HashMap<>();
         arguments.put(Constants.UNI_PAGE_CHANNEL_VIEW_TYPE, viewType);
         arguments.put(Constants.UNI_PAGE_CHANNEL_VIEW_ID, viewId);

@@ -39,6 +39,7 @@ class UniPage extends StatelessWidget {
         creationParamsCodec: const StandardMessageCodec(),
         onPlatformViewCreated: (viewId) {
           controller?.init(context, viewType, viewId);
+          controller?.onPlatformViewCreatedListener?.call(viewId);
         },
       );
     }
@@ -65,7 +66,10 @@ class UniPage extends StatelessWidget {
               onFocus: () {
                 params.onFocusChanged(true);
               })
-            ..addOnPlatformViewCreatedListener(params.onPlatformViewCreated)
+            ..addOnPlatformViewCreatedListener((viewId) {
+              params.onPlatformViewCreated(viewId);
+              controller?.onPlatformViewCreatedListener?.call(viewId);
+            })
             ..create();
         },
         viewType: viewType);
