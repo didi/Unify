@@ -85,8 +85,31 @@ public View onCreate() {
 Demo 以使用 XML 文件为例。
 
 #### iOS
+创建一个继承 UniPage 子类比如叫UniPageDemo:
 
-（待补充）
+```objectivec
+#import "UniPage.h"
+@interface UniPageDemo : UniPage
+@end
+
+@implementation UniPageDemo
+- (void)onCreate {
+    [super onCreate];
+    // Do any additional setup when creating the UniPage object.
+}
+@end
+```
+其中，`- (void)onCreate`函数可以实现创建想展示在`FlutterView`的原生组件，比如在添加一个`UILabel`组件 title ，你可以这样实现：
+
+```objectivec
+- (void)onCreate {
+    [super onCreate];
+    [self addSubview:self.title];
+    ......
+}
+```
+> 具体细节参见 example 中 ios 部分的`UniPageDemo.m`
+
 
 ### 步骤 2：创建 Flutter 页面
 
@@ -151,7 +174,19 @@ public class MainApplication extends FlutterApplication {
 
 #### iOS
 
-（待补充）
+推荐在 `AppDelegate.m`中的`- (BOOL)application:didFinishLaunchingWithOptions:`中调用`UnifyUniPagePlugin`的`registerUniPage: viewType:`方法，完成注册，参考示例：
+
+```objectivec
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  // The 'registerUniPage: viewType:' method of UnifyUniPagePlugin must be called before the 'registerWithRegistry:' method of GeneratedPluginRegistry
+  [UnifyUniPagePlugin registerUniPage:[UniPageDemo class] viewType:@"demo"];
+  [GeneratedPluginRegistrant registerWithRegistry:self];
+  ......
+}
+```
+> [!IMPORTANT]
+> `registerUniPage: viewType:`方法调用一定要在`registerWithRegistry:'`方法之前。
+
 
 ### 步骤 4：Flutter 跳转！
 
