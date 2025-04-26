@@ -39,15 +39,13 @@ class UniBus {
     _methodChannel.setMethodCallHandler((call) async {
       switch (call.method) {
         case 'onEvent':
-          final event = call.arguments;
-          if (event is Map) {
-            final String? eventName = event['eventName'];
-            final Map<String, dynamic>? data = event['data'];
+          final argument = Map<String, dynamic>.from(call.arguments);
+          final String? eventName = argument['eventName'];
+          final Map<String, dynamic>? data = argument['data'] != null ? Map<String, dynamic>.from(argument['data']) : null;
 
-            if (eventName != null && data != null) {
-              // 将原生端事件发送到本地事件总线
-              _streamController.add({'eventName': eventName, 'data': data});
-            }
+          if (eventName != null) {
+            // 将原生端事件发送到本地事件总线
+            _streamController.add({'eventName': eventName, 'data': data});
           }
       }
     });

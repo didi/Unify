@@ -21,7 +21,6 @@ import java.util.Map;
 
 public class MainActivity extends FlutterActivity {
     private static final String TAG = "UniBusDemo";
-    private static final String CHANNEL = "unify_uni_bus";
     private static final String TEST_EVENT_NAME = "test_event";
     
     private MethodChannel channel;
@@ -32,24 +31,11 @@ public class MainActivity extends FlutterActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        // 初始化MethodChannel - 用于回传平台版本信息
-        channel = new MethodChannel(getFlutterEngine().getDartExecutor().getBinaryMessenger(), CHANNEL);
-        channel.setMethodCallHandler(this::onMethodCall);
-        
         // 注册Android端的事件监听器
         registerAndroidEventListener();
         
         // 在Flutter视图上覆盖添加Android按钮
         addAndroidButtonToFlutter();
-    }
-    
-    private void onMethodCall(MethodCall call, MethodChannel.Result result) {
-        if (call.method.equals("getPlatformVersion")) {
-            // 返回平台版本信息
-            result.success("Android " + android.os.Build.VERSION.RELEASE);
-        } else {
-            result.notImplemented();
-        }
     }
     
     // 在Flutter UI上添加Android原生按钮
