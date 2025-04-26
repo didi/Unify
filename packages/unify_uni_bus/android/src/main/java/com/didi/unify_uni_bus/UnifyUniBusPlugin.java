@@ -43,9 +43,6 @@ public class UnifyUniBusPlugin implements FlutterPlugin, MethodCallHandler {
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
     switch (call.method) {
-      case "getPlatformVersion":
-        result.success("Android " + android.os.Build.VERSION.RELEASE);
-        break;
       case "fire":
         try {
           // 从Flutter接收事件，转发给Android端UniBus

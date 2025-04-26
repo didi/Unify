@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'dart:developer' as developer;
 
 import 'package:flutter/services.dart';
 import 'package:unify_uni_bus/unify_uni_bus.dart';
@@ -17,7 +16,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
   final _uniBus = UniBus.instance;
   bool _isListening = false;
   StreamSubscription? _eventSubscription;
@@ -31,39 +29,12 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    initPlatformState();
-    // 默认启动时就开始监听事件
-    _startListening();
   }
 
   @override
   void dispose() {
     _eventSubscription?.cancel();
     super.dispose();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      // 通过MethodChannel获取平台版本
-      final MethodChannel channel = const MethodChannel('unify_uni_bus');
-      platformVersion = await channel.invokeMethod('getPlatformVersion') ??
-          'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
   }
 
   // 注册Flutter端的事件监听
@@ -74,8 +45,6 @@ class _MyAppState extends State<MyApp> {
 
     _eventSubscription = _uniBus.on(_testEventName).listen((data) {
       print('Flutter: 收到事件 "$_testEventName" 数据: $data');
-      developer.log('Flutter: 收到事件 "$_testEventName" 数据: $data',
-          name: 'UniBusDemo');
 
       setState(() {
         _lastReceivedMessage = '收到消息: ${data['message'] ?? '未知消息'}';
@@ -110,8 +79,6 @@ class _MyAppState extends State<MyApp> {
     };
 
     print('Flutter: 发送事件 "$_testEventName" 数据: $eventData');
-    developer.log('Flutter: 发送事件 "$_testEventName" 数据: $eventData',
-        name: 'UniBusDemo');
 
     // 使用UniBus发送事件
     await _uniBus.fire(_testEventName, eventData);
@@ -135,13 +102,6 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'Flutter 运行于: $_platformVersion',
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-            ),
             _buildControlPanel(),
             if (_lastReceivedMessage.isNotEmpty)
               Padding(
