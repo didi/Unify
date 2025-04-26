@@ -29,6 +29,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    _startListening();
   }
 
   @override
@@ -47,7 +48,7 @@ class _MyAppState extends State<MyApp> {
       print('Flutter: 收到事件 "$_testEventName" 数据: $data');
 
       setState(() {
-        _lastReceivedMessage = '收到消息: ${data['message'] ?? '未知消息'}';
+        _lastReceivedMessage = '收到消息: ${data['message'] ?? '未知消息'} ${data['timestamp'] ?? ''}';
       });
     });
 

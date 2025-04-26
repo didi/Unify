@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -58,6 +59,7 @@ public class MainActivity extends FlutterActivity {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
         );
+        params.gravity = Gravity.BOTTOM;
         
         // 添加到Flutter视图上
         new Handler(Looper.getMainLooper()).post(() -> {
@@ -69,18 +71,15 @@ public class MainActivity extends FlutterActivity {
     
     // 注册Android端的事件监听
     private void registerAndroidEventListener() {
-        // 确保在主线程中执行
-        new Handler(Looper.getMainLooper()).post(() -> {
-            // 创建事件监听器
-            androidEventListener = data -> {
-                Log.i(TAG, "Android: 收到事件 \"" + TEST_EVENT_NAME + "\" 数据: " + data.toString());
-            };
-            
-            // 注册到UniBus
-            UniBus.getInstance().on(TEST_EVENT_NAME, androidEventListener);
-            
-            Log.i(TAG, "Android: 已注册事件监听器");
-        });
+        // 创建事件监听器
+        androidEventListener = data -> {
+            Log.i(TAG, "Android: 收到事件 \"" + TEST_EVENT_NAME + "\" 数据: " + data.toString());
+        };
+
+        // 注册到UniBus
+        UniBus.getInstance().on(TEST_EVENT_NAME, androidEventListener);
+
+        Log.i(TAG, "Android: 已注册事件监听器");
     }
     
     // 从Android发送事件到总线
