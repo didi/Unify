@@ -4,8 +4,6 @@
 
 import 'dart:async';
 
-import 'unify_uni_bus_platform_interface.dart';
-
 class UniBus {
   StreamController _streamController;
 
@@ -13,7 +11,17 @@ class UniBus {
 
   UniBus() : _streamController = StreamController.broadcast();
 
-  Future<String?> getPlatformVersion() {
-    return UnifyUniBusPlatform.instance.getPlatformVersion();
+  Stream<Map<String, dynamic>> on(String eventName) {
+    return _streamController.stream
+        .where((event) => event['eventName'] == eventName)
+        .map((event) => event['data']);
+  }
+
+  void fire(String eventName, Map<String, dynamic> data) {
+    _streamController.add({'eventName': eventName, 'data': data});
+  }
+
+  void destroy() {
+    _streamController.close();
   }
 }
