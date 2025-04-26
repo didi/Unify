@@ -24,6 +24,6 @@ abstract class UnifyUniBusPlatform extends PlatformInterface {
   }
 
   Future<String?> getPlatformVersion() {
-    throw UnimplementedError('platformVersion() has not been implemented.');
+    return _instance.getPlatformVersion();
   }
 }
