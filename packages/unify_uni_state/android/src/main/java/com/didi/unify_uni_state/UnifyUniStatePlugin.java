@@ -2,6 +2,11 @@ package com.didi.unify_uni_state;
 
 import androidx.annotation.NonNull;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -10,29 +15,48 @@ import io.flutter.plugin.common.MethodChannel.Result;
 
 /** UnifyUniStatePlugin */
 public class UnifyUniStatePlugin implements FlutterPlugin, MethodCallHandler {
-  /// The MethodChannel that will the communication between Flutter and native Android
-  ///
-  /// This local reference serves to register the plugin with the Flutter Engine and unregister it
-  /// when the Flutter Engine is detached from the Activity
-  private MethodChannel channel;
+  // 存储每个引擎的方法通道，用于接收Flutter的方法调用和发送事件
+  private final Map<Object, MethodChannel> methodChannels = new HashMap<>();
+
+  // 使用Set存储已经连接的引擎标识
+  private final Set<Object> connectedEngines = new HashSet<>();
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
-    channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "unify_uni_state");
-    channel.setMethodCallHandler(this);
+    // 获取BinaryMessenger作为引擎的唯一标识
+    Object engineKey = flutterPluginBinding.getBinaryMessenger();
+
+    // 初始化当前引擎的方法通道
+    MethodChannel methodChannel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "unify_uni_state_channel");
+    methodChannel.setMethodCallHandler(this);
+    methodChannels.put(engineKey, methodChannel);
+    connectedEngines.add(engineKey);
+
+    // 将插件实例注册到UniBus单例
+    UniState.getInstance().setPluginInstance(this);
   }
 
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-    if (call.method.equals("getPlatformVersion")) {
-      result.success("Android " + android.os.Build.VERSION.RELEASE);
-    } else {
-      result.notImplemented();
-    }
+//    if (call.method.equals("getPlatformVersion")) {
+//      result.success("Android " + android.os.Build.VERSION.RELEASE);
+//    } else {
+//      result.notImplemented();
+//    }
   }
 
   @Override
   public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
-    channel.setMethodCallHandler(null);
+    // 获取要释放的引擎标识
+    Object engineKey = binding.getBinaryMessenger();
+
+    // 清除该引擎的方法通道
+    MethodChannel methodChannel = methodChannels.remove(engineKey);
+    if (methodChannel != null) {
+      methodChannel.setMethodCallHandler(null);
+    }
+
+    // 从已连接引擎集合中移除
+    connectedEngines.remove(engineKey);
   }
 }

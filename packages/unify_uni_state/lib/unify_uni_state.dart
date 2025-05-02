@@ -62,7 +62,7 @@ class UniState {
       }
 
       String? state = stateAction[_eventKeyState];
-      if (state == null) {
+      if (state == null || state.isEmpty) {
         return;
       }
 
