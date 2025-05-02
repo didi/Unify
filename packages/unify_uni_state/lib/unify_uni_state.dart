@@ -49,7 +49,8 @@ class UniState {
 
   // 获取所有状态
   Future<Map<String, dynamic>> readAll() async {
-    return await _methodChannel.invokeMethod('readAll');
+    final allStates = await _methodChannel.invokeMethod('readAll');
+    return Map<String, dynamic>.from(allStates);
   }
 
   Future<Stream> watch(String stateKey) async {
