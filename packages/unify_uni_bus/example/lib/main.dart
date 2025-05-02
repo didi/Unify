@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:flutter/services.dart';
 import 'package:unify_uni_bus/unify_uni_bus.dart';
 
 void main() {
@@ -42,10 +41,10 @@ class _MyAppState extends State<MyApp> {
   void _startListening() {
     if (_isListening) return;
 
-    print('Flutter: 开始监听事件 "$_testEventName"');
+    debugPrint('Flutter: 开始监听事件 "$_testEventName"');
 
     _eventSubscription = _uniBus.on(_testEventName).listen((data) {
-      print('Flutter: 收到事件 "$_testEventName" 数据: $data');
+      debugPrint('Flutter: 收到事件 "$_testEventName" 数据: $data');
 
       setState(() {
         _lastReceivedMessage = '收到消息: ${data['message'] ?? '未知消息'} ${data['timestamp'] ?? ''}';
@@ -64,7 +63,7 @@ class _MyAppState extends State<MyApp> {
     _eventSubscription?.cancel();
     _eventSubscription = null;
 
-    print('Flutter: 停止监听事件 "$_testEventName"');
+    debugPrint('Flutter: 停止监听事件 "$_testEventName"');
 
     setState(() {
       _isListening = false;
@@ -79,7 +78,7 @@ class _MyAppState extends State<MyApp> {
       'timestamp': DateTime.now().millisecondsSinceEpoch,
     };
 
-    print('Flutter: 发送事件 "$_testEventName" 数据: $eventData');
+    debugPrint('Flutter: 发送事件 "$_testEventName" 数据: $eventData');
 
     // 使用UniBus发送事件
     await _uniBus.fire(_testEventName, eventData);
