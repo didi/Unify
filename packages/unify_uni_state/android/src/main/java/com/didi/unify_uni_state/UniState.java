@@ -74,6 +74,14 @@ public class UniState {
         return states.get(stateKey);
     }
 
+    public Object read(String stateKey, boolean allowNull) {
+        Object value = read(stateKey);
+        if (value == null && !allowNull) {
+            throw new IllegalStateException("UniState value is null for key: " + stateKey);
+        }
+        return value;
+    }
+
     public void watch(String stateKey, UniStateListener listener) {
         // 创建或获取状态监听器列表
         createListenerListIfNotExist(stateKey);
