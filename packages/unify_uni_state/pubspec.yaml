@@ -10,6 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  unify_uni_bus: ^0.0.1
+
   flutter_web_plugins:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
