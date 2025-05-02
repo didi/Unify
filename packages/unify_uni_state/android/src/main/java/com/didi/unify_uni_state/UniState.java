@@ -111,7 +111,11 @@ public class UniState {
     }
 
     Map<String, Object> getState() {
-        return states;
+        Map<String, Object> ret = states;
+        for (String key : stateInterceptors.keySet()) {
+            ret.put(key, Objects.requireNonNull(stateInterceptors.get(key)).get(key));
+        }
+        return ret;
     }
 
     // 设置插件实例，用于与Flutter通信
