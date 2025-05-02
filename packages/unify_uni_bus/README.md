@@ -2,6 +2,8 @@
 
 UniBus 是一个 Flutter 事件总线，特色在于彻底打通了 Flutter 与 Android 的双端壁垒，实现了真正的**混合 EventBus 机制** - 在任意一端注册监听，都能接收来自两端的事件，一套代码打通全平台通信。让混合开发告别繁琐的平台通道代码 🚀
 
+[Pub.dev 地址](https://pub.dev/packages/unify_uni_bus)
+
 ## 特性
 
 - ✅ **双向事件监听**：在 Flutter 或 Android 的任意一方注册事件监听器
@@ -15,10 +17,12 @@ UniBus 是一个 Flutter 事件总线，特色在于彻底打通了 Flutter 与 
 
 ```yaml
 dependencies:
-  unify_uni_bus: ^latest_version
+  unify_uni_bus: ^0.0.1
 ```
 
-注意：目前还在开发中，请通过 git 以来方式引入:
+目前 UniBus 已在 pub.dev 发布。您可直接使用上述版本号引入。
+
+如果希望参与开发，或试用最新特性，可以下述 git 依赖方式：
 
 ```yaml
 dependencies:
