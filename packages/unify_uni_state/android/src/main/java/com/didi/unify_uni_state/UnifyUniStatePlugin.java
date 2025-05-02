@@ -38,11 +38,37 @@ public class UnifyUniStatePlugin implements FlutterPlugin, MethodCallHandler {
 
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-//    if (call.method.equals("getPlatformVersion")) {
-//      result.success("Android " + android.os.Build.VERSION.RELEASE);
-//    } else {
-//      result.notImplemented();
-//    }
+    switch (call.method) {
+      case "get":
+        try {
+          // 从Flutter接收事件，转发给Android端UniState
+          String key = call.argument("stateKey");
+          if (key != null) {
+            Object value = UniState.getInstance().read(key);
+            result.success(value);
+          } else {
+            result.error("INVALID_ARGUMENTS", "State key is null", null);
+          }
+        } catch (Exception e) {
+          result.error("EXCEPTION", "Error getting state: " + e.getMessage(), null);
+        }
+        break;
+      case "set":
+        try {
+          // 从Flutter接收事件，转发给Android端UniState
+          String key = call.argument("stateKey");
+          Object value = call.argument("value");
+          if (key != null) {
+            UniState.getInstance().set(key, value);
+            result.success(true);
+          } else {
+            result.error("INVALID_ARGUMENTS", "State key is null", null);
+          }
+        } catch (Exception e) {
+          result.error("EXCEPTION", "Error setting state: " + e.getMessage(), null);
+        }
+        break;
+    }
   }
 
   @Override
