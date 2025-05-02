@@ -42,7 +42,7 @@ public class UnifyUniStatePlugin implements FlutterPlugin, MethodCallHandler {
       case "get":
         try {
           // 从Flutter接收事件，转发给Android端UniState
-          String key = call.argument("stateKey");
+          String key = call.argument("state");
           if (key != null) {
             Object value = UniState.getInstance().read(key);
             result.success(value);
@@ -56,7 +56,7 @@ public class UnifyUniStatePlugin implements FlutterPlugin, MethodCallHandler {
       case "set":
         try {
           // 从Flutter接收事件，转发给Android端UniState
-          String key = call.argument("stateKey");
+          String key = call.argument("state");
           Object value = call.argument("value");
           if (key != null) {
             UniState.getInstance().set(key, value);

@@ -34,11 +34,17 @@ class UniState {
   // Key: stateKey, value: Stream<dynamic>
   final Map<String, StreamController> _StateStreams = {};
 
-  Future<void> set(String key, dynamic value) async {
+  Future<void> set(String stateKey, dynamic stateValue) async {
+    await _methodChannel.invokeListMethod('set', {
+      _eventKeyState: stateKey,
+      _eventKeyValue: stateValue
+    });
   }
 
-  Future<dynamic> read(String key) async {
-
+  Future<dynamic> read(String stateKey) async {
+    return await _methodChannel.invokeMethod('read', {
+      _eventKeyState: stateKey
+    });
   }
 
   Future<Stream> watch(String stateKey) async {
