@@ -92,8 +92,9 @@ public class UniState {
     }
 
     // 注册状态拦截器
-    public void registerStateInterceptor(String stateKey, UniStateInterceptor interceptor) {
+    public UniState registerStateInterceptor(String stateKey, UniStateInterceptor interceptor) {
         stateInterceptors.put(stateKey, interceptor);
+        return this;
     }
 
     // 移除状态拦截器
