@@ -21,16 +21,18 @@ public class UniState {
     private UnifyUniStatePlugin pluginInstance;
 
     // Key: StateKey, Value: List<UniStateListener> 状态监听器列表
-    private Map<String, Set<UniStateListener>> stateListeners;
+    private Map<String, Set<UniStateListener>> stateListeners = new HashMap<>();
 
     // 状态键值对 key: StateKey, Value: StateValue
-    private Map<String, Object> states;
+    private Map<String, Object> states = new HashMap<>();
+
+    // 拦截器列表，用于拦截状态的读取和设置操作
+    // 被拦截器拦截的状态将不会写入 states 中
+    private Map<String, UniStateInterceptor> stateInterceptors = new HashMap<>();
 
     // 私有构造函数
     private UniState() {
         // 私有构造，防止外部实例化
-        stateListeners = new HashMap<>();
-        states = new HashMap<>();
         initEventBus();
     }
 
@@ -45,9 +47,14 @@ public class UniState {
         return instance;
     }
 
-    void set(String stateKey, Object stateValue) {
-        // 更新内部状态
-        states.put(stateKey, stateValue);
+    public void set(String stateKey, Object stateValue) {
+        if (stateInterceptors.containsKey(stateKey)) {
+            // 拦截器拦截状态的设置
+            Objects.requireNonNull(stateInterceptors.get(stateKey)).set(stateKey, stateValue);
+        } else {
+            // 更新内部状态
+            states.put(stateKey, stateValue);
+        }
 
         // 发送通知
         HashMap<String, Object> event = new HashMap<>();
@@ -58,11 +65,16 @@ public class UniState {
         UniBus.getInstance().fire(UNI_STATE_EVENT, event);
     }
 
-    Object read(String stateKey) {
+    public Object read(String stateKey) {
+        // 拦截器拦截状态的读取
+        if (stateInterceptors.containsKey(stateKey)) {
+            return Objects.requireNonNull(stateInterceptors.get(stateKey)).get(stateKey);
+        }
+        // 读取内部状态值
         return states.get(stateKey);
     }
 
-    void watch(String stateKey, UniStateListener listener) {
+    public void watch(String stateKey, UniStateListener listener) {
         // 创建或获取状态监听器列表
         createListenerListIfNotExist(stateKey);
 
@@ -70,7 +82,7 @@ public class UniState {
         Objects.requireNonNull(stateListeners.get(stateKey)).add(listener);
     }
 
-    void unwatch(String stateKey, UniStateListener listener) {
+    public void unwatch(String stateKey, UniStateListener listener) {
         // 获取状态监听器列表
         Set<UniStateListener> listeners = stateListeners.get(stateKey);
         if (listeners != null) {
@@ -79,8 +91,18 @@ public class UniState {
         }
     }
 
+    // 注册状态拦截器
+    public void registerStateInterceptor(String stateKey, UniStateInterceptor interceptor) {
+        stateInterceptors.put(stateKey, interceptor);
+    }
+
+    // 移除状态拦截器
+    public void unregisterStateInterceptor(String stateKey) {
+        stateInterceptors.remove(stateKey);
+    }
+
     // 设置插件实例，用于与Flutter通信
-    public void setPluginInstance(UnifyUniStatePlugin plugin) {
+    void setPluginInstance(UnifyUniStatePlugin plugin) {
         this.pluginInstance = plugin;
     }
 
