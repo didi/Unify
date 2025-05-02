@@ -41,7 +41,9 @@ class UniState {
 
   }
 
-  Future<Stream?> watch(String key) async {
+  Future<Stream> watch(String stateKey) async {
+    _createStreamIfNotExisted(stateKey);
+    return _StateStreams[stateKey]!.stream;
   }
 
   // 初始化平台事件通道
