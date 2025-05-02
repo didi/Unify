@@ -110,6 +110,10 @@ public class UniState {
         stateInterceptors.remove(stateKey);
     }
 
+    Map<String, Object> getState() {
+        return states;
+    }
+
     // 设置插件实例，用于与Flutter通信
     void setPluginInstance(UnifyUniStatePlugin plugin) {
         this.pluginInstance = plugin;

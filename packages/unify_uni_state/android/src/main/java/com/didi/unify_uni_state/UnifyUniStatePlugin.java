@@ -68,6 +68,17 @@ public class UnifyUniStatePlugin implements FlutterPlugin, MethodCallHandler {
           result.error("EXCEPTION", "Error setting state: " + e.getMessage(), null);
         }
         break;
+      case "readAll":
+        try {
+          // 从Flutter接收事件，转发给Android端UniState
+          result.success(UniState.getInstance().getState());
+        } catch (Exception e) {
+          result.error("EXCEPTION", "Error reading all states: " + e.getMessage(), null);
+        }
+        break;
+      default:
+        result.notImplemented();
+        break;
     }
   }
 
