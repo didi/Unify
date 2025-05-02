@@ -50,7 +50,12 @@ public class UniBus {
      * @param listener 事件监听器
      */
     public void on(String eventName, EventListener listener) {
-        eventListeners.computeIfAbsent(eventName, k -> new ArrayList<>()).add(listener);
+        List<EventListener> listeners = eventListeners.get(eventName);
+        if (listeners == null) {
+            listeners = new ArrayList<>();
+            eventListeners.put(eventName, listeners);
+        }
+        listeners.add(listener);
     }
     
     /**
