@@ -139,7 +139,7 @@
         <mxCell id="_zpeFa89MfL5RgfBDyw3-69" value="State read/write" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B3FF66;strokeColor=#b85450;gradientColor=#99CCFF;gradientDirection=east;" vertex="1" parent="1">
           <mxGeometry x="580" y="200" width="110" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="_zpeFa89MfL5RgfBDyw3-70" value="UniBus" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-70" value="UniState" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="570" y="170" width="70" height="30" as="geometry" />
         </mxCell>
         <mxCell id="_zpeFa89MfL5RgfBDyw3-71" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
@@ -163,7 +163,7 @@
         <mxCell id="_zpeFa89MfL5RgfBDyw3-81" value="Flutter UniPage" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="200" width="360" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="_zpeFa89MfL5RgfBDyw3-82" value="&lt;div style=&quot;&quot;&gt;Features:&lt;/div&gt;&lt;ol&gt;&lt;li style=&quot;&quot;&gt;Native Page&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Embedded&lt;/span&gt;&lt;/li&gt;&lt;li style=&quot;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Call Navigator&amp;nbsp;&lt;/span&gt;on native side&lt;/li&gt;&lt;li style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;Bi-direction&amp;nbsp;&lt;/span&gt;parameters&lt;/li&gt;&lt;/ol&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-82" value="&lt;div style=&quot;&quot;&gt;Features:&lt;/div&gt;&lt;ol&gt;&lt;li style=&quot;&quot;&gt;Native Page&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Embedded&lt;/span&gt;&lt;/li&gt;&lt;li style=&quot;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Call Navigator&amp;nbsp;&lt;/span&gt;on Native Side&lt;/li&gt;&lt;li style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;Bi-direction P&lt;/span&gt;arameters&lt;/li&gt;&lt;/ol&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="570" y="5" width="210" height="65" as="geometry" />
         </mxCell>
         <mxCell id="_zpeFa89MfL5RgfBDyw3-83" value="UniPage" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
