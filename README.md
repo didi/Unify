@@ -63,6 +63,7 @@ Unify 基于 Apache-2.0 协议进行分发和使用，更多信息参见 [协议
 
 [maxiee](https://github.com/maxiee),
 [zhugeafanti](https://github.com/zhugeafanti),
+[Rachel Tang](https://github.com/Rachel030219)
 [piglet696](https://github.com/piglet696),
 [zhaoxiaochun](https://github.com/zhaoxiaochun),
 [ChengCheng-Hello](https://github.com/ChengCheng-Hello),
