@@ -1,0 +1,178 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0" version="27.0.5">
+  <diagram name="第 1 页" id="3LCFj-ODNXD4JCmM6o1J">
+    <mxGraphModel dx="935" dy="1838" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-73" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="-30" width="580" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-24" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="310" width="370" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-2" value="混合模块通信&lt;div&gt;&amp;amp;&lt;br&gt;&lt;div&gt;混合架构设计&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="90" y="310" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-3" value="SDK&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;A&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Android Impl&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="200" y="450" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-7" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="90" y="300" as="sourcePoint" />
+            <mxPoint x="940" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-9" value="UniFoundation&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;UniAPI Interface&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="200" y="400" width="350" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-12" value="SDK B&lt;div&gt;Flutter Impl&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="380" y="450" width="170" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-25" value="UniFoundation" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="190" y="310" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-29" value="SDK A&amp;nbsp;&lt;div&gt;Android&amp;nbsp;&lt;/div&gt;&lt;div&gt;Client&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="200" y="340" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-30" value="Native" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="960" y="200" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-31" value="SDK A&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;div&gt;&lt;div&gt;iOS&lt;/div&gt;&lt;div&gt;Client&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="260" y="340" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-32" value="SDK A&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;div&gt;&lt;div&gt;Flutter&lt;/div&gt;&lt;div&gt;Client&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="340" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-34" value="SDK&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;A&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;iOS Impl&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="290" y="450" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-36" value="SDK B&amp;nbsp;&lt;div&gt;Android&amp;nbsp;&lt;/div&gt;&lt;div&gt;Client&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="380" y="340" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-38" value="SDK B&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;div&gt;&lt;div&gt;iOS&lt;/div&gt;&lt;div&gt;Client&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="440" y="340" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-39" value="SDK B&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;div&gt;&lt;div&gt;Flutter&lt;/div&gt;&lt;div&gt;Client&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="500" y="340" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-40" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="310" width="370" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-41" value="BizModule&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;A&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Android Impl&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="580" y="450" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-42" value="UniFoundation&lt;div&gt;UniAPI Interface&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="580" y="400" width="350" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-43" value="BusinessModule B&lt;div&gt;Flutter Impl&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="760" y="450" width="170" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-44" value="UniBusiness" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="570" y="310" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-45" value="Biz A&amp;nbsp;&lt;div&gt;Android&amp;nbsp;&lt;/div&gt;&lt;div&gt;Client&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="580" y="340" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-46" value="Biz A&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;div&gt;&lt;div&gt;iOS&lt;/div&gt;&lt;div&gt;Client&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="640" y="340" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-47" value="Biz A&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;div&gt;&lt;div&gt;Flutter&lt;/div&gt;&lt;div&gt;Client&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="700" y="340" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-48" value="BizModule&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;A&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;iOS Impl&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="670" y="450" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-49" value="Biz B&amp;nbsp;&lt;div&gt;Android&amp;nbsp;&lt;/div&gt;&lt;div&gt;Client&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="760" y="340" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-50" value="Biz B&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;div&gt;&lt;div&gt;iOS&lt;/div&gt;&lt;div&gt;Client&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="820" y="340" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-51" value="Biz B&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;div&gt;&lt;div&gt;Flutter&lt;/div&gt;&lt;div&gt;Client&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="880" y="340" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-52" value="Flutter" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="960" y="240" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-53" value="Code Gen" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="960" y="280" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-54" value="UniAPI" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="190" y="520" width="750" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-56" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="170" width="370" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-58" value="NA+Flutter" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B3FF66;strokeColor=#b85450;gradientColor=#99CCFF;gradientDirection=east;" vertex="1" parent="1">
+          <mxGeometry x="960" y="160" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-59" value="EventBus" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B3FF66;strokeColor=#b85450;gradientColor=#99CCFF;gradientDirection=east;" vertex="1" parent="1">
+          <mxGeometry x="200" y="250" width="350" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-60" value="Native Subscriber" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="320" y="200" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-61" value="Flutter Subscriber" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="440" y="200" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-62" value="Fire Event" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B3FF66;strokeColor=#b85450;gradientColor=#99CCFF;gradientDirection=east;" vertex="1" parent="1">
+          <mxGeometry x="200" y="200" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-63" value="UniBus" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="190" y="170" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-64" value="混合事件通信&lt;div&gt;&amp;amp;&lt;br&gt;&lt;div&gt;混合状态管理&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="90" y="170" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-65" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="170" width="370" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-66" value="State" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B3FF66;strokeColor=#b85450;gradientColor=#99CCFF;gradientDirection=east;" vertex="1" parent="1">
+          <mxGeometry x="580" y="250" width="350" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-67" value="Native Watch" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="700" y="200" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-68" value="Flutter Watch" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="820" y="200" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-69" value="State read/write" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B3FF66;strokeColor=#b85450;gradientColor=#99CCFF;gradientDirection=east;" vertex="1" parent="1">
+          <mxGeometry x="580" y="200" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-70" value="UniBus" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="570" y="170" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-71" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="90" y="160" as="sourcePoint" />
+            <mxPoint x="940" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-72" value="Flutter PlatformView" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="200" y="100" width="360" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-77" value="Android Page" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="200" y="50" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-78" value="Flutter Page" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="320" y="50" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-80" value="UniPage Abstraction" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B3FF66;strokeColor=#b85450;gradientColor=#99CCFF;gradientDirection=east;" vertex="1" parent="1">
+          <mxGeometry x="440" y="50" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-81" value="Flutter UniPage" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="200" width="360" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-82" value="&lt;div style=&quot;&quot;&gt;Features:&lt;/div&gt;&lt;ol&gt;&lt;li style=&quot;&quot;&gt;Native Page&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Embedded&lt;/span&gt;&lt;/li&gt;&lt;li style=&quot;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Call Navigator&amp;nbsp;&lt;/span&gt;on native side&lt;/li&gt;&lt;li style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;Bi-direction&amp;nbsp;&lt;/span&gt;parameters&lt;/li&gt;&lt;/ol&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="570" y="5" width="210" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-83" value="UniPage" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="190" y="-30" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_zpeFa89MfL5RgfBDyw3-84" value="页面混合渲染" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="90" y="-30" width="90" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
