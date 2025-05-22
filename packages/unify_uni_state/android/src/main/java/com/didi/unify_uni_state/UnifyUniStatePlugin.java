@@ -39,7 +39,7 @@ public class UnifyUniStatePlugin implements FlutterPlugin, MethodCallHandler {
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
     switch (call.method) {
-      case "get":
+      case "read":
         try {
           // 从Flutter接收事件，转发给Android端UniState
           String key = call.argument("state");
