@@ -35,7 +35,7 @@ class UniState {
   final Map<String, StreamController> _StateStreams = {};
 
   Future<void> set(String stateKey, dynamic stateValue) async {
-    await _methodChannel.invokeListMethod('set', {
+    await _methodChannel.invokeMethod('set', {
       _eventKeyState: stateKey,
       _eventKeyValue: stateValue
     });
