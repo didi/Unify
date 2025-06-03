@@ -1,7 +1,7 @@
 name: unify_uni_state
 description: A new Flutter plugin project.
 version: 0.0.1
-homepage:
+homepage: https://github.com/didi/Unify/tree/master/packages/unify_uni_state
 
 environment:
   sdk: '>=3.1.5 <4.0.0'
