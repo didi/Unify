@@ -1,6 +1,6 @@
 name: unify_uni_bus
 description: UniBus is a Flutter event bus that enables seamless cross-platform communication between Flutter and Android, allowing event registration and dispatch from either side with a unified API.
-version: 0.0.1
+version: 0.0.1+1
 homepage: https://github.com/didi/Unify/tree/master/packages/unify_uni_bus
 
 environment:
