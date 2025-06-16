@@ -54,7 +54,7 @@ class UniBus {
   /// 监听指定事件
   ///
   /// [eventName] 事件名称
-  Stream<Map<String, dynamic>> on(String eventName) {
+  Stream<Map<String, dynamic>?> on(String eventName) {
     // 返回包含该事件数据的流
     return _streamController.stream
         .where((event) => event['eventName'] == eventName)
