@@ -1,5 +1,5 @@
-import 'package:unicallback_demo/uniapi/uni_callback.dart';
 import 'package:unify_flutter/api/api.dart';
+import 'package:unicallback_demo/uniapi/uni_callback.dart';
 import 'location_info_model.dart';
 
 @UniNativeModule()
