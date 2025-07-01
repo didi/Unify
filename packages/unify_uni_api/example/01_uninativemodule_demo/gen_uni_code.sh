@@ -1,4 +1,4 @@
-dart run uni_api_s/bin/unify_flutter.dart api\
+dart run unify_flutter api\
   --input=`pwd`/interface \
   --dart_out=`pwd`/lib \
   --java_out=`pwd`/android/src/main/java/com/example/uninativemodule_demo \
