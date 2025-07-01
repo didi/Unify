@@ -12,6 +12,7 @@ import 'package:unify_flutter/utils/constants.dart';
 import 'package:unify_flutter/utils/extension/string_extension.dart';
 import 'package:unify_flutter/utils/file/input_file.dart';
 import 'package:analyzer/dart/ast/token.dart';
+import 'package:analyzer/src/dart/ast/token.dart' as src_dart_token;
 import 'package:unify_flutter/utils/log.dart';
 
 class UniApiAstVisitor extends BaseAstVisitor {
@@ -38,17 +39,17 @@ class UniApiAstVisitor extends BaseAstVisitor {
     if (node.abstractKeyword != null) {
       if (isUniNativeModule(node.metadata)) {
         _nativeModule = Module(inputFile!,
-            name: node.name.name,
+            name: node.name.lexeme,
             methods: <Method>[],
             codeComments: codeComments);
       } else if (isUniFlutterModule(node.metadata)) {
         _flutterModule = Module(inputFile!,
-            name: node.name.name,
+            name: node.name.lexeme,
             methods: <Method>[],
             codeComments: codeComments);
       }
     } else if (isUniModel(node.metadata)) {
-      _currentModel = Model(node.name.name, inputFile!,
+      _currentModel = Model(node.name.lexeme, inputFile!,
           fields: [], codeComments: codeComments);
     }
 
@@ -58,15 +59,15 @@ class UniApiAstVisitor extends BaseAstVisitor {
 
   @override
   Object? visitMethodDeclaration(dart_ast.MethodDeclaration node) {
-    final name = node.name.name;
+    final name = node.name.lexeme;
     final ignoreError = isIgnoreError(node.metadata);
 
     final returnType = node.returnType!;
 
     final returnTypeIdentifier =
-        getFirstChildOfType<dart_ast.SimpleIdentifier>(returnType)!;
+        getFirstChildOfType<src_dart_token.SimpleToken>(returnType)!;
     final isNullable = returnType.question != null;
-    final returnTypeName = returnTypeIdentifier.name;
+    final returnTypeName = returnTypeIdentifier.lexeme;
     final isAsync = returnTypeName == typeFuture;
 
     final codeComments = _codeCommentsParser(node.documentationComment?.tokens);
@@ -120,8 +121,8 @@ class UniApiAstVisitor extends BaseAstVisitor {
           // 类型 type.name.name
           // isNullable type.question != null
           // 属性名称 node.fields.variables[0].name.lexeme
-          final fieldName = node.fields.variables[0].name.name;
-          final typeString = type.name.name;
+          final fieldName = node.fields.variables[0].name.lexeme;
+          final typeString = type.name2.lexeme;
           final isNullable = type.question != null;
           final codeComments =
               _codeCommentsParser(node.documentationComment?.tokens);
@@ -220,9 +221,9 @@ class UniApiAstVisitor extends BaseAstVisitor {
   Variable formalParameterToField(dart_ast.FormalParameter parameter) {
     final namedType = getFirstChildOfType<dart_ast.NamedType>(parameter);
     if (namedType != null) {
-      final parameterName = parameter.identifier!.name;
+      final parameterName = parameter.name!.lexeme;
       final isNullable = namedType.question != null;
-      final typeString = namedType.name.name;
+      final typeString = namedType.name2.lexeme;
       final astType = stringToAstType(typeString,
           generics: typeAnnotationsToTypeArguments(namedType.typeArguments),
           maybeNull: isNullable);
@@ -258,7 +259,7 @@ class UniApiAstVisitor extends BaseAstVisitor {
     if (typeArguments != null) {
       for (final Object x in typeArguments.childEntities) {
         if (x is dart_ast.NamedType) {
-          final typeString = x.name.name;
+          final typeString = x.name2.lexeme;
           final isNullable = x.question != null;
           final typeArgs = typeAnnotationsToTypeArguments(x.typeArguments);
           final astType = stringToAstType(typeString,

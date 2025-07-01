@@ -9,7 +9,7 @@ class CustomTypeVisitor extends BaseAstVisitor {
     if (isUniNativeModule(node.metadata) ||
         isUniFlutterModule(node.metadata) ||
         isUniModel(node.metadata)) {
-      _customTypes.add(node.name.name);
+      _customTypes.add(node.name.lexeme);
     }
     node.visitChildren(this);
     return null;

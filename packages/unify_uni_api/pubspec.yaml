@@ -1,6 +1,6 @@
 name: unify_flutter
 description:  An efficient, flexible Flutter-Native hybrid communication framework for seamless module integration and automatic code generation. 
-version: 3.0.1
+version: 3.0.2
 homepage: https://github.com/didi/Unify
 
 environment:
@@ -8,9 +8,9 @@ environment:
 
 dependencies:
   args: ^2.3.0
-  analyzer: '>=4.1.0 <4.2.0'
+  analyzer: ^7.4.6
   path: ^1.8.0
 
 dev_dependencies:
-  pedantic: ^1.11.1
+  lints: ^5.1.1
   test: ^1.19.4
