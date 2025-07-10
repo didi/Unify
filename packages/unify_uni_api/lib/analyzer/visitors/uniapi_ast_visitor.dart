@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:unify_flutter/analyzer/parse_results.dart';
 import 'package:analyzer/dart/ast/ast.dart' as dart_ast;
 import 'package:unify_flutter/analyzer/visitors/base_ast_visitor.dart';
