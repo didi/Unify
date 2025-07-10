@@ -314,12 +314,15 @@ abstract class FlutterModuleGenerator {
                             'NSDictionary *msg = [NSDictionary dictionaryWithObjectsAndKeys:'));
 
                     // 参数传递使用原方法（不带 block 的）
-                    for (final param in method.parameters) {
-                      funcBody.add(OneLine(
+                    funcBody.addAll(method.parameters.where((arg) {
+                      return !arg.type.hasMessagerAnno(); // 排除 @RequiredMessager() 场景
+                    }).map((arg) {
+                      return OneLine(
                           depth: depth + 2,
                           body:
-                              '[self wrapNil:${param.type.convertOcObj2Json(param.name)}], @"${param.name}",'));
-                    }
+                              '[self wrapNil:${arg.type.convertOcObj2Json(arg.name)}], @"${arg.name}",');
+                    }));
+
                     funcBody.add(OneLine(depth: depth + 2, body: 'nil];'));
                     funcBody.add(EmptyLine());
 
