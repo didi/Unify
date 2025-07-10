@@ -24,4 +24,7 @@ class BaseAstVisitor extends dart_ast_visitor.RecursiveAstVisitor<Object?> {
 
   bool isIgnoreError(dart_ast.NodeList<dart_ast.Annotation> metadata) =>
       hasMetadata(metadata, ignoreErrorAnnotation);
+
+  bool isRequiredMessager(dart_ast.NodeList<dart_ast.Annotation> metadata) =>
+      hasMetadata(metadata, requiredMessagerAnnotation);
 }

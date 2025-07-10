@@ -14,4 +14,12 @@ extension ListExtensions on List {
     removeWhere((dynamic element) => element == typeFlutterError);
     removeWhere((dynamic element) => element == typeFuture);
   }
+
+  void insertAtSecondLast(dynamic newElement) {
+    if (length < 1) {
+      throw ArgumentError(
+          'List must have at least one element to insert at the second last position.');
+    }
+    insert(length - 1, newElement);
+  }
 }
