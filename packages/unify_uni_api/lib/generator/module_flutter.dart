@@ -25,6 +25,8 @@ import 'package:unify_flutter/generator/widgets/lang/oc/oc_forward_declaration.d
 import 'package:unify_flutter/generator/widgets/lang/oc/oc_function.dart';
 import 'package:unify_flutter/generator/widgets/lang/oc/oc_import.dart';
 import 'package:unify_flutter/utils/extension/codeunit_extension.dart';
+import 'package:unify_flutter/utils/extension/list_extension.dart';
+import 'package:unify_flutter/utils/extension/method_extension.dart';
 
 abstract class FlutterModuleGenerator {
   static String javaCode(Module module, UniAPIOptions options) {
@@ -104,11 +106,19 @@ abstract class FlutterModuleGenerator {
                   final resultType = method.returnType.realType();
                   if (resultType is! AstVoid) {
                     registerCustomType('Result');
-                    argSignatures.add(Variable(
+                    Variable cbVar = Variable(
                         AstCustomType('Result', generics: [resultType]),
-                        'callback'));
+                        'callback');
+                    if (!method.hasMessagerAnno) {
+                      argSignatures.add(cbVar);
+                    } else {
+                      argSignatures.insertAtSecondLast(cbVar);
+                    }
                   }
 
+                  argSignatures.lastOrNull?.type
+                    .reassignAstCustomType(typeBinaryMessengerInAndroid);
+                  
                   return JavaFunction(
                       depth: depth,
                       isPublic: true,
@@ -121,13 +131,14 @@ abstract class FlutterModuleGenerator {
                             OneLine(
                                 depth: depth + 2,
                                 body:
-                                    'new BasicMessageChannel<>(messenger, "${makeChannelName(module, method)}", new StandardMessageCodec());'),
+                                    'new BasicMessageChannel<>(${!method.hasMessagerAnno ? 'messenger' : Keys.binaryMessenger}, "${makeChannelName(module, method)}", new StandardMessageCodec());'),
                             OneLine(
                                 depth: depth + 1,
                                 body:
                                     'Map<String, Object> parameters = new HashMap<>();'),
                             ...argSignatures.where((arg) {
-                              return arg.type.astType() != 'Result';
+                              return arg.type.astType() != 'Result' &&
+                                  !arg.type.hasMessagerAnno();
                             }).map((arg) {
                               return OneLine(
                                   depth: depth + 1,
@@ -294,7 +305,7 @@ abstract class FlutterModuleGenerator {
                     funcBody.add(OneLine(
                         depth: depth + 3,
                         body:
-                            'binaryMessenger:[[self instance] binaryMessenger]];'));
+                            'binaryMessenger:${!methodFixed.hasMessagerAnno ? "[[self instance] binaryMessenger]" : Keys.binaryMessenger}];'));
                     funcBody.add(EmptyLine());
 
                     funcBody.add(OneLine(depth: depth + 1, body: '// 数据处理'));
@@ -304,12 +315,15 @@ abstract class FlutterModuleGenerator {
                             'NSDictionary *msg = [NSDictionary dictionaryWithObjectsAndKeys:'));
 
                     // 参数传递使用原方法（不带 block 的）
-                    for (final param in method.parameters) {
-                      funcBody.add(OneLine(
+                    funcBody.addAll(method.parameters.where((arg) {
+                      return !arg.type.hasMessagerAnno(); // 排除 @RequiredMessager() 场景
+                    }).map((arg) {
+                      return OneLine(
                           depth: depth + 2,
                           body:
-                              '[self wrapNil:${param.type.convertOcObj2Json(param.name)}], @"${param.name}",'));
-                    }
+                              '[self wrapNil:${arg.type.convertOcObj2Json(arg.name)}], @"${arg.name}",');
+                    }));
+
                     funcBody.add(OneLine(depth: depth + 2, body: 'nil];'));
                     funcBody.add(EmptyLine());
 
@@ -376,7 +390,7 @@ abstract class FlutterModuleGenerator {
                 depth: depth + 1,
                 functionName: method.name,
                 isAbstract: true,
-                params: method.parameters,
+                params: method.realDartMethodParams,
                 returnType: method.returnType,
               ));
               ret.add(EmptyLine());
@@ -411,7 +425,7 @@ abstract class FlutterModuleGenerator {
                             ? 'Map<Object?, Object?> wrapped = message as Map<Object?, Object?>;'
                             : 'Map<Object, Object> wrapped = message as Map<Object, Object>;'));
                     final methodArgs = <String>[];
-                    for (final param in method.parameters) {
+                    for (final param in method.realDartMethodParams) {
                       methodArgs.add(
                           '${param.type.realType().convertDartJson2Obj(vname: "wrapped['${param.name}']")}');
                     }
@@ -449,6 +463,12 @@ abstract class FlutterModuleGenerator {
   /// UniCompleted Block 用于结果异步返回
   static Method _transformFlutterModuleMethod(Method method) {
     final methodCopy = Method.copy(method);
+    if (methodCopy.hasMessagerAnno) {
+      methodCopy.lastArgument?.type = AstCustomType.copy(
+        methodCopy.lastArgument?.type as AstCustomType,
+        generics: [AstCustomType(TypeBinaryMessengerInIOS)],
+      )..type = 'id';
+    }
 
     if (method.returnType is AstVoid) {
       return methodCopy;
