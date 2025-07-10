@@ -39,12 +39,15 @@ const uniNativeModuleAnnotation = 'UniNativeModule';
 const uniFlutterModuleAnnotation = 'UniFlutterModule';
 const uniModelAnnotation = 'UniModel';
 const ignoreErrorAnnotation = 'IgnoreError';
+const requiredMessagerAnnotation = 'RequiredMessager';
 
 /// Default buid-in type
 const typeUniCallbackManager = 'UniCallbackManager';
 const typeUniCallback = 'UniCallback';
 const typeFlutterError = 'FlutterError';
 const typeFuture = 'Future';
+const typeBinaryMessengerInAndroid = 'BinaryMessenger';
+const TypeBinaryMessengerInIOS = 'FlutterBinaryMessenger';
 
 /// Collection of keys used in dictionaries across generators.
 class Keys {
@@ -74,6 +77,9 @@ class Keys {
 
   /// The key is a function name 'mapConvert'
   static const String mapConvert = 'mapConvert';
+
+  /// The key is a function parameter name 'binaryMessenger'
+  static const String binaryMessenger = 'binaryMessenger';
 }
 
 /// Comment content at the beginning of the file

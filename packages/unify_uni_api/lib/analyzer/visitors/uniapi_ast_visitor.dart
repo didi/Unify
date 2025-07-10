@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:unify_flutter/analyzer/parse_results.dart';
 import 'package:analyzer/dart/ast/ast.dart' as dart_ast;
 import 'package:unify_flutter/analyzer/visitors/base_ast_visitor.dart';
@@ -83,6 +85,12 @@ class UniApiAstVisitor extends BaseAstVisitor {
     final parameters = node.parameters!;
     final arguments =
         parameters.parameters.map(formalParameterToField).toList();
+
+    // '@RequiredMessager()' 场景
+    final mVariable = handleRequiredMessagerAnnotation(node);
+    if (mVariable != null) {
+      arguments.add(mVariable);
+    }
 
     if (_nativeModule != null && astType is AstCustomType && isAsync == true) {
       astType.isNativeModule = true;
@@ -231,6 +239,20 @@ class UniApiAstVisitor extends BaseAstVisitor {
     } else {
       throw Exception('formalParameterToField faild!');
     }
+  }
+
+  Variable? handleRequiredMessagerAnnotation(dart_ast.MethodDeclaration node) {
+    /* 
+      "UniFlutterModule" mode and interface with "RequiredMessenger" annotation.
+      Additional 'binaryMessenger' parameter is required for interface parameters.
+    */
+    if (_flutterModule != null && isRequiredMessager(node.metadata)) {
+      return Variable(
+          AstCustomType(requiredMessagerAnnotation, fromRequiredMessager: true),
+          Keys.binaryMessenger);
+    }
+
+    return null;
   }
 
   AstType? stringToAstType(String typeStr,

@@ -9,12 +9,22 @@ class AstCustomType extends AstType {
     List<bool> genericsMaybeNull = const <bool>[],
     List<AstType> generics = const <AstType>[],
     this.isNativeModule,
+    this.fromRequiredMessager
   }) : super(maybeNull, genericsMaybeNull,
             keepRaw: keepRaw, generics: generics);
+
+  AstCustomType.copy(AstCustomType other, {List<AstType>? generics})
+      : type = other.type,
+        isNativeModule = other.isNativeModule,
+        fromRequiredMessager = other.fromRequiredMessager,
+        super(other.maybeNull, other.genericMaybeNull,
+            keepRaw: other.keepRaw, generics: generics ?? other.generics);
 
   String type;
 
   bool? isNativeModule;
+
+  bool? fromRequiredMessager;
 
   @override
   String javaType({bool showGenerics = false}) {
