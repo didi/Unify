@@ -115,9 +115,10 @@ abstract class FlutterModuleGenerator {
                       argSignatures.insertAtSecondLast(cbVar);
                     }
                   }
-                  argSignatures.last.type
-                      .reassignAstCustomType(typeBinaryMessengerInAndroid);
 
+                  argSignatures.lastOrNull?.type
+                    .reassignAstCustomType(typeBinaryMessengerInAndroid);
+                  
                   return JavaFunction(
                       depth: depth,
                       isPublic: true,
