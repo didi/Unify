@@ -1,3 +1,7 @@
+## 0.0.9
+
+- UniPage adapt to Android 15
+
 ## 0.0.8
 
 - feat: Android impl of UniPage postCreate
