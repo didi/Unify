@@ -43,6 +43,8 @@ const requiredMessagerAnnotation = 'RequiredMessager';
 
 /// Default buid-in type
 const typeUniCallbackManager = 'UniCallbackManager';
+const typeCallbackDispatcher = 'UniCallbackDispatcher';
+const typeUniCallbackDispose = 'UniCallbackDispose';
 const typeUniCallback = 'UniCallback';
 const typeFlutterError = 'FlutterError';
 const typeFuture = 'Future';
@@ -80,6 +82,13 @@ class Keys {
 
   /// The key is a function parameter name 'binaryMessenger'
   static const String binaryMessenger = 'binaryMessenger';
+
+  /// The key is a function parameter name 'callbackName'
+  static const String callbackName = 'callbackName';
+
+  /// The key is a class property name 'delegate'
+  static const String delegate = 'delegate';
+
 }
 
 /// Comment content at the beginning of the file

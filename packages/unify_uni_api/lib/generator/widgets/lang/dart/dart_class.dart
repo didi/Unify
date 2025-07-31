@@ -18,6 +18,7 @@ class DartClass extends CodeUnit with CodeUnitMixin {
     this.fields = const [],
     this.methods = const [],
     this.hasConstructor = false,
+    this.isUniModelMode = false
   }) : super(depth);
 
   // 类名
@@ -39,6 +40,9 @@ class DartClass extends CodeUnit with CodeUnitMixin {
 
   // 外界注入的代码
   InjectCodeUnit? injectedJavaCodes;
+
+  // 是否是 UniModel 模式
+  bool isUniModelMode;
 
   List<CodeUnit> dartFields() {
     return fields.map((field) => DartField(field, depth: depth + 1)).toList();
@@ -63,8 +67,9 @@ class DartClass extends CodeUnit with CodeUnitMixin {
   String build() {
     return CodeUnit.join([
       classSignature(),
-      ...cloneDartCollectionType(
-          methods: methods, fields: fields, depth: depth),
+      if (isUniModelMode)
+        ...cloneDartCollectionType(
+            methods: methods, fields: fields, depth: depth),
       if (hasConstructor) DartConstructor(className, fields, depth: depth + 1),
       if (hasConstructor) EmptyLine(),
       ...dartFields(),

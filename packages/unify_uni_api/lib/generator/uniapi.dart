@@ -1,4 +1,5 @@
 import 'package:unify_flutter/cli/options.dart';
+import 'package:unify_flutter/generator/callback_dispatcher.dart';
 import 'package:unify_flutter/generator/widgets/base/comment.dart';
 import 'package:unify_flutter/generator/widgets/base/line.dart';
 import 'package:unify_flutter/generator/widgets/code_template.dart';
@@ -30,11 +31,16 @@ abstract class UniApiGenerator {
     return projectNameSnake;
   }
 
+  static String _genCallbackDispatcherClassName(UniAPIOptions options) {
+    return CallbackDispatcherGenerator.className(options);
+  }
+
   static String ocHeaderCode(UniAPIOptions options) {
     return CodeTemplate(children: [
       CommentUniAPI(),
       EmptyLine(),
       OCImport(fullImportName: 'Foundation/Foundation.h'),
+      OCImport(fullImportName: 'Flutter/Flutter.h'),
       OneLine(body: 'NS_ASSUME_NONNULL_BEGIN'),
       EmptyLine(),
       OneLine(body: '#ifndef UNI_EXPORT'),
@@ -49,6 +55,11 @@ abstract class UniApiGenerator {
       OneLine(body: '#endif'),
       EmptyLine(),
       OneLine(body: '@interface ${_genObjcClassName(options)} : NSObject'),
+      EmptyLine(),
+      OneLine(body: '/// 初始化'),
+      OneLine(
+          body:
+              '+ (void)init:(NSObject<FlutterBinaryMessenger>* _Nonnull)binaryMessenger;'),
       EmptyLine(),
       OneLine(body: '/// 加载导出类'),
       OneLine(body: '+ (void)loadExportClass;'),
@@ -71,11 +82,15 @@ abstract class UniApiGenerator {
           importType: ocImportTypeLocal),
       OCImport(fullImportName: 'dlfcn.h'),
       OCImport(fullImportName: 'mach-o/getsect.h'),
+      OCImport(
+          fullImportName:
+              '${CallbackDispatcherGenerator.genOcHeaderFileName(options)}',
+          importType: ocImportTypeLocal),
       OneLine(body: objcUniApiPrivateStaticFounction),
       EmptyLine(),
       OneLine(body: '@implementation ${_genObjcClassName(options)}'),
       EmptyLine(),
-      OneLine(body: objcUniApiClassMethods(_genSectname(options))),
+      OneLine(body: objcUniApiClassMethods(_genSectname(options), _genCallbackDispatcherClassName(options))),
       OneLine(body: '@end')
     ]).build();
   }
@@ -98,7 +113,7 @@ abstract class UniApiGenerator {
       JavaImport(fullClassName: 'java.util.Map'),
       EmptyLine(),
       OneLine(body: 'public class ${_genJavaClassName(options)} {'),
-      OneLine(body: javaUniApiClassMethods),
+      OneLine(body: javaUniApiClassMethods(options)),
       OneLine(body: '}')
     ]).build();
   }

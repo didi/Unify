@@ -25,6 +25,22 @@ void createAndWrite(String path, String content) {
   file.writeAsStringSync(content);
 }
 
+Future<void> removeSlashComments(String filePath) async {
+  try {
+    final file = File(filePath);
+    if (!await file.exists()) {
+      throw Exception('File does not exist: $filePath');
+    }
+
+    final content = await file.readAsString();
+    final newContent = content.replaceAll(RegExp(r'\/\/'), '');
+    await file.writeAsString(newContent);
+  } catch (e) {
+    throw Exception('Failed to remove comments: $e');
+  }
+}
+
+
 Future<List<FileSystemEntity>> getDirsUnderPath(String projectPath) async {
   var files = await dirContents(Directory(projectPath), recursive: true);
   files = files
