@@ -1,4 +1,5 @@
 import 'caches.dart';
+import 'uni_callback_manager.dart';
 
 class UniCallback<T> {
   String callbackName = '';
@@ -28,6 +29,10 @@ class UniCallbackDisposable {
   
   void dispose() {
     if (callback != null) {
+      UniCallbackManager.getInstance().syncDispose({
+       'callback': callback!.callbackName
+      });
+
       uniCallbackCache.remove(callback!.callbackName);
       callback = null;
     }

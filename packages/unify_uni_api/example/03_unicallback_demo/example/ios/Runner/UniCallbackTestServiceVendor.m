@@ -64,8 +64,13 @@ UNI_EXPORT(UniCallbackTestServiceVendor)
 
 - (void)doCallbackAction1:(OnDoCallbackAction1Callback*)callback error:(FlutterError *_Nullable *_Nonnull)error {
     if (callback) {
+        callback.delegate = self;
         [callback onEvent:@"I come from the function doCallbackAction1"];
     }
+}
+
+- (void)disposeCallback:(id)params {
+    
 }
 
 @end

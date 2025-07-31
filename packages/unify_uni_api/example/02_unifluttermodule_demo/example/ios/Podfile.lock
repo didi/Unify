@@ -14,9 +14,9 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/unifluttermodule_demo/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
-  unifluttermodule_demo: c2efca5b1cc96f9ae4d7a5467507113695d6b3e0
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  unifluttermodule_demo: 90dd4211c9f496f0af4d6c8dc34b0f26f45fb56e
 
-PODFILE CHECKSUM: 8e679eca47255a8ca8067c4c67aab20e64cb974d
+PODFILE CHECKSUM: 1a782344d33c12ced0182eeab11e8668d253eb48
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.11.3

@@ -6,23 +6,14 @@
 #import <Flutter/Flutter.h>
 NS_ASSUME_NONNULL_BEGIN
 
-#ifndef UNI_EXPORT
-#define UNI_EXPORT(className) \
-__attribute__((used, section("__DATA , uf_uni_api"))) \
-static char *__uni_export_class_##className##__ = ""#className"";
-#endif
+@protocol UFUniCallbackDispose
+@required
+- (void)disposeCallback:(id)params;
+@end
 
-@interface UFUniAPI : NSObject
-
-/// 初始化
+@interface UFUniCallbackDispatcher : NSObject
 + (void)init:(NSObject<FlutterBinaryMessenger>* _Nonnull)binaryMessenger;
-
-/// 加载导出类
-+ (void)loadExportClass;
-
-/// 获取协议的遵守者
-+ (id)get:(NSString *)className;
-
++ (void)registe:(NSString * _Nonnull)name callback:(id _Nonnull)subscriber;
 @end
 
 NS_ASSUME_NONNULL_END

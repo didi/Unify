@@ -270,7 +270,7 @@ packages:
       path: "../.."
       relative: true
     source: path
-    version: "3.0.2"
+    version: "3.0.4"
   vector_math:
     dependency: transitive
     description:
