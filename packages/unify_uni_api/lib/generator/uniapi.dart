@@ -112,6 +112,8 @@ abstract class UniApiGenerator {
       JavaImport(fullClassName: 'java.util.HashMap'),
       JavaImport(fullClassName: 'java.util.Map'),
       EmptyLine(),
+      JavaImport(fullClassName: 'io.flutter.plugin.common.BinaryMessenger'),
+      EmptyLine(),
       OneLine(body: 'public class ${_genJavaClassName(options)} {'),
       OneLine(body: javaUniApiClassMethods(options)),
       OneLine(body: '}')

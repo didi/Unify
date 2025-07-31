@@ -69,6 +69,14 @@ abstract class ModuleGenerator {
           fullClassName: 'io.flutter.plugin.common.StandardMessageCodec'),
       JavaCustomNestedImports(module.inputFile, options,
           methods: module.methods, excludeImports: [typeUniCallback]),
+      if (hasUniCallback(module.methods)) ...[
+        JavaImport(
+            fullClassName:
+                '${options.javaPackageName}.${options.objcUniAPIPrefix}$typeUniCallback'),
+        JavaImport(
+            fullClassName:
+                '${options.javaPackageName}.${options.objcUniAPIPrefix}$typeUniCallbackDispose')
+      ],
       EmptyLine(),
       Comment(
           comments: [uniNativeModuleDesc, ...module.codeComments],
@@ -141,6 +149,12 @@ abstract class ModuleGenerator {
       JavaImport(
           fullClassName:
               'static ${options.javaPackageName}.$projectName.UniModel.map'),
+      if (hasUniCallback(module.methods)) ...[
+        EmptyLine(),
+        JavaImport(
+            fullClassName:
+                '${options.javaPackageName}.${CallbackDispatcherGenerator.className(options)}')
+      ],
       JavaCustomNestedImports(module.inputFile, options,
           methods: module.methods, excludeImports: [typeUniCallback]),
       EmptyLine(),
