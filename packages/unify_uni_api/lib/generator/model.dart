@@ -193,6 +193,7 @@ abstract class ModelGenerator {
       DartClass(
           className: model.name,
           fields: model.fields,
+          isUniModelMode: true,
           injectedJavaCodes: (depth) {
             final ret = <CodeUnit>[];
 
