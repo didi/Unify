@@ -165,23 +165,20 @@ class UniAPIWorkRunner {
   }
 
   void javaGenerator() {
-    final uniDispatcherJavaFile = File(options.javaOutputPath +
-        '/' +
-        CallbackDispatcherGenerator.genJavaDispatcherFileName(options));
+    final uniDispatcherJavaFile = File(
+        '${options.javaOutputPath}/${CallbackDispatcherGenerator.genJavaDispatcherFileName(options)}');
     uniDispatcherJavaFile.createSync(recursive: true);
     uniDispatcherJavaFile.writeAsStringSync(
         CallbackDispatcherGenerator.javaDispatcherCode(options));
 
-    final uniCallbackJavaFile = File(options.javaOutputPath +
-        '/' +
-        CallbackDispatcherGenerator.genJavaCallbackFileName(options));
+    final uniCallbackJavaFile = File(
+        '${options.javaOutputPath}/${CallbackDispatcherGenerator.genJavaCallbackFileName(options)}');
     uniCallbackJavaFile.createSync(recursive: true);
     uniCallbackJavaFile.writeAsStringSync(
         CallbackDispatcherGenerator.javaCallbackCode(options));
 
-    final uniDisposeJavaFile = File(options.javaOutputPath +
-        '/' +
-        CallbackDispatcherGenerator.genJavaCallbackDisposeFileName(options));
+    final uniDisposeJavaFile = File(
+        '${options.javaOutputPath}/${CallbackDispatcherGenerator.genJavaCallbackDisposeFileName(options)}');
     uniDisposeJavaFile.createSync(recursive: true);
     uniDisposeJavaFile.writeAsStringSync(
         CallbackDispatcherGenerator.javaCallbackDisposeCode(options));
@@ -193,20 +190,18 @@ class UniAPIWorkRunner {
   }
 
   void objcGenerator() {
-    final uniDispatcherHeaderFile = File(options.objcOutput +
-        '/' +
-        CallbackDispatcherGenerator.genOcHeaderFileName(options));
+    final uniDispatcherHeaderFile = File(
+        '${options.objcOutput}/${CallbackDispatcherGenerator.genOcHeaderFileName(options)}');
     uniDispatcherHeaderFile.createSync(recursive: true);
     uniDispatcherHeaderFile
         .writeAsStringSync(CallbackDispatcherGenerator.ocHeaderCode(options));
 
-    final uniDispatcherSourceFile = File(options.objcOutput +
-        '/' +
-        CallbackDispatcherGenerator.genOcSourceFileName(options));
+    final uniDispatcherSourceFile = File(
+        '${options.objcOutput}/${CallbackDispatcherGenerator.genOcSourceFileName(options)}');
     uniDispatcherSourceFile.createSync(recursive: true);
     uniDispatcherSourceFile
         .writeAsStringSync(CallbackDispatcherGenerator.ocSourceCode(options));
-        
+
     final uniAPIHeaderFile = File(
         '${options.objcOutput}/${UniApiGenerator.genObjcHeaderFileName(options)}');
     uniAPIHeaderFile.createSync(recursive: true);
