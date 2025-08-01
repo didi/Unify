@@ -41,6 +41,11 @@ $generate
           continue;
         }
 
+        if (callback.getType().toString() == 'void') {
+          callback.onEvent(data, disposable);
+          continue;
+        }
+
         if (callback.getType() == bool) {
           (callback as UniCallback<bool>).onEvent(data as bool, disposable);
           continue;

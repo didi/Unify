@@ -260,11 +260,13 @@ class OCClassUniCallback {
                     : [Variable(paramGeneric, paramName)],
                 body: (depth) {
                   final ret = <CodeUnit>[];
-                  ret.add(Comment(depth: depth + 1, comments: ['参数判空检查']));
-                  ret.add(IfBlock(
-                      OneLine(body: '$paramName == NULL', hasNewline: false),
-                      (d) => [OneLine(depth: d, body: 'return;')],
-                      depth: depth + 1));
+                  if (paramGeneric.realType() is! AstVoid) {
+                    ret.add(Comment(depth: depth + 1, comments: ['参数判空检查']));
+                    ret.add(IfBlock(
+                        OneLine(body: '$paramName == NULL', hasNewline: false),
+                        (d) => [OneLine(depth: d, body: 'return;')],
+                        depth: depth + 1));
+                  }
                   ret.add(OneLine(
                       depth: depth + 1,
                       body: 'FlutterBasicMessageChannel *channel ='));
@@ -283,6 +285,11 @@ class OCClassUniCallback {
                         depth: depth + 1,
                         body:
                             'NSDictionary *msg = @{@"callbackName":self.callbackName,@"data":$paramName.toMap};'));
+                  } else if (paramGeneric.realType() is AstVoid) {
+                    ret.add(OneLine(
+                        depth: depth + 1,
+                        body:
+                            'NSDictionary *msg = @{@"callbackName":self.callbackName,@"data" : @""};'));
                   } else {
                     ret.add(OneLine(
                         depth: depth + 1,
