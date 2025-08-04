@@ -14,13 +14,27 @@ class UniPage extends StatelessWidget {
       {Key? key,
       this.createParams,
       this.onCreateCommonParams,
-      required this.controller})
+      required this.controller,
+      this.useHybridComposition = false})
       : super(key: key);
 
   final String viewType;
   final Map<String, dynamic>? createParams;
   final CommonParamsCallback? onCreateCommonParams;
   final UniPageController? controller;
+
+  /// Whether to use Hybrid Composition (HC) on Android, instead of the default
+  /// Texture Layer Hybrid Composition (TLHC).
+  ///
+  /// This option works only on Android, and will be ignored on iOS.
+  /// If your UniPage contains a SurfaceView, HC mode will always be used,
+  /// regardless of this option.
+  ///
+  /// Avoid setting this to true, since it may cause performance drawbacks.
+  ///
+  /// See also:
+  /// https://github.com/flutter/flutter/blob/master/docs/platforms/android/Android-Platform-Views.md
+  final bool useHybridComposition;
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +71,22 @@ class UniPage extends StatelessWidget {
         },
         onCreatePlatformView: (params) {
           controller?.init(context, viewType, params.id);
+          if (useHybridComposition) {
+            return PlatformViewsService.initExpensiveAndroidView(
+                id: params.id,
+                viewType: viewType,
+                layoutDirection: TextDirection.ltr,
+                creationParams: finalCreateParams,
+                creationParamsCodec: const StandardMessageCodec(),
+                onFocus: () {
+                  params.onFocusChanged(true);
+                })
+              ..addOnPlatformViewCreatedListener((viewId) {
+                params.onPlatformViewCreated(viewId);
+                controller?.onPlatformViewCreatedListener?.call(viewId);
+              })
+              ..create();
+          }
           return PlatformViewsService.initSurfaceAndroidView(
               id: params.id,
               viewType: viewType,
