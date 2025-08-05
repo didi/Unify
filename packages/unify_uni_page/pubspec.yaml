@@ -1,6 +1,6 @@
 name: unify_uni_page
 description: A lightweight Flutter library for seamless integration of native pages using PlatformView. Provides a unified UniPage interface for Android and iOS, enabling easy embedding of native views in Flutter apps.
-version: 0.0.9
+version: 0.1.0
 homepage: https://github.com/didi/Unify
 
 environment:
