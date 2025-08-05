@@ -1,3 +1,8 @@
+## 3.0.4
+
+* 支持 UniCallback dispose 事件的跨平台双向同步
+* 泛型嵌套场景，代码生成逻辑优化：减少冗余代码生成
+
 ## 3.0.3
 
 * feat: 在 UniFlutterModule 模式，新增 API 修饰注解`@RequiredMessager()`, 使得 UniAPI 生成的接口支持多引擎并行调用

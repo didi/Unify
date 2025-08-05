@@ -37,6 +37,7 @@ class GenerateApiCommand extends Command<int> {
   Future<int> run() async {
     _copyPreCreatedFiles(readOptions());
     await _runWorkerIsolate(argResults!.arguments);
+    _stripSlashFromFile();
 
     final exitCode = await _completer?.future;
     return exitCode ?? 0;
@@ -122,6 +123,12 @@ class GenerateApiCommand extends Command<int> {
     createAndWrite(
         path.join(options.dartOutput, projectName, dotDartFileUniApi),
         dartUniApiContent(nullSafty: options.dartNullSafety));
+  }
+
+  /// Remove slashes from files
+  void _stripSlashFromFile() {
+    removeSlashComments(path.join(
+      readOptions().dartOutput, projectName, dotDartFileUniCallback));
   }
 
   /// Generate an executable file for worker isolate

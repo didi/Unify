@@ -1,4 +1,13 @@
-String objcUniApiClassMethods(String sectname) => '''
+
+String objcUniApiClassMethods(String sectname, String clsName) => '''
++ (void)init:(NSObject<FlutterBinaryMessenger>* _Nonnull)binaryMessenger {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self loadExportClass];
+        [$clsName init: binaryMessenger];
+    });
+}
+
 + (void)loadExportClass {
   static int __UNIAPI = 0;
   static dispatch_once_t onceToken;

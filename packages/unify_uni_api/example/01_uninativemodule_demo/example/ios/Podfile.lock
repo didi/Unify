@@ -14,9 +14,9 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/uninativemodule_demo/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
-  uninativemodule_demo: fc13dc675dc476e8f65a5dc57c3a07ddfc02b365
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  uninativemodule_demo: d6d9105d0be0864a8ad6a16b39a8f842fed08d93
 
-PODFILE CHECKSUM: 8e679eca47255a8ca8067c4c67aab20e64cb974d
+PODFILE CHECKSUM: 1a782344d33c12ced0182eeab11e8668d253eb48
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.11.3

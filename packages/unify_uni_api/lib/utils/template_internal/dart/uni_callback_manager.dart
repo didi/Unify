@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 class UniCallbackManager {
   static UniCallbackManager${nullSafty ? "?" : ""} _instance;
   static ${nullSafty ? "late" : ""} BasicMessageChannel _channel;
+  static ${nullSafty ? "late" : ""} BasicMessageChannel _disposeChannel;
 
   static UniCallbackManager getInstance() {
     _instance ??= UniCallbackManager._internal();
@@ -40,6 +41,11 @@ $generate
           continue;
         }
 
+        if (callback.getType().toString() == 'void') {
+          callback.onEvent(data, disposable);
+          continue;
+        }
+
         if (callback.getType() == bool) {
           (callback as UniCallback<bool>).onEvent(data as bool, disposable);
           continue;
@@ -56,6 +62,14 @@ $generate
         }        
       }
     });
+
+    _disposeChannel = const BasicMessageChannel<Object?>(
+        '$channelPrefix.UniCallbackManager.callback_channel.dispose$channelSuffix',
+        StandardMessageCodec());
+  }
+
+  void syncDispose(Map<String, dynamic> params) {
+    _disposeChannel.send(params);
   }
 }
 ''';

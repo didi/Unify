@@ -1,5 +1,6 @@
 String dartUniCallbackContent({bool nullSafty = true}) => """
 import 'caches.dart';
+//${nullSafty ? "import 'uni_callback_manager.dart';" : ''}
 
 class UniCallback<T> {
   String callbackName = '';
@@ -29,6 +30,10 @@ class UniCallbackDisposable {
   
   void dispose() {
     if (callback != null) {
+      //${nullSafty ? '''UniCallbackManager.getInstance().syncDispose({
+      // 'callback': callback!.callbackName
+      //});''' : ''}
+
       uniCallbackCache.remove(callback${nullSafty ? "!" : ""}.callbackName);
       callback = null;
     }

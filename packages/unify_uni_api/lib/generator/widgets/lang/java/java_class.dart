@@ -1,4 +1,5 @@
 import 'package:unify_flutter/analyzer/analyzer_lib.dart';
+import 'package:unify_flutter/ast/basic/ast_void.dart';
 import 'package:unify_flutter/generator/widgets/base/comment.dart';
 import 'package:unify_flutter/generator/widgets/lang/java/java_constants.dart';
 import 'package:unify_flutter/generator/widgets/lang/java/java_field.dart';
@@ -14,6 +15,7 @@ import 'package:unify_flutter/generator/common.dart';
 import 'package:unify_flutter/generator/widgets/base/line.dart';
 import 'package:unify_flutter/generator/widgets/code_unit.dart';
 import 'package:unify_flutter/generator/widgets/lang/java/java_function.dart';
+import 'package:unify_flutter/utils/extension/string_extension.dart';
 
 typedef InjectCodeUnit = List<CodeUnit> Function(int depth);
 
@@ -234,16 +236,14 @@ class JavaClassAsyncResult extends JavaClass {
 class JavaClassUniCallback extends JavaClass {
   JavaClassUniCallback(
       String methodName, String paramName, AstType paramGeneric,
-      {int depth = 0, String channelSuffix = ''})
+      {int depth = 0, String javaUniAPIPrefix = ''})
       : super(
             depth: depth,
             className: getName(methodName, paramName),
             privateFields: [
               Variable(AstCustomType('BinaryMessenger'), 'messenger'),
             ],
-            publicFields: [
-              Variable(AstString(), 'callbackName'),
-            ],
+            parentClass: '${javaUniAPIPrefix}$typeUniCallback',
             injectedJavaCodes: (depth) => [
                   JavaFunction(
                       functionName: getName(methodName, paramName),
@@ -253,21 +253,26 @@ class JavaClassUniCallback extends JavaClass {
                       body: (depth) => [
                             OneLine(
                                 depth: depth + 1,
-                                body: 'this.messenger = messenger;'),
+                                body: 'super(callbackName, disposeDelegate);'),
                             OneLine(
                                 depth: depth + 1,
-                                body: 'this.callbackName = callbackName;')
+                                body: 'this.messenger = messenger;')
                           ],
                       params: [
                         Variable(AstCustomType('BinaryMessenger'), 'messenger'),
-                        Variable(AstString(), 'callbackName')
+                        Variable(AstString(), 'callbackName'),
+                        Variable(
+                            AstCustomType('${javaUniAPIPrefix}UniCallbackDispose'),
+                            'disposeDelegate')
                       ]),
                   EmptyLine(),
                   JavaFunction(
                       depth: depth,
                       functionName: 'onEvent',
                       isPublic: true,
-                      params: [Variable(paramGeneric, 'event')],
+                      params: paramGeneric.realType() is AstVoid
+                          ? const []
+                          : [Variable(paramGeneric, 'event')],
                       body: (depth) => [
                             OneLine(
                                 depth: depth + 1,
@@ -280,11 +285,11 @@ class JavaClassUniCallback extends JavaClass {
                             OneLine(
                                 depth: depth + 1,
                                 body:
-                                    'message.put("data", ${paramGeneric is AstCustomType ? 'event.toMap()' : 'event'});'),
+                                    'message.put("data", ${paramGeneric is AstCustomType ? 'event.toMap()' : paramGeneric is AstVoid ? '""' : 'event'});'),
                             OneLine(
                                 depth: depth + 1,
                                 body:
-                                    'new BasicMessageChannel<>(messenger, "$channelPrefix.UniCallbackManager.callback_channel$channelSuffix", StandardMessageCodec.INSTANCE).send(message);'), // fixme 这里 channel 有问题
+                                    'new BasicMessageChannel<>(messenger, "$channelPrefix.UniCallbackManager.callback_channel${javaUniAPIPrefix.suffix()}", StandardMessageCodec.INSTANCE).send(message);'), // fixme 这里 channel 有问题
                           ])
                 ]) {
     registerCustomType(typeUniCallback);

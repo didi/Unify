@@ -66,8 +66,14 @@ class OCClassDeclaration extends CodeUnit {
       sb.write(')');
     }
     if (parentClass.isNotEmpty) {
-      sb.write(' : ');
-      sb.write(parentClass);
+      if (isProtocol) {
+        sb.write('<');
+        sb.write(parentClass);
+        sb.write('>');
+      } else {
+        sb.write(' : ');
+        sb.write(parentClass);
+      }
     }
 
     return OneLine(depth: depth, body: sb.toString());
@@ -178,11 +184,11 @@ class OCClassUniCallback {
   OCClassUniCallback(this.methodName, this.paramName,
       {this.paramGeneric = const AstVoid(),
       this.depth = 0,
-      this.channelSuffix = ''});
+      this.objcUniAPIPrefix = ''});
 
   String methodName;
   String paramName;
-  String channelSuffix;
+  String objcUniAPIPrefix;
   AstType paramGeneric;
   int depth;
 
@@ -193,17 +199,29 @@ class OCClassUniCallback {
         className: getName(methodName, paramName),
         parentClass: 'NSObject',
         isInterface: true,
+        properties: [
+          Variable(AstString(), Keys.callbackName),
+          Variable(
+              AstCustomType('id', generics: [
+                AstCustomType('$objcUniAPIPrefix$typeUniCallbackDispose')
+              ]),
+              Keys.delegate)
+        ],
         instanceMethods: [
           Method(
-              name: 'onEvent', parameters: [Variable(paramGeneric, 'callback')])
+              name: 'onEvent',
+              parameters: paramGeneric.realType() is AstVoid
+                  ? const []
+                  : [Variable(paramGeneric, 'callback')])
         ]);
   }
 
   /// 传入模块方法列表，生成头文件类声明列表
   static List<CodeUnit> genPublicDeclarations(List<Method> methods,
-      {int depth = 0}) {
+      {int depth = 0, UniAPIOptions? options}) {
     return _parseMethodGenCodes(
-        methods, (uniCallback) => uniCallback.getPublicDeclaration());
+        methods, (uniCallback) => uniCallback.getPublicDeclaration(),
+        options: options);
   }
 
   /// 生成 UniCallback 在实现文件中的私有类声明
@@ -215,11 +233,10 @@ class OCClassUniCallback {
         hasExtension: true,
         isInterface: true,
         properties: [
-          Variable(AstString(), 'callbackName'),
           Variable(
               AstCustomType('id',
-                  generics: [AstCustomType('FlutterBinaryMessenger')]),
-              'binaryMessenger')
+                  generics: [AstCustomType(TypeBinaryMessengerInIOS)]),
+              Keys.binaryMessenger)
         ]);
   }
 
@@ -238,14 +255,18 @@ class OCClassUniCallback {
             OCFunction(
                 functionName: 'onEvent',
                 isInstanceMethod: true,
-                params: [Variable(paramGeneric, paramName)],
+                params: paramGeneric.realType() is AstVoid
+                    ? const []
+                    : [Variable(paramGeneric, paramName)],
                 body: (depth) {
                   final ret = <CodeUnit>[];
-                  ret.add(Comment(depth: depth + 1, comments: ['参数判空检查']));
-                  ret.add(IfBlock(
-                      OneLine(body: '$paramName == NULL', hasNewline: false),
-                      (d) => [OneLine(depth: d, body: 'return;')],
-                      depth: depth + 1));
+                  if (paramGeneric.realType() is! AstVoid) {
+                    ret.add(Comment(depth: depth + 1, comments: ['参数判空检查']));
+                    ret.add(IfBlock(
+                        OneLine(body: '$paramName == NULL', hasNewline: false),
+                        (d) => [OneLine(depth: d, body: 'return;')],
+                        depth: depth + 1));
+                  }
                   ret.add(OneLine(
                       depth: depth + 1,
                       body: 'FlutterBasicMessageChannel *channel ='));
@@ -254,7 +275,7 @@ class OCClassUniCallback {
                   ret.add(OneLine(
                       depth: depth + 3,
                       body:
-                          'messageChannelWithName:@"$channelPrefix.UniCallbackManager.callback_channel$channelSuffix"')); // fixme
+                          'messageChannelWithName:@"$channelPrefix.UniCallbackManager.callback_channel${objcUniAPIPrefix.suffix()}"')); // fixme
                   ret.add(OneLine(
                       depth: depth + 3,
                       body: 'binaryMessenger:self.binaryMessenger];'));
@@ -264,6 +285,11 @@ class OCClassUniCallback {
                         depth: depth + 1,
                         body:
                             'NSDictionary *msg = @{@"callbackName":self.callbackName,@"data":$paramName.toMap};'));
+                  } else if (paramGeneric.realType() is AstVoid) {
+                    ret.add(OneLine(
+                        depth: depth + 1,
+                        body:
+                            'NSDictionary *msg = @{@"callbackName":self.callbackName,@"data" : @""};'));
                   } else {
                     ret.add(OneLine(
                         depth: depth + 1,
@@ -295,7 +321,7 @@ class OCClassUniCallback {
         if (param.type.ocType() == typeUniCallback) {
           ret.add(mapper(OCClassUniCallback(method.name, param.name,
               paramGeneric: param.type.generics[0],
-              channelSuffix: options?.objcUniAPIPrefix.suffix() ?? '')));
+              objcUniAPIPrefix: options?.objcUniAPIPrefix ?? '')));
           ret.add(EmptyLine());
         }
       }

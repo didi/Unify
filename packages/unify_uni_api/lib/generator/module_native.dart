@@ -1,6 +1,7 @@
 import 'package:path/path.dart';
 import 'package:unify_flutter/analyzer/analyzer_lib.dart';
 import 'package:unify_flutter/ast/uniapi/ast_model.dart';
+import 'package:unify_flutter/generator/callback_dispatcher.dart';
 import 'package:unify_flutter/generator/common.dart';
 import 'package:unify_flutter/utils/constants.dart';
 import 'package:unify_flutter/utils/extension/ast_extension.dart';
@@ -47,7 +48,7 @@ abstract class ModuleGenerator {
         if (param.type.astType() == typeUniCallback) {
           ret.add(JavaClassUniCallback(
               method.name, param.name, param.type.generics[0],
-              depth: depth, channelSuffix: options.javaUniAPIPrefix.suffix()));
+              depth: depth, javaUniAPIPrefix: options.javaUniAPIPrefix));
         }
       }
 
@@ -68,6 +69,14 @@ abstract class ModuleGenerator {
           fullClassName: 'io.flutter.plugin.common.StandardMessageCodec'),
       JavaCustomNestedImports(module.inputFile, options,
           methods: module.methods, excludeImports: [typeUniCallback]),
+      if (hasUniCallback(module.methods)) ...[
+        JavaImport(
+            fullClassName:
+                '${options.javaPackageName}.${options.objcUniAPIPrefix}$typeUniCallback'),
+        JavaImport(
+            fullClassName:
+                '${options.javaPackageName}.${options.objcUniAPIPrefix}$typeUniCallbackDispose')
+      ],
       EmptyLine(),
       Comment(
           comments: [uniNativeModuleDesc, ...module.codeComments],
@@ -76,6 +85,9 @@ abstract class ModuleGenerator {
           className: module.name,
           isPublic: true,
           isInterface: true,
+          parentClass: hasUniCallback(module.methods)
+              ? '${options.objcUniAPIPrefix}$typeUniCallbackDispose'
+              : null,
           injectedJavaCodes: (depth) => [
                 if (module.methods.map((e) => e.isAsync).contains(true))
                   JavaClassAsyncResult(depth: depth),
@@ -137,6 +149,12 @@ abstract class ModuleGenerator {
       JavaImport(
           fullClassName:
               'static ${options.javaPackageName}.$projectName.UniModel.map'),
+      if (hasUniCallback(module.methods)) ...[
+        EmptyLine(),
+        JavaImport(
+            fullClassName:
+                '${options.javaPackageName}.${CallbackDispatcherGenerator.className(options)}')
+      ],
       JavaCustomNestedImports(module.inputFile, options,
           methods: module.methods, excludeImports: [typeUniCallback]),
       EmptyLine(),
@@ -156,7 +174,11 @@ abstract class ModuleGenerator {
                       Variable(AstCustomType(module.name), 'impl')
                     ],
                     isStatic: true,
-                    body: (depth) => module.methods
+                    body: (depth) => [
+                      OneLine(
+                              depth: depth + 1,
+                              body: '${options.javaUniAPIPrefix}$kUniAPI.init(binaryMessenger);'),
+                      ...module.methods
                         .where((method) => method.name != module.name)
                         .map((method) => ScopeBlock(
                             depth: depth + 1,
@@ -198,13 +220,21 @@ abstract class ModuleGenerator {
                                     for (final param in method.parameters) {
                                       if (param.type.astType() ==
                                           typeUniCallback) {
+                                        ret.add(OneLine(
+                                                  depth: depth + 2,
+                                                  body:
+                                                      'String callbackName = (String) params.get("callback");'));
                                         // 这里第二个参数，取出的是对应 Callback 的唯一名称，这个从 Native 带到 Dart 再带回来
                                         final callbackClassName =
                                             '${module.name}.${JavaClassUniCallback.getName(method.name, param.name)}';
                                         ret.add(OneLine(
                                             depth: depth + 2,
                                             body:
-                                                '$callbackClassName ${param.name} = new ${module.name}.${JavaClassUniCallback.getName(method.name, param.name)}(binaryMessenger, (String) params.get("${param.name}"));'));
+                                                '$callbackClassName ${param.name} = new ${module.name}.${JavaClassUniCallback.getName(method.name, param.name)}(binaryMessenger, callbackName, impl);'));
+                                        ret.add(OneLine(
+                                                  depth: depth + 2,
+                                                  body:
+                                                      '${options.objcUniAPIPrefix}$typeCallbackDispatcher.registerCallback(callbackName, callback);'));
                                       } else {
                                         final decoded = param.type
                                             .convertJavaJson2Obj(
@@ -294,7 +324,7 @@ abstract class ModuleGenerator {
                                           ],
                                       depth: depth)
                                 ]))
-                        .toList()),
+                        .toList()]),
                 EmptyLine(),
                 JavaFunction(
                     depth: depth,
@@ -380,6 +410,11 @@ abstract class ModuleGenerator {
       CommentUniAPI(),
       EmptyLine(),
       OCImport(fullImportName: 'Foundation/Foundation.h'),
+      if (hasUniCallback(module.methods))
+        OCImport(
+            fullImportName:
+                CallbackDispatcherGenerator.genOcHeaderFileName(options),
+            importType: ocImportTypeLocal),
       EmptyLine(),
       OCForwardDeclaration(
           className: 'FlutterBinaryMessenger', isProtocol: true),
@@ -391,13 +426,16 @@ abstract class ModuleGenerator {
       EmptyLine(),
       OneLine(body: 'NS_ASSUME_NONNULL_BEGIN'),
       EmptyLine(),
-      ...OCClassUniCallback.genPublicDeclarations(module.methods),
+      ...OCClassUniCallback.genPublicDeclarations(module.methods, options: options),
       Comment(
           comments: [uniNativeModuleDesc, ...module.codeComments],
           commentType: CommentType.commentBlock),
       OCClassDeclaration(
           className: module.name,
           isProtocol: true,
+          parentClass: hasUniCallback(module.methods)
+              ? CallbackDispatcherGenerator.disposeProtocolName(options)
+              : '',
           instanceMethods: module.methods.map((method) {
             // 不能污染原来的 Method
             final methodCopy = Method.copy(method);
@@ -539,6 +577,10 @@ abstract class ModuleGenerator {
                         blockRet.add(OneLine(
                             depth: depth + 2,
                             body: '$name.binaryMessenger = binaryMessenger;'));
+                        blockRet.add(OneLine(
+                            depth: depth + 2,
+                            body:
+                                '[${CallbackDispatcherGenerator.className(options)} registe:${name}Name callback:$name];'));
                       } else if (type != const AstVoid()) {
                         final decoded = type.convertOcJson2Obj(
                             vname: '[message objectForKey:@"$name"]');
