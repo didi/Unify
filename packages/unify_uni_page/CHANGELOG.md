@@ -1,3 +1,8 @@
+## 0.1.0
+
+- feat: Add useHybridComposition param to UniPage
+- Bump Dart and Flutter constraints of UniPage to 3.0 and above
+
 ## 0.0.9
 
 - UniPage adapt to Android 15
