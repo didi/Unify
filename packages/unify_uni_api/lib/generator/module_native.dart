@@ -223,7 +223,7 @@ abstract class ModuleGenerator {
                                         ret.add(OneLine(
                                                   depth: depth + 2,
                                                   body:
-                                                      'String callbackName = (String) params.get("callback");'));
+                                                      'String callbackName = (String) params.get("${param.name}");'));
                                         // 这里第二个参数，取出的是对应 Callback 的唯一名称，这个从 Native 带到 Dart 再带回来
                                         final callbackClassName =
                                             '${module.name}.${JavaClassUniCallback.getName(method.name, param.name)}';
@@ -234,7 +234,7 @@ abstract class ModuleGenerator {
                                         ret.add(OneLine(
                                                   depth: depth + 2,
                                                   body:
-                                                      '${options.objcUniAPIPrefix}$typeCallbackDispatcher.registerCallback(callbackName, callback);'));
+                                                      '${options.objcUniAPIPrefix}$typeCallbackDispatcher.registerCallback(callbackName, ${param.name});'));
                                       } else {
                                         final decoded = param.type
                                             .convertJavaJson2Obj(
@@ -298,8 +298,21 @@ abstract class ModuleGenerator {
                                           depth: depth + 3, body: 'try {'));
                                       ret.add(OneLine(
                                           depth: depth + 4,
+                                          body: 'if (ret == null) {'));
+                                      ret.add(OneLine(
+                                          depth: depth + 5,
+                                          body:
+                                          'wrapped.put("result", null);'));
+                                      ret.add(OneLine(
+                                          depth: depth + 4,
+                                          body: '} else {'));
+                                      ret.add(OneLine(
+                                          depth: depth + 5,
                                           body:
                                               'wrapped.put("result", $retValue);'));
+                                      ret.add(OneLine(
+                                          depth: depth + 4,
+                                          body: '}'));
                                       ret.add(OneLine(
                                           depth: depth + 4,
                                           body: 'reply.reply(wrapped);'));
