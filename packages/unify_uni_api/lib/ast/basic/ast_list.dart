@@ -49,7 +49,7 @@ class AstList extends AstType {
     if (generics.isEmpty || !showGenerics) {
       return 'NSArray';
     }
-    return 'NSArray<${OCReference(generics.first).build()}>';
+    return 'NSArray<${OCReference(generics.first, boxed: true).build()}>';
   }
 
   @override

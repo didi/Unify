@@ -23,7 +23,9 @@ class AstInt extends AstType {
   }
 
   @override
-  String ocType({bool showGenerics = false}) => 'NSNumber';
+  // 非空 int 映射为标量 NSInteger,与声明类型对齐;
+  // 可空 int? 回退为 NSNumber(标量无法表达 nil)。
+  String ocType({bool showGenerics = false}) => maybeNull ? 'NSNumber' : 'NSInteger';
 
   @override
   String javaDefault() => '0';

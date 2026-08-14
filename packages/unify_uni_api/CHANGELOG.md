@@ -1,3 +1,9 @@
+## 3.0.6
+
+* feat: 在 UniFlutterModule 模式(native -> dart),新增 API 修饰注解 `@UniBufferSize(n)`,用于为指定方法对应的 platform channel 扩大消息缓冲区(默认容量为 1)。可解决原生在 Dart 侧 handler 注册前连续发消息时,早到消息被丢弃的问题。生成的原生 `setup` 会在建立 channel 时调用 `resizeChannelBuffer`(iOS)/`resizeChannelBuffer`(Android)。未标注的方法保持原有逻辑不变;`n` 必须为正整数字面量,非法值将告警并忽略;与 `@RequiredMessager` 同时标注时忽略并告警(目标 messenger 由每次调用决定)。
+* fix: [iOS] UniAPI 生成的 OC 接口，基础类型(int/double/bool)统一装箱为 NSNumber*，与 Dart 声明类型不一致；改为映射为原生标量(NSInteger/double/BOOL)使参数与返回值类型对齐声明，可空类型及集合泛型实参位置仍回退 NSNumber*。同步修复 UniNativeModule / UniFlutterModule / UniCallback 三条通道中标量装箱/拆箱的胶水代码。
+* fix: [iOS] 承接上条标量映射改动,修复 UniFlutterModule 回调路径的 ARC 报错:`UniCompleted` 回调形参为 `id`,而非空标量返回值被拆箱成 `NSInteger`/`BOOL`/`double` 后直接传入,触发 "Implicit conversion ... to 'id' is disallowed with ARC"。改为在目标为 `id` 时不拆箱,沿用 channel 传来的 NSNumber。
+
 ## 3.0.5
 
 * fix: Flutter 与原生侧 UNICallback 的 key 名称不一致导致，UNICallback析构事件获取名称时 null，引发异常

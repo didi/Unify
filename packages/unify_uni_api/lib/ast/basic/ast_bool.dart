@@ -23,7 +23,8 @@ class AstBool extends AstType {
   }
 
   @override
-  String ocType({bool showGenerics = false}) => 'NSNumber';
+  // 非空 bool 映射为标量 BOOL;可空 bool? 回退为 NSNumber。
+  String ocType({bool showGenerics = false}) => maybeNull ? 'NSNumber' : 'BOOL';
 
   @override
   String javaDefault() => 'false';

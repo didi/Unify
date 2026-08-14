@@ -212,6 +212,30 @@ Through this example, we experienced the value brought by Unify:
     3. Automatic generation of a large number of channels, easy to maintain
     4. Seamless serialization of complex entities, reducing management costs
 
+## Advanced: Enlarging the Channel Buffer (`@UniBufferSize`)
+
+In `@UniFlutterModule` mode (native -> dart), each platform channel keeps only **1** buffered message by default. If the native side sends messages *before* the Dart-side handler is registered (a common race during startup), earlier messages are silently dropped — e.g. calling a native->flutter method twice in a row may lose the first callback.
+
+Annotate the method with `@UniBufferSize(n)` to enlarge that channel's buffer to `n`, so early messages are queued instead of discarded:
+
+```dart
+@UniFlutterModule()
+abstract class LocationInfoService {
+  /// Enlarge this channel's buffer to 100.
+  @UniBufferSize(100)
+  void updateLocationInfo(LocationInfoModel model);
+}
+```
+
+The generated native `setup` will size the buffer when the channel is created (iOS `resizeChannelBuffer:` / Android `resizeChannelBuffer(int)`).
+
+Notes:
+
+- Only effective in `@UniFlutterModule` mode (native -> dart).
+- `n` must be a positive integer literal; invalid values are ignored with a warning.
+- Methods without the annotation keep the original behavior unchanged (no code is generated).
+- Ignored (with a warning) when combined with `@RequiredMessager`, since that method's target messenger is decided per call rather than at `setup` time.
+
 ## Decision Tree
 
 We have summarized the following decision-making process:

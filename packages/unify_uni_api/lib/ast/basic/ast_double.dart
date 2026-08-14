@@ -26,7 +26,8 @@ class AstDouble extends AstType {
   }
 
   @override
-  String ocType({bool showGenerics = false}) => 'NSNumber';
+  // 非空 double 映射为标量 double;可空 double? 回退为 NSNumber。
+  String ocType({bool showGenerics = false}) => maybeNull ? 'NSNumber' : 'double';
 
   @override
   String dartDefault() => '0.0';

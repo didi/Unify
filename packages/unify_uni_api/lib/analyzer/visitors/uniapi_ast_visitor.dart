@@ -62,6 +62,26 @@ class UniApiAstVisitor extends BaseAstVisitor {
     final name = node.name.lexeme;
     final ignoreError = isIgnoreError(node.metadata);
 
+    // '@UniBufferSize(n)' 场景：仅 UniFlutterModule(native -> dart)有效。
+    // 未标注时 bufferSize 为 null，保持原有逻辑不变，不生成 resize。
+    int? bufferSize;
+    if (hasUniBufferSize(node.metadata)) {
+      if (isRequiredMessager(node.metadata)) {
+        // @RequiredMessager 方法的目标 messenger 由每次调用决定，setup 内 resize
+        // 无法保证命中正确的引擎，这里跳过并告警。
+        printf(
+            'warning: @UniBufferSize on "$name" is ignored because the method is also annotated with @RequiredMessager.');
+      } else {
+        final size = uniBufferSize(node.metadata);
+        if (size == null) {
+          printf(
+              'warning: @UniBufferSize on "$name" is ignored: size must be a positive integer literal.');
+        } else {
+          bufferSize = size;
+        }
+      }
+    }
+
     final returnType = node.returnType!;
 
     final returnTypeIdentifier =
@@ -100,7 +120,8 @@ class UniApiAstVisitor extends BaseAstVisitor {
         parameters: arguments,
         ignoreError: ignoreError,
         isAsync: isAsync,
-        codeComments: codeComments);
+        codeComments: codeComments,
+        bufferSize: bufferSize);
 
     if (_flutterModule != null) {
       _flutterModule!.methods.add(method);

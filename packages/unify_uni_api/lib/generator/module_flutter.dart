@@ -79,7 +79,14 @@ abstract class FlutterModuleGenerator {
                           OneLine(
                               depth: depth + 1,
                               body:
-                                  '${options.javaUniAPIPrefix}$kUniAPI.registerModule(this);')
+                                  '${options.javaUniAPIPrefix}$kUniAPI.registerModule(this);'),
+                          // @UniBufferSize：仅为标注的 channel 扩大缓冲区。
+                          ...module.methods
+                              .where((method) => method.bufferSize != null)
+                              .map((method) => OneLine(
+                                  depth: depth + 1,
+                                  body:
+                                      'new BasicMessageChannel<>(messenger, "${makeChannelName(module, method)}", new StandardMessageCodec()).resizeChannelBuffer(${method.bufferSize});'))
                         ]),
                 EmptyLine(),
                 JavaClass(
@@ -274,6 +281,16 @@ abstract class FlutterModuleGenerator {
             ret.add(OneLine(
                 depth: depth + 1,
                 body: '[[self instance] setBinaryMessenger:binaryMessenger];'));
+            // @UniBufferSize：仅为标注的 channel 扩大缓冲区，未标注方法不生成任何代码。
+            for (final method in module.methods) {
+              if (method.bufferSize == null) {
+                continue;
+              }
+              ret.add(OneLine(
+                  depth: depth + 1,
+                  body:
+                      '[[FlutterBasicMessageChannel messageChannelWithName:@"${makeChannelName(module, method)}" binaryMessenger:binaryMessenger] resizeChannelBuffer:${method.bufferSize}];'));
+            }
             ret.add(OneLine(depth: depth, body: '}'));
 
             // 对每个模块方法进行封装
@@ -341,7 +358,7 @@ abstract class FlutterModuleGenerator {
                       funcBody.add(OneLine(
                           depth: depth + 2,
                           body:
-                              'if (reply && result) result(${method.returnType.realType().convertOcJson2Obj(vname: 'reply')});'));
+                              'if (reply && result) result(${method.returnType.realType().convertOcJson2Obj(vname: 'reply', asObject: true)});'));
                       funcBody.add(OneLine(depth: depth + 1, body: '}];'));
                     }
 

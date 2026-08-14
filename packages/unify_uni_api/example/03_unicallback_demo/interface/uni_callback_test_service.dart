@@ -8,4 +8,6 @@ abstract class UniCallbackTestService {
   void doCallbackAction0(UniCallback<LocationInfoModel> callback);
 
   void doCallbackAction1(UniCallback<String> callback);
+
+  void doCallbackAction2(UniCallback<bool> callback);
 }

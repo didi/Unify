@@ -212,6 +212,30 @@ OutlinedButton(
     3. 大量 Channel 自动生成，易于维护 
     4. 复杂实体无缝序列化，降低管理成本
 
+## 进阶:扩大 Channel 缓冲区(`@UniBufferSize`)
+
+在 `@UniFlutterModule` 模式(native -> dart)下,每条 platform channel 默认只缓存 **1** 条消息。如果原生侧在 Dart 侧 handler 注册**之前**就发送消息(启动阶段常见的时序竞争),早到的消息会被静默丢弃 —— 例如连续两次调用某个 native->flutter 方法,可能丢掉第一次的回调。
+
+给方法标注 `@UniBufferSize(n)`,即可将该 channel 的缓冲区扩大到 `n`,让早到消息进入队列而不是被丢弃:
+
+```dart
+@UniFlutterModule()
+abstract class LocationInfoService {
+  /// 将该 channel 的缓冲区扩大到 100。
+  @UniBufferSize(100)
+  void updateLocationInfo(LocationInfoModel model);
+}
+```
+
+生成的原生 `setup` 会在创建 channel 时设置缓冲区大小(iOS `resizeChannelBuffer:` / Android `resizeChannelBuffer(int)`)。
+
+说明:
+
+- 仅在 `@UniFlutterModule` 模式(native -> dart)下生效。
+- `n` 必须为正整数字面量;非法值会告警并忽略。
+- 未标注的方法保持原有逻辑不变(不生成任何代码)。
+- 与 `@RequiredMessager` 同时标注时忽略并告警,因为该方法的目标 messenger 由每次调用决定,而非在 `setup` 时确定。
+
 ## Decision Tree
 
 我们总结了如下决策流程：

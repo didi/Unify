@@ -51,4 +51,24 @@ UNI_EXPORT(DeviceInfoServiceVendor)
     else if (fileSize < GB)return [NSString stringWithFormat:@"%.2f MB",((CGFloat)fileSize)/MB];
     else return [NSString stringWithFormat:@"%.2f GB",((CGFloat)fileSize)/GB];
 }
+
+- (NSInteger)test:(BOOL)st error:(FlutterError *_Nullable *_Nonnull)error {
+    NSLog(@"test - %d",st);
+    return 999;
+}
+
+- (BOOL)test2:(double)st error:(FlutterError *_Nullable *_Nonnull)error {
+    NSLog(@"test2 - %f",st);
+    return YES;
+}
+
+- (NSString*)test3:(NSInteger)st error:(FlutterError *_Nullable *_Nonnull)error {
+    NSLog(@"test3 - %ld",(long)st);
+    return @"test3";
+}
+
+- (NSNumber*)test4:(NSInteger)st error:(FlutterError *_Nullable *_Nonnull)error {
+    NSLog(@"test4 - %ld",(long)st);
+    return @(-1000);
+}
 @end

@@ -27,4 +27,23 @@ class BaseAstVisitor extends dart_ast_visitor.RecursiveAstVisitor<Object?> {
 
   bool isRequiredMessager(dart_ast.NodeList<dart_ast.Annotation> metadata) =>
       hasMetadata(metadata, requiredMessagerAnnotation);
+
+  bool hasUniBufferSize(dart_ast.NodeList<dart_ast.Annotation> metadata) =>
+      hasMetadata(metadata, uniBufferSizeAnnotation);
+
+  /// The integer argument of `@UniBufferSize(n)`.
+  ///
+  /// Returns the parsed value only when it is a plain positive integer literal;
+  /// otherwise returns `null` (missing annotation, missing/invalid argument, or
+  /// a non-positive value), so callers can warn and skip.
+  int? uniBufferSize(dart_ast.NodeList<dart_ast.Annotation> metadata) {
+    final anno = _findMetadata(metadata, uniBufferSizeAnnotation);
+    final args = anno?.arguments?.arguments;
+    if (args == null || args.isEmpty) return null;
+    final first = args.first;
+    if (first is! dart_ast.IntegerLiteral) return null;
+    final value = first.value;
+    if (value == null || value <= 0) return null;
+    return value;
+  }
 }

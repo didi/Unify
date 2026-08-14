@@ -40,6 +40,7 @@ const uniFlutterModuleAnnotation = 'UniFlutterModule';
 const uniModelAnnotation = 'UniModel';
 const ignoreErrorAnnotation = 'IgnoreError';
 const requiredMessagerAnnotation = 'RequiredMessager';
+const uniBufferSizeAnnotation = 'UniBufferSize';
 
 /// Default buid-in type
 const typeUniCallbackManager = 'UniCallbackManager';

@@ -8,4 +8,34 @@ class LocationInfoServiceImpl extends LocationInfoService {
     // TODO: implement updateLocationInfo
     myEventBus.fire(model.encode().toString());
   }
+
+  @override
+  int test(bool st) {
+    // TODO: implement test
+    throw UnimplementedError();
+  }
+
+  @override
+  bool test2(double st) {
+    // TODO: implement test2
+    throw UnimplementedError();
+  }
+
+  @override
+  String test3(int st) {
+    // TODO: implement test3
+    throw UnimplementedError();
+  }
+
+  @override
+  int? test4(int st) {
+    // TODO: implement test4
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<int> test5(Map<String, int> st) {
+    // TODO: implement test5
+    throw UnimplementedError();
+  }
 }

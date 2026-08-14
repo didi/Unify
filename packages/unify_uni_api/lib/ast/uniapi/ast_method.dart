@@ -10,6 +10,7 @@ class Method extends UniApiNode {
     this.ignoreError = false,
     this.isAsync = false,
     this.codeComments = const <String>[],
+    this.bufferSize,
   });
 
   Method.copy(Method method)
@@ -18,7 +19,8 @@ class Method extends UniApiNode {
         parameters = method.parameters,
         ignoreError = method.ignoreError,
         codeComments = method.codeComments,
-        isAsync = method.isAsync;
+        isAsync = method.isAsync,
+        bufferSize = method.bufferSize;
 
   String name;
 
@@ -31,4 +33,10 @@ class Method extends UniApiNode {
   bool isAsync;
 
   List<String> codeComments;
+
+  /// Channel buffer size declared via `@UniBufferSize(n)`.
+  ///
+  /// `null` means no annotation was present, in which case the original
+  /// behavior is kept unchanged (no resize is generated).
+  int? bufferSize;
 }

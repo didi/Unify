@@ -43,7 +43,7 @@ class AstMap extends AstType {
     if (!showGenerics) {
       return 'NSDictionary';
     }
-    return 'NSDictionary<${OCReference(keyType).build()}, ${OCReference(valueType).build()}>';
+    return 'NSDictionary<${OCReference(keyType, boxed: true).build()}, ${OCReference(valueType, boxed: true).build()}>';
   }
 
   @override

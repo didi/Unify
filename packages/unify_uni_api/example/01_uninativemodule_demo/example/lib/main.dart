@@ -67,6 +67,42 @@ class _MyAppState extends State<MyApp> {
                 });
               },
             ),
+            Text('test\n'),
+            OutlinedButton(
+              child: const Text("test"),
+              onPressed: () {
+                DeviceInfoService.test(false).then((deviceInfoModel) {
+                  print('test - $deviceInfoModel');
+                });
+              },
+            ),
+            Text('test2\n'),
+            OutlinedButton(
+              child: const Text("test2"),
+              onPressed: () {
+                DeviceInfoService.test2(9.999).then((deviceInfoModel) {
+                  print('test - $deviceInfoModel');
+                });
+              },
+            ),
+            Text('test3\n'),
+            OutlinedButton(
+              child: const Text("test"),
+              onPressed: () {
+                DeviceInfoService.test3(3000).then((deviceInfoModel) {
+                  print('test - $deviceInfoModel');
+                });
+              },
+            ),
+            Text('test4\n'),
+            OutlinedButton(
+              child: const Text("test4"),
+              onPressed: () {
+                DeviceInfoService.test4(4000).then((deviceInfoModel) {
+                  print('test - $deviceInfoModel');
+                });
+              },
+            ),
           ],)
         ),
       ),

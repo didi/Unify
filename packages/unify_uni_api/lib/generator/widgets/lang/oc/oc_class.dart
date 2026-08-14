@@ -1,6 +1,9 @@
 import 'package:unify_flutter/analyzer/analyzer_lib.dart';
 import 'package:unify_flutter/ast/base.dart';
+import 'package:unify_flutter/ast/basic/ast_bool.dart';
 import 'package:unify_flutter/ast/basic/ast_custom.dart';
+import 'package:unify_flutter/ast/basic/ast_double.dart';
+import 'package:unify_flutter/ast/basic/ast_int.dart';
 import 'package:unify_flutter/ast/basic/ast_string.dart';
 import 'package:unify_flutter/ast/basic/ast_variable.dart';
 import 'package:unify_flutter/ast/basic/ast_void.dart';
@@ -291,10 +294,17 @@ class OCClassUniCallback {
                         body:
                             'NSDictionary *msg = @{@"callbackName":self.callbackName,@"data" : @""};'));
                   } else {
+                    // 非空基础类型(BOOL/NSInteger/double)是标量,不能直接作为
+                    // NSDictionary 的 value,需装箱成 NSNumber;其余对象类型保持原样。
+                    final rt = paramGeneric.realType();
+                    final dataValue = (!rt.maybeNull &&
+                            (rt is AstInt || rt is AstDouble || rt is AstBool))
+                        ? '@($paramName)'
+                        : paramName;
                     ret.add(OneLine(
                         depth: depth + 1,
                         body:
-                            'NSDictionary *msg = @{@"callbackName":self.callbackName,@"data":$paramName};'));
+                            'NSDictionary *msg = @{@"callbackName":self.callbackName,@"data":$dataValue};'));
                   }
                   ret.add(Comment(depth: depth + 1, comments: ['发送消息']));
                   ret.add(OneLine(

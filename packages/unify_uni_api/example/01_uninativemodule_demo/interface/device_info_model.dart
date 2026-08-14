@@ -11,4 +11,7 @@ class DeviceInfoModel {
 
   /// 手机型号
   String? plaform;
+
+  int? test;
+  bool? test2;
 }
